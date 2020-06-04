@@ -12,6 +12,13 @@ import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 
 public class MenuPrincipal extends JFrame {
@@ -45,11 +52,6 @@ public class MenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Bienvenido");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(306, 30, 160, 25);
-		contentPane.add(lblNewLabel);
-		
 		JButton btnNewButton = new JButton("Adicion");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -77,5 +79,41 @@ public class MenuPrincipal extends JFrame {
 		JButton button_3 = new JButton("Informes");
 		button_3.setBounds(211, 238, 291, 25);
 		contentPane.add(button_3);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 119, 26);
+		contentPane.add(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Menu");
+		menuBar.add(mnNewMenu);
+		
+		JMenu mnNewMenu_1 = new JMenu("Adicion");
+		mnNewMenu.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Pedido");
+		mnNewMenu_1.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Caja");
+		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Clientes");
+		mnNewMenu.add(mntmNewMenuItem_2);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
