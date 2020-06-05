@@ -38,6 +38,7 @@ public class Uno extends JDialog {
 	public Uno() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 	}
 }

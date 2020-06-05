@@ -1,14 +1,9 @@
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import java.awt.Font;
-import javax.swing.JList;
-import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,10 +16,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 
+
 public class MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
-
+	private Programa programa = new Programa();
 	/**
 	 * Launch the application.
 	 */
@@ -45,8 +41,9 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 698, 409);
+		this.setUndecorated(true);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,16 +87,59 @@ public class MenuPrincipal extends JFrame {
 		JMenu mnNewMenu_1 = new JMenu("Adicion");
 		mnNewMenu.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Pedido");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Nuevo Pedido");
 		mnNewMenu_1.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				Adicion adicion = new Adicion();
+				adicion.setVisible(true);
+				dispose();
+			}
+		});
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Modificar Pedido");
+		mnNewMenu_1.add(mntmNewMenuItem_3);
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				Adicion adicion = new Adicion();
+				adicion.setVisible(true);
+				dispose();
+			}
+		});
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Ver Demora");
+		mnNewMenu_1.add(mntmNewMenuItem_4);
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				Adicion adicion = new Adicion();
+				adicion.setLocationRelativeTo(null);
+				adicion.setVisible(true);
+				dispose();
+			}
+		});
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Caja");
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
+		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Clientes");
 		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JButton btnNewButton_1 = new JButton("Salir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				programa.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(12, 371, 97, 25);
+		contentPane.add(btnNewButton_1);
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
+	
+	/*private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
@@ -115,5 +155,5 @@ public class MenuPrincipal extends JFrame {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
-	}
+	}*/
 }

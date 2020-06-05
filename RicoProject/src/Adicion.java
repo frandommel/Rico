@@ -11,11 +11,12 @@ import java.io.Closeable;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Point;
+import javax.swing.border.CompoundBorder;
 
 public class Adicion extends JFrame {
 
 	private JPanel contentPane;
-	MenuPrincipal mp =new MenuPrincipal();
 	/**
 	 * Launch the application.
 	 */
@@ -25,6 +26,7 @@ public class Adicion extends JFrame {
 				try {
 					Adicion frame = new Adicion();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,29 +38,31 @@ public class Adicion extends JFrame {
 	 * Create the frame.
 	 */
 	public Adicion() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setUndecorated(true);
 		setBounds(100, 100, 826, 514);
+		this.setLocationRelativeTo(null);
+		//this.setExtendedState(state);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton button_1 = new JButton("1");
+		button_1.setBounds(46, 148, 70, 71);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Uno uno = new Uno();
 				uno.setVisible(true);
 			}
 		});
-		button_1.setBounds(46, 148, 70, 71);
+		contentPane.setLayout(null);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("2");
+		button_2.setBounds(128, 148, 70, 71);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_2.setBounds(128, 148, 70, 71);
 		contentPane.add(button_2);
 		
 		JButton button_3 = new JButton("3");
@@ -90,18 +94,19 @@ public class Adicion extends JFrame {
 		contentPane.add(button_9);
 		
 		JLabel lblNewLabel = new JLabel("Adicion");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblNewLabel.setBounds(353, 13, 95, 71);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.setBounds(46, 429, 97, 25);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MenuPrincipal mp =new MenuPrincipal();
 				mp.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(46, 429, 97, 25);
 		contentPane.add(btnNewButton);
 	}
 }
