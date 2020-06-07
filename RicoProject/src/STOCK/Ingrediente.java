@@ -1,4 +1,4 @@
-package Clases;
+package STOCK;
 
 public class Ingrediente {
 	private String nombre;
@@ -40,7 +40,16 @@ public class Ingrediente {
 
 	@Override
 	public String toString() {
-		return "Ingrediente \n[nombre=" + nombre + ", costo=" + costo + ", stock=" + stock + "]";
+		return nombre;
+	}
+	
+	/**
+	 * @apiNote Show all atributtes of this class
+	 * @return
+	 */
+	
+	public String toString2() {
+		return nombre + ", costo=" + costo + ", stock=" + stock + "]";
 	}
 	
 	

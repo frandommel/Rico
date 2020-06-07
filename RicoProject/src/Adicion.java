@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Clases.Combo;
+
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,7 +29,7 @@ public class Adicion extends JFrame {
 				try {
 					Adicion frame = new Adicion();
 					frame.setVisible(true);
-					
+									
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

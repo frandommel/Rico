@@ -4,7 +4,7 @@ public abstract class Producto {
 	private String nombre;
 	private int precio;
 	private String observaciones; 
-	private int cantToppings;
+
 	
 	//**Constructors**//
 	
@@ -12,14 +12,14 @@ public abstract class Producto {
 		nombre="";
 		precio=0;
 		observaciones="";
-		cantToppings=0;
+
 	}
 	
-	public Producto(String nombre, int precio, String observaciones, int cantToppings) {
+	public Producto(String nombre, int precio, String observaciones ) {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.observaciones = observaciones;
-		this.cantToppings = cantToppings;
+
 	}
 	
 	///**Getters**//
@@ -36,9 +36,7 @@ public abstract class Producto {
 		return observaciones;
 	}
 	
-	public int getCantToppings() {
-		return cantToppings;
-	}
+	
 	
 	///***Setters**///
 	
@@ -53,12 +51,16 @@ public abstract class Producto {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-	
-	public void setCantToppings(int cantToppings) {
-		this.cantToppings = cantToppings;
+
+	@Override
+	public String toString() {
+		return nombre + " Precio : $" + precio;
 	}
 	
+	
+	
 	//**Metodos**//
+	
 	
 	
 	
