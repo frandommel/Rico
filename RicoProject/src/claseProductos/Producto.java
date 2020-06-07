@@ -1,4 +1,4 @@
-package Clases;
+package claseProductos;
 
 public abstract class Producto {
 	private String nombre;

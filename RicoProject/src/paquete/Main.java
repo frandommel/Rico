@@ -2,11 +2,11 @@ package paquete;
 
 import java.util.ArrayList;
 
-import Clases.Bebida;
-import Clases.Combo;
-import Clases.Guarnicion;
-import Clases.Hamburguesa;
-import Clases.Producto;
+import claseProductos.Bebida;
+import claseProductos.Combo;
+import claseProductos.Guarnicion;
+import claseProductos.Hamburguesa;
+import claseProductos.Producto;
 
 public class Main {
 

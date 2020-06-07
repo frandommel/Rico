@@ -1,4 +1,4 @@
-package Clases;
+package claseProductos;
 
 public class Guarnicion extends Producto {
 	private String porcion;

@@ -1,8 +1,8 @@
-package Clases;
+package claseProductos;
 
 import java.util.ArrayList;
 
-import Contenedores.ContenedorArrayList;
+import contenedores.ContenedorArrayList;
 
 public class Combo <T>{
 	private String nombre;

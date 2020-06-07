@@ -1,4 +1,4 @@
-package Clases;
+package claseProductos;
 
 public class Hamburguesa extends Producto {
 	private boolean esVeggie;

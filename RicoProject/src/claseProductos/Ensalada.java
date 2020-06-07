@@ -1,4 +1,4 @@
-package Clases;
+package claseProductos;
 
 import java.util.ArrayList;
 

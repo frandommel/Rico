@@ -1,4 +1,4 @@
-package Clases;
+package claseProductos;
 
 public class Topping {
 	private int id;

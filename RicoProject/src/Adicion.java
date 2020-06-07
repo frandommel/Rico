@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Clases.Combo;
+import claseProductos.Combo;
 
 import javax.swing.JTable;
 import javax.swing.JButton;
