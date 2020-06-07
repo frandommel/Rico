@@ -1,104 +1,65 @@
 package claseProductos;
 
+
 import java.util.ArrayList;
 
 import contenedores.ContenedorArrayList;
 
-public class Combo <T>{
-	private String nombre;
-	private double precio;
+public class Combo extends Producto{
+	
 	private boolean agrandado;
 	private ArrayList<Producto> productosCombo;  
-	
-	private String observaciones;
-	private static Bebida bebida;
+
 	
 	
 	//**Constructor**//
 	
 	public Combo() {
-		nombre="";
-		precio=0;
+		super("",0,"");
 		agrandado=false;  ///TODO SI ES TRUE TENES QUE PONERLE GRANDE A LAS GUARNICION Y BEBIDA;
 		productosCombo=new ArrayList<Producto>();  
-		observaciones="";
 	}
 	
-	public Combo(String nombre, double precio, boolean agrandado,Bebida bebida,Producto producto1,Producto producto2) {
-		this.nombre = nombre;
-		this.precio = precio;
-		this.agrandado = agrandado;
+	public Combo(String nombre, int precio, boolean agrandado,Bebida bebida,Producto producto1,Producto producto2) {
 		
-		this.observaciones = "";
+		super(nombre, precio, "");
+		this.agrandado = agrandado;
 		productosCombo= generarListado(bebida,producto1,producto2);
 		
 		funcionAgrandado(agrandado,productosCombo);
-		
-		
-		//TODO REVISAR CARGA COMBO EN EL CONSTRUCTOR
-		
-		
-	}	
+		}	
 	
-	//**Getters**//
 	
-	public String getNombre() {
-		return nombre;
-	}
-	public double getPrecio() {
-		return precio;
-	}
-	public boolean isAgrandado() {
-		return agrandado;
-	}
-	public String getObservaciones() {
-		return observaciones;
-	}
-	
-	//**Setters**//
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-	public void setAgrandado(boolean agrandado) {
-		this.agrandado = agrandado;
-	}
-	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Combo " + nombre );
+		builder.append("Combo " + super.getNombre());
 		if(agrandado==true)
 		{
 			builder.append(" AGRANDADO ");
 		}
-		builder.append("\n Precio = $" + precio+ "\n Productos --> " + productosCombo.toString()	+ "\n Observaciones: " + observaciones);
+		builder.append("\n Precio = $" + super.getPrecio()+ "\n Productos --> " + productosCombo.toString()	+ "\n Observaciones: " + super.getObservaciones());
 		
 		return builder.toString();
 	}
 	
-	private static void funcionAgrandado(boolean agrandado, ArrayList<Producto> listaCombo) {
+	private void funcionAgrandado(boolean agrandado, ArrayList<Producto> listaCombo) 
+	{
+		Bebida bebidaGrande = new Bebida("Gaseosa 500 cc",70,"Linea Pepsi");
 		if(agrandado==true)
 		{
-			for (Producto aux : listaCombo) {
-				if(aux instanceof Guarnicion)
-				{
-					((Guarnicion) aux).setPorcion(" Grande ");
-				}
-			}
+			listaCombo.remove(0);
+			listaCombo.add(0, bebidaGrande);
+			super.setPrecio(super.getPrecio()+20);
 		}
+	
 	}
 	
 	private ArrayList<Producto> generarListado(Bebida bebida,Producto producto1,Producto producto2) {
 		
 		ArrayList<Producto> listado = new ArrayList<Producto>();
-		listado.add(producto1);
 		listado.add(bebida);
+		listado.add(producto1);
 		listado.add(producto2);
 		
 		return listado;

@@ -10,8 +10,8 @@ public class Bebida extends Producto{
 	}
 	
 	
-	public Bebida(String nombre, int precio, String observaciones,String marca) {
-		super(nombre, precio, observaciones);
+	public Bebida(String nombre, int precio,String marca) {
+		super(nombre, precio,"");
 		this.marca = marca;
 	}
 	public String getMarca() {

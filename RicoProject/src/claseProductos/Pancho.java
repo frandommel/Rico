@@ -9,12 +9,14 @@ public class Pancho extends Producto{
 	public Pancho() {
 		super();
 		esVeggie = false;
+		this.cantToppings=0;
+
 	}
 
-	public Pancho(String nombre, int precio, int cantToppings, boolean esVeggie) {
+	public Pancho(String nombre, int precio, boolean esVeggie) {
 		super(nombre, precio, "");
 		this.esVeggie=esVeggie;
-		this.cantToppings=cantToppings;
+		this.cantToppings=0;
 	}
 
 	//**Getters**//
