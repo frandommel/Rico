@@ -11,8 +11,8 @@ public class Pancho extends Producto{
 		esVeggie = false;
 	}
 
-	public Pancho(String nombre, int precio, String observaciones, int cantToppings, boolean esVeggie) {
-		super(nombre, precio, observaciones);
+	public Pancho(String nombre, int precio, int cantToppings, boolean esVeggie) {
+		super(nombre, precio, "");
 		this.esVeggie=esVeggie;
 		this.cantToppings=cantToppings;
 	}
@@ -39,6 +39,9 @@ public class Pancho extends Producto{
 	public String toString() {
 		return "Pancho [esVeggie=" + esVeggie + ", cantToppings=" + cantToppings + "]";
 	}
+
+	
+
 	
 	
 }

@@ -2,7 +2,6 @@ package claseProductos;
 
 public class Bebida extends Producto{
 	private String marca;
-	private String tipo;
 	
 
 	public Bebida() {
@@ -25,8 +24,9 @@ public class Bebida extends Producto{
 	
 	@Override
 	public String toString() {
-		return super.getNombre()+" "+ marca;
+		return super.getNombre()+" "+ marca + " Precio : $" + super.getPrecio();
 	}
+	
 	
 	
 	

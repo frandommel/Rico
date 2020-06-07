@@ -8,8 +8,8 @@ public class Guarnicion extends Producto {
 		porcion="";
 	}
 
-	public Guarnicion(String nombre, int precio, String observaciones, String porcion) {
-		super(nombre, precio, observaciones);
+	public Guarnicion(String nombre, int precio, String porcion) {
+		super(nombre, precio, "");
 		this.porcion=porcion;
 	}
 
@@ -25,6 +25,8 @@ public class Guarnicion extends Producto {
 	public String toString() {
 		return super.getNombre()+" "+porcion;
 	}
+
+	
 	
 	
 }

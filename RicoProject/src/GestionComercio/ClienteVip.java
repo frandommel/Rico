@@ -12,6 +12,11 @@ public class ClienteVip extends Persona{
 		super(nombre, apellido, direccion, id);
 		this.cantSellos=cantSellos;
 	}
+	
+	public ClienteVip(String nombre, String apellido, String direccion) {
+	///	super(nombre, apellido, direccion );  TODO BUSCAR EN EL ARCHIVO EL ID Y HACERLO AUTOMATICO
+		this.cantSellos=0;
+	}
 
 	public int getCantSellos() {
 		return cantSellos;

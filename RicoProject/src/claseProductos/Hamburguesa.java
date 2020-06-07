@@ -2,7 +2,7 @@ package claseProductos;
 
 public class Hamburguesa extends Producto {
 	private boolean esVeggie;
-	private boolean aptoCeliaco;
+	
 	private int cantToppings;
 	
 	//**Constructor**//
@@ -10,11 +10,9 @@ public class Hamburguesa extends Producto {
 	public Hamburguesa() {
 		super();
 		esVeggie=false;
-		aptoCeliaco=false;		
 	}
-	public Hamburguesa(String nombre, int precio, String observaciones, int cantToppings, boolean esVeggie, boolean aptoCeliaco) {
-		super(nombre, precio, observaciones);
-		this.aptoCeliaco=aptoCeliaco;
+	public Hamburguesa(String nombre, int precio, int cantToppings, boolean esVeggie) {
+		super(nombre, precio, "");
 		this.esVeggie=esVeggie;
 		this.cantToppings=cantToppings;
 	}
@@ -24,9 +22,7 @@ public class Hamburguesa extends Producto {
 		return this.esVeggie;
 	}
 	
-	public boolean isAptoCeliaco() {
-		return this.aptoCeliaco;
-	}	
+		
 	
 		
 	public int getCantToppings() {
@@ -34,9 +30,6 @@ public class Hamburguesa extends Producto {
 	}
 	//**Setters**//
 	public boolean setEsVeggie() {
-		return true;
-	}
-	public boolean setAptoCeliaco() {
 		return true;
 	}
 	
@@ -51,20 +44,17 @@ public class Hamburguesa extends Producto {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Hamburguesa " );
 		builder.append(super.toString());
-		if(esVeggie==true && aptoCeliaco==true)
+		if(esVeggie==true)
 		{
-			builder.append(" VEGETARIANA / SIN TACC. ");
-		}else if (esVeggie==true) {
-			builder.append(" VEGETARIANA. ");
-		}else if(aptoCeliaco==true){
-			
-			builder.append(" SIN TACC. ");
+			builder.append(" VEGETARIANA.");
 		}
 		
 		
 		
 		return builder.toString();
 	}
+	
+	
 	
 	
 }

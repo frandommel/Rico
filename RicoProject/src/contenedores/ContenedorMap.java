@@ -1,6 +1,6 @@
 package contenedores;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 
 import interfaces.IAccion;
@@ -13,6 +13,13 @@ public class ContenedorMap<K,T>{
 		
 		this.mapa = new HashMap<K,T>();
 	}
+	
+	public void agregar(K clave, T elemento)
+	{
+		mapa.put(clave, elemento);
+	}
+	
+	
 
 
 }

@@ -40,6 +40,7 @@ public abstract class Persona {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
 	public int getId() {
 		return id;
 	}

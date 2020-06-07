@@ -15,9 +15,9 @@ public class Ensalada extends Producto {
 		
 	}
 
-	public Ensalada(String nombre, int precio, String observaciones,double calorias)
+	public Ensalada(String nombre, int precio,double calorias)
 	{
-		super(nombre, precio, observaciones);
+		super(nombre, precio, "");
 		this.calorias=calorias;
 		
 	}
@@ -39,6 +39,8 @@ public class Ensalada extends Producto {
 		return "Ensalada "+super.getNombre()+" -> Calorias : " + calorias;
 		
 	}
+
+	
 	
 	
 	
