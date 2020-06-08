@@ -20,10 +20,10 @@ public class Combo extends Producto{
 		productosCombo=new ArrayList<Producto>();  
 	}
 	
-	public Combo(String nombre, int precio, boolean agrandado,Bebida bebida,Producto producto1,Producto producto2) {
+	public Combo(String nombre, int precio,Bebida bebida,Producto producto1,Producto producto2) {
 		
 		super(nombre, precio, "");
-		this.agrandado = agrandado;
+		this.agrandado = false;
 		productosCombo= generarListado(bebida,producto1,producto2);
 		
 		funcionAgrandado(agrandado,productosCombo);
