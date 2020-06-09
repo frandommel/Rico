@@ -1,9 +1,12 @@
 package paquete;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.sound.midi.Soundbank;
 
+import Archivos.ArchivoProducto;
 import claseProductos.Bebida;
 import claseProductos.Combo;
 import claseProductos.Ensalada;
@@ -14,7 +17,9 @@ import claseProductos.Producto;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
+		
+		ArchivoProducto archiProductos = new ArchivoProducto();
 		
 		Bebida bebidaGaseosa237 = new Bebida("Gaseosa 237cc",60,"Linea Pepsi");
 		Bebida bebidaGaseosa500 = new Bebida("Gaseosa 500cc",70,"Linea Pepsi");
@@ -59,6 +64,22 @@ public class Main {
 		Combo comboVeggiePancho = new Combo ("Combo Pancho Veggie",85,bebidaGaseosa237,panchoVeggie,guarnicionPapas);
 		Combo comboSalsas = new Combo ("Combo Salsas",230,bebidaGaseosa237,panchoSalsas,guarnicionPapas);
 	
+		/*combos.agregarCombo(comboKelly);
+		combos.agregarCombo(comboDobleQueso);
+		combos.agregarCombo(comboJeremy);
+		combos.agregarCombo(comboBigWave);
+		combos.agregarCombo(comboVeggie);
+		combos.agregarCombo(comboDobleCarneDobleQueso);
+		combos.agregarCombo(comboRico);
+		combos.agregarCombo(comboRookie);
+		combos.agregarCombo(comboVeggiePancho);
+		combos.agregarCombo(comboSalsas);*/
+		
+		
+		archiProductos.leerCombo();
+
+		
+		
 		
 		
 	}

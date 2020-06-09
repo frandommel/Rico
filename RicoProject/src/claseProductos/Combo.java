@@ -1,11 +1,12 @@
 package claseProductos;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import contenedores.ContenedorArrayList;
 
-public class Combo extends Producto{
+public class Combo extends Producto implements Serializable{
 	
 	private boolean agrandado;
 	private ArrayList<Producto> productosCombo;  
