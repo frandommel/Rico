@@ -7,10 +7,12 @@ import interfaces.IAccion;
 
 public class ListadoPedidos implements IAccion<Pedido> {
       private ContenedorMap<Date, Pedido> listaPedidosContenedorMap;
+      private int montoDiario;
 
       public ListadoPedidos() {
 		
 		this.listaPedidosContenedorMap = new ContenedorMap<Date, Pedido>();
+		montoDiario=0;
 	}
 
 	/** Metodos de la interfaz **/
