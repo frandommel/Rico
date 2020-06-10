@@ -3,19 +3,19 @@ package claseProductos;
 public class Hamburguesa extends Producto {
 	private boolean esVeggie;
 	
-	private int cantToppings;
+	
 	
 	//**Constructor**//
 	
 	public Hamburguesa() {
 		super();
 		esVeggie=false;
-		this.cantToppings =0;
+		
 	}
 	public Hamburguesa(String nombre, int precio,boolean esVeggie) {
 		super(nombre, precio, "");
 		this.esVeggie=esVeggie;
-		this.cantToppings = 0;
+		
 	}
 	
 	//**Getters**//
@@ -26,18 +26,14 @@ public class Hamburguesa extends Producto {
 		
 	
 		
-	public int getCantToppings() {
-		return cantToppings;
-	}
+	
 	//**Setters**//
 	public boolean setEsVeggie() {
 		return true;
 	}
 	
 	
-	public void setCantToppings(int cantToppings) {
-		this.cantToppings = cantToppings;
-	}
+	
 	
 	
 	@Override
