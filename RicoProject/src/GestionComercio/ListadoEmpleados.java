@@ -1,17 +1,16 @@
 package GestionComercio;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
-import contenedores.ContenedorMap;
 import interfaces.IAccion;
 
 public class ListadoEmpleados implements IAccion<Empleado> {
-    private ContenedorMap<Integer, Empleado> listaEmpleadoContenedorMap;
+    private HashMap<Integer, Empleado> listaEmpleadoContenedorMap;
 
-	@Override
-	public void alta(Empleado objeto) {
-		// TODO Auto-generated method stub
-		
+    public ListadoEmpleados() {
+		listaEmpleadoContenedorMap = new HashMap<Integer, Empleado>();
 	}
 
 	@Override
@@ -21,7 +20,7 @@ public class ListadoEmpleados implements IAccion<Empleado> {
 	}
 
 	@Override
-	public <Empleado> void buscar(int id) {
+	public <T> void buscar(int id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -30,6 +29,12 @@ public class ListadoEmpleados implements IAccion<Empleado> {
 	public String listar() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void alta(HashMap<String, ArrayList<Empleado>> mapa) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

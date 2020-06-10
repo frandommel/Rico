@@ -14,7 +14,7 @@ public class Guarnicion extends Producto {
 
 	@Override
 	public String toString() {
-		return super.getNombre();
+		return super.getNombre()+"\n";
 	}
 
 	

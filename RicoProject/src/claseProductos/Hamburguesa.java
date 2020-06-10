@@ -45,6 +45,7 @@ public class Hamburguesa extends Producto {
 		{
 			builder.append(" VEGETARIANA.");
 		}
+		builder.append("\n");
 		
 		
 		

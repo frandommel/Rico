@@ -1,26 +1,19 @@
 package GestionComercio;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
-import contenedores.ContenedorMap;
 import interfaces.IAccion;
 
 public class ListadoPedidos implements IAccion<Pedido> {
-      private ContenedorMap<Date, Pedido> listaPedidosContenedorMap;
+      private HashMap<String, Pedido> listaPedidosContenedorMap;
       private int montoDiario;
 
       public ListadoPedidos() {
 		
-		this.listaPedidosContenedorMap = new ContenedorMap<Date, Pedido>();
+    	  listaPedidosContenedorMap = new HashMap<String, Pedido>();
 		montoDiario=0;
-	}
-
-	/** Metodos de la interfaz **/
-      
-	@Override
-	public void alta(Pedido objeto) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -30,8 +23,8 @@ public class ListadoPedidos implements IAccion<Pedido> {
 	}
 
 	@Override
-	public <Pedido> void buscar(int id) {
-		
+	public <T> void buscar(int id) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -40,6 +33,13 @@ public class ListadoPedidos implements IAccion<Pedido> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-      
+
+	@Override
+	public void alta(HashMap<String, ArrayList<Pedido>> mapa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
       
 }

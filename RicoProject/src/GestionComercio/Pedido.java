@@ -1,36 +1,43 @@
 package GestionComercio;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import claseProductos.Producto;
-import contenedores.ContenedorArrayList;
+
 
 public class Pedido {
 	private int id;
 	private String condicion;
-	private ContenedorArrayList<Producto> productos;
+	private ArrayList<Producto> productos;
 	private boolean isVip;
-	private Date fecha;
+	private String fecha;
+	private int montoVenta;
 	private boolean cobrado;
 	
 	public Pedido() {
 		
 		this.id = 0;
 		this.condicion = "Efectivo";
-		this.productos = new ContenedorArrayList<Producto>();
+		this.productos = new ArrayList<Producto>();
 		this.isVip = false;
-		this.fecha = new Date();
+		
+		fecha=definirFecha();
+		
 		this.cobrado = false;
+		this.montoVenta=0;
+		
 	}
 	
-	public Pedido(int id, String condicion, ContenedorArrayList<Producto> productos, boolean isVip) {
+	public Pedido(int id, String condicion, ArrayList<Producto> productos, boolean isVip) {
 		super();
 		this.id = id;
 		this.condicion = condicion;
 		this.productos = productos;
 		this.isVip = isVip;
-		this.fecha = new Date();
+		this.fecha = definirFecha();
 		this.cobrado = false;
+		setMontoVenta();
 	}
 	
 	public int getId() {
@@ -45,35 +52,63 @@ public class Pedido {
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
-	public ContenedorArrayList<Producto> getProductos() {
+
+
+	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
-	public void setProductos(ContenedorArrayList<Producto> productos) {
+
+	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
+
 	public boolean isVip() {
 		return isVip;
 	}
 	public void setVip(boolean isVip) {
 		this.isVip = isVip;
 	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+	
+	
 	public boolean isCobrado() {
 		return cobrado;
 	}
 	public void setCobrado(boolean cobrado) {
 		this.cobrado = cobrado;
 	}
+	
+	public int getMontoVenta() {
+		return montoVenta;
+	}
+
+	public void setMontoVenta() {
+		
+		Integer montoVenta = 0;
+		for(int i=0;i<productos.size();i++)
+		{
+			montoVenta=montoVenta+productos.get(i).getPrecio();
+		}
+		this.montoVenta = montoVenta;
+	}
 
 	@Override
 	public String toString() {
 		return "Pedido " + id + "--> Condicion: " + condicion + ", fecha=" + fecha + "\n"
 				+ " Pedido: " + productos.toString() + ", Cliente Vip: " + isVip + ", Cobro: " + cobrado;
+	}
+	
+	
+	public String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
 	}
 	
 	

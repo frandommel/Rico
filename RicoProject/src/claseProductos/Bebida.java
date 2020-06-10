@@ -24,7 +24,7 @@ public class Bebida extends Producto{
 	
 	@Override
 	public String toString() {
-		return super.getNombre()+" "+ marca + " Precio : $" + super.getPrecio();
+		return super.getNombre()+" "+ marca + " Precio : $" + super.getPrecio()+"\n";
 	}
 	
 	

@@ -2,10 +2,11 @@ package GestionComercio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
+import Archivos.ArchivoProducto;
 import claseProductos.Producto;
-import contenedores.ContenedorArrayList;
-import contenedores.ContenedorMap;
+
 import interfaces.IAccion;
 
 public class Comercio{
@@ -16,11 +17,35 @@ public class Comercio{
 	private ListadoClientes clientes; /// esto es un mapa de clientes, generico.
 	private ListadoEmpleados empleados;
 	private ListadoPedidos pedidos;
-	private ContenedorArrayList<Producto> productosArrayList;
+	private HashMap<String, ArrayList<Producto>> productos;
+
 	
 	
+	public Comercio() {
+	nombre ="Rico Pancheria";
+	direccion = "Alem 3550";
+	cuit = "20-28335746-7";
+	rubro="FastFood";
+	clientes = new ListadoClientes();
+	empleados = new ListadoEmpleados();
+	pedidos = new ListadoPedidos();
+	
+	ArchivoProducto archivoProducto = new ArchivoProducto();
+	productos = archivoProducto.leer();
+	
+	}
 	
 	
+	public HashMap<String, ArrayList<Producto>> getProductos() {
+		return productos;
+	}
+
+
+	public void setProductos(HashMap<String, ArrayList<Producto>> productos) {
+		this.productos = productos;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}

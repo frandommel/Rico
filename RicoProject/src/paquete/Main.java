@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.sound.midi.Soundbank;
 
 import Archivos.ArchivoProducto;
+import GestionComercio.Comercio;
+import GestionComercio.Pedido;
 import claseProductos.Bebida;
 import claseProductos.Combo;
 import claseProductos.Ensalada;
@@ -18,6 +20,9 @@ import claseProductos.Producto;
 public class Main {
 
 	public static void main(String[] args){
+		
+		Comercio comercioRico = new Comercio();
+		System.out.println(comercioRico.getProductos().toString());
 		
 		ArchivoProducto archiProductos = new ArchivoProducto();
 		ArrayList <Combo> combos = new ArrayList();
@@ -100,31 +105,27 @@ public class Main {
 	
 		//Agregamos combos
 		archiProductos.agregarCombo(combos);
-		archiProductos.leerCombo();
 		
 		//Agregamos hamburguesas
 		archiProductos.agregarHamburguesa(hamburguesas);
-		archiProductos.leerHamburguesa();
 		
 		//Agregamos pancho
 		archiProductos.agregarPancho(panchos);
-		archiProductos.leerPancho();
+		
 		
 		//Agregamos ensalada
 		archiProductos.agregarEnsalada(ensaladas);
-		archiProductos.leerEnsalada();
 		
 		//Agregamos guarnicion
 		archiProductos.agregarGuarnicion(guarniciones);
-		archiProductos.leerGuarnicion();
 		
 		//Agregamos bebida
 		archiProductos.agregarBebida(bebidas);
-		archiProductos.leerBebida();
-
 		
-		//archiProductos.agregar(bebidas);
-		//archiProductos.leer("'bebidas.bin'");
+		
+		
+		
+		archiProductos.leer();
 		
 		
 	}

@@ -36,7 +36,7 @@ public class Ensalada extends Producto {
 
 	@Override
 	public String toString() {
-		return "Ensalada "+super.getNombre()+" -> Calorias : " + calorias;
+		return "Ensalada "+super.getNombre()+" -> Calorias : " + calorias+"\n";
 		
 	}
 

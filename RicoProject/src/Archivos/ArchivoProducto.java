@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
@@ -52,20 +53,18 @@ public class ArchivoProducto
 	
 	
 	//** SE LEE COMBO DE UN ARCHIVO **//
-	public void leerCombo()
+	public ArrayList<Producto> leerCombo()
 	{
 		FileInputStream file = null;
-		ArrayList<Combo> combo;
+		ArrayList<Producto> combo = new ArrayList<Producto>();
 		
 		try {
 			
 			file = new FileInputStream("combos.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			
-			while((combo = (ArrayList <Combo>) object.readObject()) != null) 
-			{
-					System.out.println(combo.toString());	
-			}
+			combo = (ArrayList<Producto>) object.readObject();
+
+		
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -73,11 +72,13 @@ public class ArchivoProducto
 			e.printStackTrace();
 		}
 		catch (EOFException e) {
-			System.out.println("FIN DEL ARCHIVO");
+			//System.out.println("FIN DEL ARCHIVO");
 		}
 		catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		return combo;
 
 	}
 	
@@ -105,19 +106,16 @@ public class ArchivoProducto
 
 	}
 	//** SE LEE HAMBURGUESA DE UN ARCHIVO **//
-	public void leerHamburguesa()
+	public ArrayList<Producto> leerHamburguesa()
 	{
 		FileInputStream file = null;
-		ArrayList <Hamburguesa> hambu;
+		ArrayList <Producto> lista = new ArrayList<Producto>();
 		
 		try {
 			
 			file = new FileInputStream("hamburguesa.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			while((hambu = (ArrayList<Hamburguesa>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + hambu.toString());	
-			}
+			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -130,7 +128,7 @@ public class ArchivoProducto
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-
+		return lista;
 	}
 	
 	//** SE AGREGA PANCHO A UN ARCHIVO **//
@@ -157,19 +155,16 @@ public class ArchivoProducto
 
 	}
 	//** SE LEE PANCHO DE UN ARCHIVO **//
-	public void leerPancho()
+	public ArrayList<Producto> leerPancho()
 	{
 		FileInputStream file = null;
-		ArrayList <Pancho> hambu;
+		ArrayList <Producto> lista = new ArrayList<Producto>();
 		
 		try {
 			
 			file = new FileInputStream("pancho.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			while((hambu = (ArrayList<Pancho>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + hambu.toString());	
-			}
+			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -182,7 +177,7 @@ public class ArchivoProducto
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-
+		return lista;
 	}
 	
 	//** SE AGREGA ENSALADA A UN ARCHIVO **//
@@ -209,19 +204,16 @@ public class ArchivoProducto
 
 	}
 	//** SE LEE ENSALADA DE UN ARCHIVO **//
-	public void leerEnsalada()
+	public ArrayList<Producto> leerEnsalada()
 	{
 		FileInputStream file = null;
-		ArrayList <Ensalada> ensalada;
+		ArrayList <Producto> lista = new ArrayList<Producto>();
 		
 		try {
 			
 			file = new FileInputStream("ensalada.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			while((ensalada = (ArrayList<Ensalada>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + ensalada.toString());	
-			}
+			lista = (ArrayList<Producto>)object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -234,6 +226,8 @@ public class ArchivoProducto
 		catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		return lista;
 
 	}
 	
@@ -261,19 +255,16 @@ public class ArchivoProducto
 
 	}
 	//** SE LEE GUARNICION DE UN ARCHIVO **//
-	public void leerGuarnicion()
+	public ArrayList<Producto> leerGuarnicion()
 	{
 		FileInputStream file = null;
-		ArrayList <Guarnicion> guarnicion;
+		ArrayList <Producto> lista = new ArrayList<Producto>();
 		
 		try {
 			
 			file = new FileInputStream("guarnicion.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			while((guarnicion = (ArrayList<Guarnicion>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + guarnicion.toString());	
-			}
+			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -286,6 +277,8 @@ public class ArchivoProducto
 		catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		return lista;
 
 	}
 
@@ -313,18 +306,15 @@ public class ArchivoProducto
 
 	}
 	//** SE LEE BEBIDAS DE UN ARCHIVO **//
-	public void leerBebida()
+	public ArrayList<Producto> leerBebida()
 	{
 		FileInputStream file = null;
-		ArrayList <Bebida> bebida;	
+		ArrayList <Producto> lista = new ArrayList<Producto>();	
 		try {
 			
 			file = new FileInputStream("bebida.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			while((bebida = (ArrayList<Bebida>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + bebida.toString());	
-			}
+			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -337,87 +327,39 @@ public class ArchivoProducto
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-
-	}
-	
-	public void leerBebida2()
-	{
-		FileInputStream file = null;
-		ArrayList <Bebida> bebida;	
-		try {
-			
-			file = new FileInputStream("bebida.bin");
-			ObjectInputStream object = new ObjectInputStream(file);
-			while((bebida = (ArrayList<Bebida>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + bebida.toString());	
-			}
-			object.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		catch (EOFException e) {
-			//System.out.println("FIN DEL ARCHIVO");
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	
-	public void leer(String archivo)
-	{
-		FileInputStream file = null;
-		ArrayList <Producto> productos;
 		
-		try {
-			
-			file = new FileInputStream(archivo);
-			ObjectInputStream object = new ObjectInputStream(file);
-			while((productos = (ArrayList<Producto>) object.readObject()) != null) 
-			{
-					System.out.println("\n" + productos.toString());	
-			}
-			object.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		catch (EOFException e) {
-			System.out.println("FIN DEL ARCHIVO");
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
+		return lista;
 
 	}
 	
-	public void agregar(ArrayList <Producto> producto) 
+	
+	
+	
+	public HashMap<String , ArrayList<Producto>> leer()
 	{
-		FileOutputStream file = null;
-		try 
-		{
-			file = new FileOutputStream("bebida.bin");
-			ObjectOutputStream object = new ObjectOutputStream(file);
-			
-			object.writeObject(producto);
-			object.close();
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				file.close();
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		HashMap<String, ArrayList<Producto>> mapaProductosContenedorMap = new HashMap<String, ArrayList<Producto>>();
+		
+		
+		mapaProductosContenedorMap.put("Hamburguesa", leerHamburguesa());
+		mapaProductosContenedorMap.put("Combo", leerCombo());
+		mapaProductosContenedorMap.put("Pancho", leerPancho());
 
+		mapaProductosContenedorMap.put("Ensalada", leerEnsalada());
+
+		mapaProductosContenedorMap.put("Bebida", leerBebida());
+
+		mapaProductosContenedorMap.put("Guarnicion", leerGuarnicion());
+
+		
+		
+		
+		
+		
+		return mapaProductosContenedorMap;
+		
 	}
+	
+	
 
 	
 }
