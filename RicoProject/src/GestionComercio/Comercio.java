@@ -3,6 +3,8 @@ package GestionComercio;
 import java.util.ArrayList;
 import java.util.Date;
 
+import claseProductos.Producto;
+import contenedores.ContenedorArrayList;
 import contenedores.ContenedorMap;
 import interfaces.IAccion;
 
@@ -14,7 +16,7 @@ public class Comercio{
 	private ListadoClientes clientes; /// esto es un mapa de clientes, generico.
 	private ListadoEmpleados empleados;
 	private ListadoPedidos pedidos;
-
+	private ContenedorArrayList<Producto> productosArrayList;
 	
 	
 	

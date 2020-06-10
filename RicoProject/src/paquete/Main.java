@@ -123,7 +123,8 @@ public class Main {
 		archiProductos.leerBebida();
 
 		
-		
+		//archiProductos.agregar(bebidas);
+		//archiProductos.leer("'bebidas.bin'");
 		
 		
 	}

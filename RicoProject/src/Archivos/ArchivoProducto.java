@@ -18,6 +18,7 @@ import claseProductos.Ensalada;
 import claseProductos.Guarnicion;
 import claseProductos.Hamburguesa;
 import claseProductos.Pancho;
+import claseProductos.Producto;
 
 public class ArchivoProducto 
 {
@@ -68,9 +69,13 @@ public class ArchivoProducto
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+			System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 
@@ -113,13 +118,16 @@ public class ArchivoProducto
 			{
 					System.out.println("\n" + hambu.toString());	
 			}
-			
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+		//	System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 
@@ -162,13 +170,16 @@ public class ArchivoProducto
 			{
 					System.out.println("\n" + hambu.toString());	
 			}
-			
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+			//System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 
@@ -211,13 +222,16 @@ public class ArchivoProducto
 			{
 					System.out.println("\n" + ensalada.toString());	
 			}
-			
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+		//	System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 
@@ -260,18 +274,21 @@ public class ArchivoProducto
 			{
 					System.out.println("\n" + guarnicion.toString());	
 			}
-			
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch(IOException e) {
 			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		catch (EOFException e) {
+			//System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 
 	}
-	
+
 	//** SE AGREGA BEBIDAS A UN ARCHIVO **//
 	public void agregarBebida(ArrayList <Bebida> bebida) 
 	{
@@ -307,21 +324,100 @@ public class ArchivoProducto
 			while((bebida = (ArrayList<Bebida>) object.readObject()) != null) 
 			{
 					System.out.println("\n" + bebida.toString());	
-			}			
+			}
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+			//System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void leerBebida2()
+	{
+		FileInputStream file = null;
+		ArrayList <Bebida> bebida;	
+		try {
+			
+			file = new FileInputStream("bebida.bin");
+			ObjectInputStream object = new ObjectInputStream(file);
+			while((bebida = (ArrayList<Bebida>) object.readObject()) != null) 
+			{
+					System.out.println("\n" + bebida.toString());	
+			}
+			object.close();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+			//System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 
 	}
 	
 	
+	public void leer(String archivo)
+	{
+		FileInputStream file = null;
+		ArrayList <Producto> productos;
+		
+		try {
+			
+			file = new FileInputStream(archivo);
+			ObjectInputStream object = new ObjectInputStream(file);
+			while((productos = (ArrayList<Producto>) object.readObject()) != null) 
+			{
+					System.out.println("\n" + productos.toString());	
+			}
+			object.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (EOFException e) {
+			System.out.println("FIN DEL ARCHIVO");
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 	
-	
-	
+	public void agregar(ArrayList <Producto> producto) 
+	{
+		FileOutputStream file = null;
+		try 
+		{
+			file = new FileOutputStream("bebida.bin");
+			ObjectOutputStream object = new ObjectOutputStream(file);
+			
+			object.writeObject(producto);
+			object.close();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				file.close();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	
 }
