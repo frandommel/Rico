@@ -39,7 +39,7 @@ public class Pancho extends Producto{
 
 	@Override
 	public String toString() {
-		return "Pancho [esVeggie=" + esVeggie + ", cantToppings=" + cantToppings + "]";
+		return super.getNombre() +" Pancho [esVeggie=" + esVeggie + ", cantToppings=" + cantToppings + "]";
 	}
 
 	
