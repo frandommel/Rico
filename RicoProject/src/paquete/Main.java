@@ -105,26 +105,17 @@ public class Main {
 	
 		//Agregamos combos
 		archiProductos.agregarCombo(combos);
-		
 		//Agregamos hamburguesas
 		archiProductos.agregarHamburguesa(hamburguesas);
-		
 		//Agregamos pancho
 		archiProductos.agregarPancho(panchos);
-		
-		
 		//Agregamos ensalada
 		archiProductos.agregarEnsalada(ensaladas);
-		
 		//Agregamos guarnicion
 		archiProductos.agregarGuarnicion(guarniciones);
-		
 		//Agregamos bebida
 		archiProductos.agregarBebida(bebidas);
-		
-		
-		
-		
+		//TRAE EL ARCHIVO DE TODOS LOS PRODUCTOS Y DEVUELVE UN MAPA DEL MISMO
 		archiProductos.leer();
 		
 		

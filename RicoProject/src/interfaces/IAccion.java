@@ -7,7 +7,8 @@ import claseProductos.Producto;
 
 public interface IAccion<V,T> {
 	public void baja(T objeto);
-	public T  buscar(int id);
-	public String listar();
-	public void alta(HashMap<V, T > mapa);
+	public T  buscar(V busqueda);
+	public void listar();
+	public String listar(V clave);
+	public void alta(T objeto);
 }
