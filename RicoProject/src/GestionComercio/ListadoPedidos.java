@@ -6,26 +6,26 @@ import java.util.HashMap;
 
 import interfaces.IAccion;
 
-public class ListadoPedidos implements IAccion<String,Pedido> {
-      private HashMap<String, Pedido> listaPedidosContenedorMap;
+public class ListadoPedidos implements IAccion<String,ArrayList<Pedido>> {
+      private HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap;
       private int montoDiario;
 
       public ListadoPedidos() {
 		
-    	  listaPedidosContenedorMap = new HashMap<String, Pedido>();
+    	  listaPedidosContenedorMap = new HashMap<String, ArrayList<Pedido>>();
 		montoDiario=0;
 	}
 
 	@Override
-	public void baja(Pedido objeto) {
+	public void baja(ArrayList<Pedido> objeto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public <T> void buscar(int id) {
-		// TODO Auto-generated method stub
-		
+	public ArrayList<Pedido> buscar(int id) {
+		///LO QUE PASEMOS EN EL LUGAR DE COMLETAR TIENE QUE SER EN FECHA, PASARLO A INTEGER PARA ESTA FUNCION Y AHI USARLO EN LA COMPARACION
+		return null;
 	}
 
 	@Override
@@ -35,10 +35,12 @@ public class ListadoPedidos implements IAccion<String,Pedido> {
 	}
 
 	@Override
-	public void alta(HashMap<String, Pedido> mapa) {
-		
+	public void alta(HashMap<String, ArrayList<Pedido>> mapa) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 
 

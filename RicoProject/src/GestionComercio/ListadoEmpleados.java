@@ -20,12 +20,6 @@ public class ListadoEmpleados implements IAccion<Integer,Empleado> {
 	}
 
 	@Override
-	public <T> void buscar(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String listar() {
 		// TODO Auto-generated method stub
 		return null;
@@ -35,6 +29,12 @@ public class ListadoEmpleados implements IAccion<Integer,Empleado> {
 	public void alta(HashMap<Integer, Empleado> mapa) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Empleado buscar(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

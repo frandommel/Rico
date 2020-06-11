@@ -16,12 +16,6 @@ public class ListadoClientes implements IAccion<Integer,ClienteVip> {
 	}
 
 	@Override
-	public <T> void buscar(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String listar() {
 		// TODO Auto-generated method stub
 		return null;
@@ -32,6 +26,14 @@ public class ListadoClientes implements IAccion<Integer,ClienteVip> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ClienteVip buscar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 	
 
