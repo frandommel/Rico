@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import Archivos.ArchivoPedidos;
+import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
 import claseProductos.Producto;
 
@@ -26,8 +28,14 @@ public class Comercio{
 	direccion = "Alem 3550";
 	cuit = "20-28335746-7";
 	rubro="FastFood";
+	
+	ArchivoPersona clientesArchivoPersona = new ArchivoPersona();
 	clientes = new ListadoClientes();
+	
+	ArchivoPersona empleadosArchivoPersona = new ArchivoPersona();
 	empleados = new ListadoEmpleados();
+	
+	ArchivoPedidos pedidosArchivoPedidos = new ArchivoPedidos();
 	pedidos = new ListadoPedidos();
 	
 	ArchivoProducto archivoProducto = new ArchivoProducto();

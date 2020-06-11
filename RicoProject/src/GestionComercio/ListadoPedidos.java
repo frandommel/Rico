@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import interfaces.IAccion;
 
-public class ListadoPedidos implements IAccion<Pedido> {
+public class ListadoPedidos implements IAccion<String,Pedido> {
       private HashMap<String, Pedido> listaPedidosContenedorMap;
       private int montoDiario;
 
@@ -35,10 +35,12 @@ public class ListadoPedidos implements IAccion<Pedido> {
 	}
 
 	@Override
-	public void alta(HashMap<String, ArrayList<Pedido>> mapa) {
-		// TODO Auto-generated method stub
+	public void alta(HashMap<String, Pedido> mapa) {
+		
 		
 	}
+
+
 
 	
       

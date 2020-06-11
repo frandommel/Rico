@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import interfaces.IAccion;
 
-public class ListadoEmpleados implements IAccion<Empleado> {
+public class ListadoEmpleados implements IAccion<Integer,Empleado> {
     private HashMap<Integer, Empleado> listaEmpleadoContenedorMap;
 
     public ListadoEmpleados() {
@@ -32,9 +32,12 @@ public class ListadoEmpleados implements IAccion<Empleado> {
 	}
 
 	@Override
-	public void alta(HashMap<String, ArrayList<Empleado>> mapa) {
+	public void alta(HashMap<Integer, Empleado> mapa) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+	
 
 }
