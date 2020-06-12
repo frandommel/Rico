@@ -1,5 +1,8 @@
 package GestionComercio;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ClienteVip extends Persona{
 	public int cantSellos;
 
@@ -31,6 +34,26 @@ public class ClienteVip extends Persona{
 		return super.toString()+" ClienteVip " + cantSellos + " Sellos.";
 	}
 	
+	public JSONObject generateJson() throws JSONException
+	{
+		JSONObject personaJsonObject = new JSONObject();
+		try {
+			
+			personaJsonObject.put("nombre",getNombre());
+			personaJsonObject.put("apellido",getApellido());
+			personaJsonObject.put("id", getId());
+			personaJsonObject.put("direccion", getDireccion());
+
+			personaJsonObject.put("cantSellos", getCantSellos());
+		
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return personaJsonObject;
+	}
+
 	
 	
 }

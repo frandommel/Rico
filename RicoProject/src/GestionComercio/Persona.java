@@ -1,5 +1,8 @@
 package GestionComercio;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public abstract class Persona {
 	private String nombre;
 	private String apellido;
@@ -54,7 +57,7 @@ public abstract class Persona {
 	}
 	
 	
-	
+	public abstract JSONObject generateJson() throws JSONException;
 	
 	
 }
