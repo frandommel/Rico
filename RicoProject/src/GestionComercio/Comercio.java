@@ -7,6 +7,7 @@ import java.util.HashMap;
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
+import Archivos.ManejadordeArchivos;
 import claseProductos.Producto;
 
 import interfaces.IAccion;
@@ -29,17 +30,13 @@ public class Comercio{
 	cuit = "20-28335746-7";
 	rubro="FastFood";
 	
-	ArchivoPersona clientesArchivoPersona = new ArchivoPersona();
-	clientes = new ListadoClientes();
+	/*ArchivoProducto archivoProducto = new ArchivoProducto();
+	productos = archivoProducto.leer();*/
 	
-	ArchivoPersona empleadosArchivoPersona = new ArchivoPersona();
-	empleados = new ListadoEmpleados();
+	ManejadordeArchivos archivos = new ManejadordeArchivos();
+	productos = archivos.getListadoProductos();
+	pedidos = archivos.getListadoPedidos();
 	
-	ArchivoPedidos pedidosArchivoPedidos = new ArchivoPedidos();
-	pedidos = new ListadoPedidos();
-	
-	ArchivoProducto archivoProducto = new ArchivoProducto();
-	productos = archivoProducto.leer();
 	
 	}
 	

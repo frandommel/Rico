@@ -28,13 +28,13 @@ public class Main {
 	public static void main(String[] args) throws JSONException{
 		
 		Comercio comercioRico = new Comercio();
-		//System.out.println(comercioRico.getProductos().toString());
+		System.out.println(comercioRico.getProductos().toString());
 		
 		ArchivoProducto archiProductos = new ArchivoProducto();
 		
-		ClienteVip cliente = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
+		//ClienteVip cliente = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
 		
-		Empleado empleado = new Empleado("Fermin","Rodriguez","Walabi 42",2,"1234",4000, "Cajero");
+		//Empleado empleado = new Empleado("Fermin","Rodriguez","Walabi 42",2,"1234",4000, "Cajero");
 		//System.out.println(persona.toString());
 		/*ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();
@@ -129,11 +129,11 @@ public class Main {
 		//TRAE EL ARCHIVO DE TODOS LOS PRODUCTOS Y DEVUELVE UN MAPA DEL MISMO
 		//archiProductos.leer();
 		
-		JSONObject jsonObject=cliente.generateJson();
+		/*JSONObject jsonObject=cliente.generateJson();
 		JSONObject jsonObject2=empleado.generateJson();
 
 		System.out.println(jsonObject);
-		System.out.println(jsonObject2);
+		System.out.println(jsonObject2);*/
 		
 		
 		

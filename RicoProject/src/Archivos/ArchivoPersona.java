@@ -1,31 +1,24 @@
 package Archivos;
 
+import GestionComercio.ListadoClientes;
+import GestionComercio.ListadoEmpleados;
 import GestionComercio.Persona;
 
 public class ArchivoPersona {
 	public ArchivoPersona() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public void agregarEmpleados()
-	{
-		
+
+	public ListadoEmpleados leerEmpleados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ListadoClientes leerClientes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public void agregarCliente()
-	{
-		
-	}
-	
-	/*public Persona getClientes()
-	{
-		
-	}
-	
-	public Persona getEmpleados()
-	{
-		
-	}
-	*/
+
 	
 }
