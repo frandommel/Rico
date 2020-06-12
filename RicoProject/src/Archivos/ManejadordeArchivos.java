@@ -50,7 +50,7 @@ public class ManejadordeArchivos {
 	public ListadoPedidos getListadoPedidos()
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
-		//destinoPedido = pedido.leerPedido();
+		destinoPedido = pedido.leerPedido();
 		
 		return destinoPedido;
 		
