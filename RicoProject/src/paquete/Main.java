@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
 import GestionComercio.ClienteVip;
 import GestionComercio.Comercio;
@@ -32,6 +33,7 @@ public class Main {
 		Comercio comercioRico = new Comercio();
 		//System.out.println(comercioRico.getProductos().toString());
 		Personas personas = new Personas();
+		ArchivoPersona archi = new ArchivoPersona();
 		
 		
 		
@@ -66,7 +68,10 @@ public class Main {
 		arrayJsonArray.put(empleadosJsonArray);
 		arrayJsonArray.put(clientesJsonArray);
 		
-		System.out.println(arrayJsonArray.toString());
+		
+		archi.agregarArchivo(arrayJsonArray);
+		System.out.println(archi.leer());
+		//System.out.println(arrayJsonArray.toString());
 		
 		//ArchivoProducto archiProductos = new ArchivoProducto();
 		

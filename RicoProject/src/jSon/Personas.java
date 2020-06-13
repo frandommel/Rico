@@ -27,9 +27,6 @@ public class Personas {
 		return arregloPersonasArray;
 	}
 
-
-
-
 	public JSONObject generateEmpleado(Empleado empleado) throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("nombre", empleado.getNombre());

@@ -29,23 +29,6 @@ public class ManejadordeArchivos {
 		return destinoProductos;
 	}
 	
-	public ListadoClientes getListadoClientes()
-	{
-		ListadoClientes destinoClientes = new ListadoClientes();
-		destinoClientes = persona.leerClientes();
-		
-		return destinoClientes;
-		
-	}
-	
-	public ListadoEmpleados getListadoEmpleados()
-	{
-		ListadoEmpleados destinoEmpleados = new ListadoEmpleados();
-		destinoEmpleados = persona.leerEmpleados();
-
-		return destinoEmpleados;
-		
-	}
 	
 	public ListadoPedidos getListadoPedidos()
 	{
