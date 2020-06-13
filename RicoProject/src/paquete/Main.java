@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.sound.midi.Soundbank;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,19 +23,56 @@ import claseProductos.Guarnicion;
 import claseProductos.Hamburguesa;
 import claseProductos.Pancho;
 import claseProductos.Producto;
+import jSon.Personas;
 
 public class Main {
 
 	public static void main(String[] args) throws JSONException{
 		
 		Comercio comercioRico = new Comercio();
-		System.out.println(comercioRico.getProductos().toString());
+		//System.out.println(comercioRico.getProductos().toString());
+		Personas personas = new Personas();
 		
-		ArchivoProducto archiProductos = new ArchivoProducto();
 		
-		//ClienteVip cliente = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
 		
-		//Empleado empleado = new Empleado("Fermin","Rodriguez","Walabi 42",2,"1234",4000, "Cajero");
+		ClienteVip cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
+		ClienteVip cliente2 = new ClienteVip("Juan", "Papi", "CAraza 2040", 2, 0);
+		ClienteVip cliente3 = new ClienteVip("Rodrigo", "Gonzalez", "Balcarce 45", 3, 0);
+		
+		Empleado empleado1 = new Empleado("Fermin","Rodriguez","Walabi 42",2,"1234",4000, "Cajero");
+		Empleado empleado2 = new Empleado("Pepe","Gallo","San Juan 422",2,"1234",8000, "Cocinero");
+		Empleado empleado3 = new Empleado("Fran","Dommel","Balcarce 4102",2,"1234",2000, "Delivery");
+		
+		JSONArray clientesJsonArray = new JSONArray();
+		JSONObject cliente1JSON = personas.generateCliente(cliente1);
+		JSONObject cliente2JSON = personas.generateCliente(cliente2);
+		JSONObject cliente3JSON = personas.generateCliente(cliente3);
+		personas.agregar(clientesJsonArray, cliente1JSON);
+		personas.agregar(clientesJsonArray, cliente2JSON);
+		personas.agregar(clientesJsonArray, cliente3JSON);
+		
+		
+		JSONArray empleadosJsonArray = new JSONArray();
+		JSONObject empleado1JSON = personas.generateEmpleado(empleado1);
+		JSONObject empleado2JSON = personas.generateEmpleado(empleado2);
+		JSONObject empleado3JSON = personas.generateEmpleado(empleado3);
+		personas.agregar(empleadosJsonArray, empleado1JSON);
+		personas.agregar(empleadosJsonArray, empleado2JSON);
+		personas.agregar(empleadosJsonArray, empleado3JSON);
+		
+		
+				
+		JSONArray arrayJsonArray = personas.getArregloPersonasArray();
+		arrayJsonArray.put(empleadosJsonArray);
+		arrayJsonArray.put(clientesJsonArray);
+		
+		System.out.println(arrayJsonArray.toString());
+		
+		//ArchivoProducto archiProductos = new ArchivoProducto();
+		
+		
+		
+		//
 		//System.out.println(persona.toString());
 		/*ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();

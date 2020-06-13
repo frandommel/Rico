@@ -13,16 +13,9 @@ public class ArchivoPersona {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ListadoEmpleados leerEmpleados() throws FileNotFoundException {
-		FileInputStream file = new FileInputStream("empleados.bin");
-		ListadoEmpleados empleados = new ListadoEmpleados();
-		
-		try {
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return empleados;
+	public ListadoEmpleados leerEmpleados()
+	{
+		return null;
 	}
 
 	public ListadoClientes leerClientes() {
