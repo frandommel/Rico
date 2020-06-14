@@ -48,7 +48,7 @@ public class ArchivoPersona {
 	}
 	public static void agregarPersona() 
 	{
-		JSONArray arreglo = leer();
+		//JSONArray arreglo = leer();
 		
 	}
 		
