@@ -11,10 +11,12 @@ import java.security.AllPermission;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import GestionComercio.ListadoClientes;
 import GestionComercio.ListadoEmpleados;
 import GestionComercio.Persona;
+import jSon.JSONPersona;
 
 public class ArchivoPersona {
 	public ArchivoPersona() {
@@ -46,9 +48,14 @@ public class ArchivoPersona {
 		}
 		return array;
 	}
-	public static void agregarPersona() 
+	
+	
+	public static void agregarPersona(Persona persona) throws JSONException 
 	{
-		//JSONArray arreglo = leer();
+		JSONPersona listadosJsonPersona = new JSONPersona();
+		
+		//listadosJsonPersona.agregar(persona.generateJson());
+						
 		
 	}
 		

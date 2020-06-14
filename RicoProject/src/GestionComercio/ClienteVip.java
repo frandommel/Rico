@@ -33,6 +33,7 @@ public class ClienteVip extends Persona{
 	public String toString() {
 		return super.toString()+" ClienteVip " + cantSellos + " Sellos.";
 	}
+	
 	@Override
 	public JSONObject generateJson() throws JSONException {
 		JSONObject jsonObject = new JSONObject();

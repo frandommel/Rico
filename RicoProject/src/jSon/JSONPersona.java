@@ -10,11 +10,11 @@ import GestionComercio.ClienteVip;
 import GestionComercio.Empleado;
 import GestionComercio.Persona;
 
-public class Personas {
+public class JSONPersona {
 	JSONArray arregloPersonasArray;
 	
 	
-	public Personas() throws JSONException {
+	public JSONPersona() throws JSONException {
 		 arregloPersonasArray = new JSONArray();
 		// arregloPersonasArray.put(leerArrayClientes());
 		// arregloPersonasArray.put(leerArrayEmpleado());
@@ -28,7 +28,7 @@ public class Personas {
 	}
 
 
-	public void agregar(JSONArray arreglo,JSONObject object)
+	public void agregarObjeto(JSONArray arreglo,JSONObject object)
 	{
 		arreglo.put(object);
 	}
@@ -60,6 +60,8 @@ public class Personas {
 
 		return jsonArray;
 	}
+	
+	
 		private JSONArray leerArrayClientes() {
 		JSONArray jsonArray = new JSONArray();
 

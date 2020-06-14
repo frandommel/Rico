@@ -24,7 +24,7 @@ import claseProductos.Guarnicion;
 import claseProductos.Hamburguesa;
 import claseProductos.Pancho;
 import claseProductos.Producto;
-import jSon.Personas;
+import jSon.JSONPersona;
 
 public class Main {
 
@@ -32,7 +32,7 @@ public class Main {
 		
 		Comercio comercioRico = new Comercio();
 		//System.out.println(comercioRico.getProductos().toString());
-		Personas personas = new Personas();
+		JSONPersona personas = new JSONPersona();
 		ArchivoPersona archi = new ArchivoPersona();
 		
 		
