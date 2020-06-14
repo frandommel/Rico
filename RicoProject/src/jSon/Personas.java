@@ -27,31 +27,7 @@ public class Personas {
 		return arregloPersonasArray;
 	}
 
-	public JSONObject generateEmpleado(Empleado empleado) throws JSONException {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("nombre", empleado.getNombre());
-		jsonObject.put("apellido", empleado.getApellido());
-		jsonObject.put("direccion", empleado.getDireccion());
-		jsonObject.put("id", empleado.getId());
-		jsonObject.put("password", empleado.getPassword());
-		jsonObject.put("sueldo", empleado.getSueldo());
-		jsonObject.put("posicion", empleado.getPosicion());
-		
-		
-		return jsonObject;
-	}
-	
-	public JSONObject generateCliente(ClienteVip clienteVip) throws JSONException {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("nombre", clienteVip.getNombre());
-		jsonObject.put("apellido", clienteVip.getApellido());
-		jsonObject.put("direccion", clienteVip.getDireccion());
-		jsonObject.put("id", clienteVip.getId());
-		jsonObject.put("password", clienteVip.getCantSellos());
 
-		return jsonObject;
-	}
-	
 	public void agregar(JSONArray arreglo,JSONObject object)
 	{
 		arreglo.put(object);
@@ -81,17 +57,12 @@ public class Personas {
 	public JSONArray leerArrayEmpleado () throws JSONException
 	{
 		JSONArray jsonArray = new JSONArray();
-		
-		
-		
+
 		return jsonArray;
 	}
-	
-	private JSONArray leerArrayClientes() {
+		private JSONArray leerArrayClientes() {
 		JSONArray jsonArray = new JSONArray();
-		
-		
-		
+
 		return jsonArray;
 	}
 	

@@ -41,7 +41,7 @@ public class ManejadordeArchivos {
 	}
 	
 	public void agregarJsonPersona(JSONObject jObject) {
-		persona.agregarPersona(jObject);
+		//persona.agregarPersona(jObject);
 	}
 	public JSONArray getListadoPersonas() {
 		return persona.leer();
