@@ -48,8 +48,6 @@ public class ArchivoPersona {
 		} 
 		return objectObject;
 	}
-	
-	
-	
+
 		
 }

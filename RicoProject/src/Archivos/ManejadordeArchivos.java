@@ -50,9 +50,8 @@ public class ManejadordeArchivos {
 	public void actualizarArchivoPersona(JSONObject personas) throws JSONException
 	{
 		persona.agregarArchivo(personas);
+		
 	}
-	
 
-	
 	
 }

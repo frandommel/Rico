@@ -8,7 +8,7 @@ import Archivos.ArchivoPersona;
 
 public class ClienteVip extends Persona{
 	public int cantSellos;
-	public int idCliente;
+
 
 	public ClienteVip() {
 		super();
@@ -33,15 +33,6 @@ public class ClienteVip extends Persona{
 	public void setCantSellos(int cantSellos) {
 		this.cantSellos = cantSellos;
 	}
-
-	
-	public int getIdCliente() throws JSONException {
-		ArchivoPersona archivoPersona = new ArchivoPersona();
-		JSONArray arrayCliente= ArchivoPersona.leer().getJSONArray("clientes");
-		
-		return arrayCliente.length();
-
-	}
 	
 	@Override
 	public String toString() {
@@ -54,7 +45,6 @@ public class ClienteVip extends Persona{
 		jsonObject.put("nombre",getNombre());
 		jsonObject.put("telefono", getTelefono());
 		jsonObject.put("direccion",getDireccion());
-		jsonObject.put("id",getIdCliente());
 		jsonObject.put("cantSellos",getCantSellos());
 
 		return jsonObject;

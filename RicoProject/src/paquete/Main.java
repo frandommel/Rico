@@ -33,6 +33,7 @@ public class Main {
 		Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
 		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582", 0);
 		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 0);
+		Persona cliente7 = new ClienteVip("eeee DU", "tu vieja 890", "22122223394782", 0);
 
 		ArchivoPersona archivoPersona = new ArchivoPersona();
 		
@@ -43,12 +44,13 @@ public class Main {
 		arrayClientes.put(cliente1.generateJson());
 		arrayClientes.put(cliente2.generateJson());
 		arrayClientes.put(cliente3.generateJson());
+		arrayClientes.put(cliente7.generateJson());
 		
 		objetoPersonasJsonObject.put("clientes",arrayClientes);
 	
 		Persona cliente4 = new Empleado("Juan Duhalde", "Roldan 890", "22356894782", "1234", "Delivery");
 		Persona cliente5 = new Empleado("Fran Dommel", "Sierras de Los Padre 2251", "22356892582","5678","ChePibe");
-		Persona cliente6 = new Empleado("Juan Gomez", "Carasa 890", "22353394782", "291011", "Dueño");
+		Persona cliente6 = new Empleado("Pablo valentinuzzi", "Carasa 890", "22353394782", "291011", "Dueño");
 		
 		arrayEmpleados.put(cliente4.generateJson());
 		arrayEmpleados.put(cliente5.generateJson());
@@ -59,15 +61,18 @@ public class Main {
 		
 		archivoPersona.agregarArchivo(objetoPersonasJsonObject);
 		
-		System.out.println(archivoPersona.leer());
+		//System.out.println(archivoPersona.leer());
 		
 		Comercio comercioRico = new Comercio();
 		
-		//comercioRico.removePersonas("empleados", 0);
+		//comercioRico.removePersonas("empleados","Pablo Valentinuzzi");
+		
+		//System.out.println(archivoPersona.leer());
 		
 		System.out.println(comercioRico.getPersonas().toString());
+
 		
-		
+
 		
 		/*ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();

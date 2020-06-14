@@ -12,7 +12,6 @@ import Archivos.ArchivoPersona;
 public class Empleado extends Persona {
 	private String password;
 	private String posicion;
-	private int idEmpleado;
 	
 	
 	
@@ -43,14 +42,6 @@ public class Empleado extends Persona {
 		this.password = password;
 	}
 
-	public int getIdEmpleado() throws JSONException {
-		ArchivoPersona archivoPersona = new ArchivoPersona();
-		JSONArray arrayEmpleados= ArchivoPersona.leer().getJSONArray("empleados");
-		
-		return arrayEmpleados.length();
-
-	}
-
 	public String getPosicion() {
 		return posicion;
 	}
@@ -69,18 +60,12 @@ public class Empleado extends Persona {
 		jsonObject.put("nombre", getNombre());
 		jsonObject.put("telefono", getTelefono());
 		jsonObject.put("direccion", getDireccion());
-		jsonObject.put("id", getIdEmpleado());
 		jsonObject.put("password", getPassword());
 		jsonObject.put("posicion", getPosicion());
 		
 		return jsonObject;
 	}
-	
+		
 
-
-
-	
-	
-	
 
 }

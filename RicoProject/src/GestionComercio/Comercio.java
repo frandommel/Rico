@@ -127,18 +127,24 @@ public class Comercio{
 		return (JSONObject) array.get(id);
 	}
 	
-	public void removePersonas(String string,Integer id) throws JSONException {
-
-		
+	public void removePersonas(String string,String id) throws JSONException {
+		int i=0;
+		boolean flag = false;
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
-		
 		JSONArray array = object.getJSONArray(string);
-		array.remove(id);
-	
+		int size=array.length();
+		while(i<size && flag == false) {
+			JSONObject aux = array.getJSONObject(i);
+			if(aux.getString("nombre").equalsIgnoreCase(id)) {
+				array.remove(i);
+				flag = true;
+			}
+			i++;
+		}
 		archivos.actualizarArchivoPersona(object);
-		personas = archivos.getListadoPersonas();
 	}
+
 	
 
 	@Override
