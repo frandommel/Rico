@@ -117,14 +117,27 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(personas);
 	}
 	
-	public void removePersonas(Integer id) throws JSONException {
+	public JSONObject buscar(String string,Integer id) throws JSONException
+	{
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		JSONObject object = archivos.getListadoPersonas();
+		
+		JSONArray array = object.getJSONArray(string);
+		
+		return (JSONObject) array.get(id);
+	}
+	
+	public void removePersonas(String string,Integer id) throws JSONException {
 
 		
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
 		
+		JSONArray array = object.getJSONArray(string);
+		array.remove(id);
 	
-		archivos.actualizarArchivoPersona(personas);
+		archivos.actualizarArchivoPersona(object);
+		personas = archivos.getListadoPersonas();
 	}
 	
 

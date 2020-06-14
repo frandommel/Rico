@@ -7,21 +7,18 @@ public abstract class Persona {
 	private String nombre;
 	private String telefono;
 	private String direccion;
-	private int id;
 	
 	public Persona() {
 		super();
 		this.nombre = "";
 		this.direccion = "";
-		this.id = 0	;
 		telefono="";
 	}
 	
-	public Persona(String nombre, String direccion,String telefono, int id) {
+	public Persona(String nombre, String direccion,String telefono) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.id = id;
 		this.telefono=telefono;
 	}
 	
@@ -39,15 +36,6 @@ public abstract class Persona {
 		this.direccion = direccion;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	
-
 	public String getTelefono() {
 		return telefono;
 	}
@@ -58,7 +46,7 @@ public abstract class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona "+id+"--> "+ nombre + ". Direccion: " + direccion;
+		return nombre + ". Direccion: " + direccion + ". Telefono: "+telefono;
 	}
 	
 	

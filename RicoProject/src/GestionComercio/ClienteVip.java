@@ -1,19 +1,24 @@
 package GestionComercio;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Archivos.ArchivoPersona;
+
 public class ClienteVip extends Persona{
 	public int cantSellos;
+	public int idCliente;
 
 	public ClienteVip() {
 		super();
 		cantSellos=0;
 	}
 
-	public ClienteVip(String nombre, String direccion,String telefono, int id,int cantSellos) {
-		super(nombre, direccion,telefono, id);
+	public ClienteVip(String nombre, String direccion,String telefono,int cantSellos) {
+		super(nombre, direccion,telefono);
 		this.cantSellos=cantSellos;
+		
 	}
 	
 	public ClienteVip(String nombre, String apellido, String direccion) {
@@ -29,6 +34,15 @@ public class ClienteVip extends Persona{
 		this.cantSellos = cantSellos;
 	}
 
+	
+	public int getIdCliente() throws JSONException {
+		ArchivoPersona archivoPersona = new ArchivoPersona();
+		JSONArray arrayCliente= ArchivoPersona.leer().getJSONArray("clientes");
+		
+		return arrayCliente.length();
+
+	}
+	
 	@Override
 	public String toString() {
 		return super.toString()+" ClienteVip " + cantSellos + " Sellos.";
@@ -40,7 +54,7 @@ public class ClienteVip extends Persona{
 		jsonObject.put("nombre",getNombre());
 		jsonObject.put("telefono", getTelefono());
 		jsonObject.put("direccion",getDireccion());
-		jsonObject.put("id",getId());
+		jsonObject.put("id",getIdCliente());
 		jsonObject.put("cantSellos",getCantSellos());
 
 		return jsonObject;

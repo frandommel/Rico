@@ -29,10 +29,10 @@ public class Main {
 
 	public static void main(String[] args) throws JSONException{
 		
-		/*
-		Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0, 0);
-		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582",1, 0);
-		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 2, 0);
+		
+		Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
+		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582", 0);
+		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 0);
 
 		ArchivoPersona archivoPersona = new ArchivoPersona();
 		
@@ -46,9 +46,9 @@ public class Main {
 		
 		objetoPersonasJsonObject.put("clientes",arrayClientes);
 	
-		Persona cliente4 = new Empleado("Juan Duhalde", "Roldan 890", "22356894782",0, "1234", "Delivery");
-		Persona cliente5 = new Empleado("Fran Dommel", "Sierras de Los Padre 2251", "22356892582",1,"5678","ChePibe");
-		Persona cliente6 = new Empleado("Juan Gomez", "Carasa 890", "22353394782",2, "291011", "Dueño");
+		Persona cliente4 = new Empleado("Juan Duhalde", "Roldan 890", "22356894782", "1234", "Delivery");
+		Persona cliente5 = new Empleado("Fran Dommel", "Sierras de Los Padre 2251", "22356892582","5678","ChePibe");
+		Persona cliente6 = new Empleado("Juan Gomez", "Carasa 890", "22353394782", "291011", "Dueño");
 		
 		arrayEmpleados.put(cliente4.generateJson());
 		arrayEmpleados.put(cliente5.generateJson());
@@ -59,9 +59,11 @@ public class Main {
 		
 		archivoPersona.agregarArchivo(objetoPersonasJsonObject);
 		
-		System.out.println(archivoPersona.leer());*/
+		System.out.println(archivoPersona.leer());
 		
 		Comercio comercioRico = new Comercio();
+		
+		//comercioRico.removePersonas("empleados", 0);
 		
 		System.out.println(comercioRico.getPersonas().toString());
 		

@@ -52,7 +52,6 @@ public class ListadoClientes implements IAccion<Integer,ClienteVip> {
 
 	@Override
 	public void alta(ClienteVip objeto) {
-		listaClientesContenedorMap.put(objeto.getId(), objeto);
 		
 	}
 	
