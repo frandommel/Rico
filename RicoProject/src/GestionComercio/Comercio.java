@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
@@ -40,7 +41,10 @@ public class Comercio{
 	personas = archivos.getListadoPersonas();
 	
 	}
-	
+	public static void agregarPersona(Persona persona) throws JSONException 
+	{
+		
+	}
 	
 	public HashMap<String, ArrayList<Producto>> getProductos() {
 		return productos;

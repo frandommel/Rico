@@ -37,39 +37,41 @@ public class Main {
 		
 		
 		
-		/*ClienteVip cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
-		ClienteVip cliente2 = new ClienteVip("Juan", "Papi", "CAraza 2040", 2, 0);
-		ClienteVip cliente3 = new ClienteVip("Rodrigo", "Gonzalez", "Balcarce 45", 3, 0);
+		Persona cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
+		Persona cliente2 = new ClienteVip("Juan", "Papi", "CAraza 2040", 2, 0);
+		Persona cliente3 = new ClienteVip("Rodrigo", "Gonzalez", "Balcarce 45", 3, 0);
 		
-		Empleado empleado1 = new Empleado("Fermin","Rodriguez","Walabi 42",2,"1234",4000, "Cajero");
-		Empleado empleado2 = new Empleado("Pepe","Gallo","San Juan 422",2,"1234",8000, "Cocinero");
-		Empleado empleado3 = new Empleado("Fran","Dommel","Balcarce 4102",2,"1234",2000, "Delivery");
+		Persona empleado1 = new Empleado("FRANCISCO","TOMAS","DOMMEL 42",2,"1234",4000, "Cajero");
+		Persona empleado2 = new Empleado("Pepe","Gallo","San Juan 422",2,"1234",8000, "Cocinero");
+		Persona empleado3 = new Empleado("Fran","Dommel","Balcarce 4102",2,"1234",2000, "Delivery");
 		
 		JSONArray clientesJsonArray = new JSONArray();
-		JSONObject cliente1JSON = personas.generateCliente(cliente1);
-		JSONObject cliente2JSON = personas.generateCliente(cliente2);
-		JSONObject cliente3JSON = personas.generateCliente(cliente3);
-		personas.agregar(clientesJsonArray, cliente1JSON);
-		personas.agregar(clientesJsonArray, cliente2JSON);
-		personas.agregar(clientesJsonArray, cliente3JSON);
+		JSONObject cliente1JSON = cliente1.generateJson();
+		JSONObject cliente2JSON = cliente2.generateJson();
+		JSONObject cliente3JSON = cliente3.generateJson();
+		personas.agregarObjeto(clientesJsonArray, cliente1JSON);
+		personas.agregarObjeto(clientesJsonArray, cliente2JSON);
+		personas.agregarObjeto(clientesJsonArray, cliente3JSON);
 		
 		
 		JSONArray empleadosJsonArray = new JSONArray();
-		JSONObject empleado1JSON = personas.generateEmpleado(empleado1);
-		JSONObject empleado2JSON = personas.generateEmpleado(empleado2);
-		JSONObject empleado3JSON = personas.generateEmpleado(empleado3);
-		personas.agregar(empleadosJsonArray, empleado1JSON);
-		personas.agregar(empleadosJsonArray, empleado2JSON);
-		personas.agregar(empleadosJsonArray, empleado3JSON);
+		JSONObject empleado1JSON = empleado1.generateJson();
+		JSONObject empleado2JSON = empleado2.generateJson();
+		JSONObject empleado3JSON = empleado3.generateJson();
+		personas.agregarObjeto(empleadosJsonArray, empleado1JSON);
+		personas.agregarObjeto(empleadosJsonArray, empleado2JSON);
+		personas.agregarObjeto(empleadosJsonArray, empleado3JSON);
+		
 		
 		
 				
 		JSONArray arrayJsonArray = personas.getArregloPersonasArray();
+		archi.agregarPersona(empleado1);
 		arrayJsonArray.put(empleadosJsonArray);
 		arrayJsonArray.put(clientesJsonArray);
-		*/
 		
-		//archi.agregarArchivo(arrayJsonArray);
+		
+		archi.agregarArchivo(arrayJsonArray);
 		System.out.println(archi.leer());
 		//System.out.println(arrayJsonArray.toString());
 		
