@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import GestionComercio.ClienteVip;
+import GestionComercio.Empleado;
 import GestionComercio.ListadoClientes;
 import GestionComercio.ListadoEmpleados;
 import GestionComercio.Persona;
@@ -53,10 +55,30 @@ public class ArchivoPersona {
 	public static void agregarPersona(Persona persona) throws JSONException 
 	{
 		JSONPersona listadosJsonPersona = new JSONPersona();
+		JSONArray array = leer();
+		JSONArray aux = new JSONArray();	
+		boolean flag = false;
+		int i =0;
+	
+		while(array.get(i) != null && flag) {
+			
+			aux = (JSONArray) array.get(i);
+			JSONObject object = (JSONObject) aux.get(0);
+			
+			if(object.has("posicion") && persona instanceof Empleado) 
+			{
+				listadosJsonPersona.agregarObjeto(aux, persona.generateJson());
+				flag = true;
+				
+			}else if(object.has("cantSellos") && persona instanceof ClienteVip) 
+			{
+				listadosJsonPersona.agregarObjeto(aux, persona.generateJson());
+				flag = true;
+			}
+			i++;
+		}
 		
-		//listadosJsonPersona.agregar(persona.generateJson());
 						
-		
 	}
 		
 }
