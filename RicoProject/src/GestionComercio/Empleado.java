@@ -70,28 +70,18 @@ public class Empleado extends Persona {
 
 	@Override
 	public JSONObject generateJson() throws JSONException {
-		JSONObject personaJsonObject = new JSONObject();
-		try {
-			
-			personaJsonObject.put("nombre",getNombre());
-			personaJsonObject.put("apellido",getApellido());
-			personaJsonObject.put("id", getId());
-			personaJsonObject.put("direccion", getDireccion());
-
-			personaJsonObject.put("password", getPassword());
-			personaJsonObject.put("posicion", getPosicion());
-
-			personaJsonObject.put("sueldo", getSueldo());
-
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("nombre", getNombre());
+		jsonObject.put("apellido", getApellido());
+		jsonObject.put("direccion", getDireccion());
+		jsonObject.put("id", getId());
+		jsonObject.put("password", getPassword());
+		jsonObject.put("sueldo", getSueldo());
+		jsonObject.put("posicion", getPosicion());
 		
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		return personaJsonObject;
-		
+		return jsonObject;
 	}
+	
 
 
 

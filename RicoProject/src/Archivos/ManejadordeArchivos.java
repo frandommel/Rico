@@ -3,6 +3,9 @@ package Archivos;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import GestionComercio.ListadoClientes;
 import GestionComercio.ListadoEmpleados;
 import GestionComercio.ListadoPedidos;
@@ -25,7 +28,6 @@ public class ManejadordeArchivos {
 	{
 		HashMap<String, ArrayList<Producto>> destinoProductos = new HashMap<String, ArrayList<Producto>>();
 		destinoProductos = productos.leer();
-		
 		return destinoProductos;
 	}
 	
@@ -34,9 +36,16 @@ public class ManejadordeArchivos {
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
 		destinoPedido = pedido.leerPedido();
-		
 		return destinoPedido;
 		
+	}
+	
+	public void agregarJsonPersona(JSONObject jObject) {
+		persona.agregarPersona(jObject);
+	}
+	public JSONArray getListadoPersonas() {
+		return persona.leer();
+
 	}
 	
 	

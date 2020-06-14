@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
@@ -17,8 +19,7 @@ public class Comercio{
 	private String direccion;
 	private String cuit;
 	private String rubro;
-	private ListadoClientes clientes; /// esto es un mapa de clientes, generico.
-	private ListadoEmpleados empleados;
+	private JSONArray personas;
 	private ListadoPedidos pedidos;
 	private HashMap<String, ArrayList<Producto>> productos;
 
@@ -36,7 +37,7 @@ public class Comercio{
 	ManejadordeArchivos archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
 	pedidos = archivos.getListadoPedidos();
-	
+	personas = archivos.getListadoPersonas();
 	
 	}
 	
@@ -83,21 +84,6 @@ public class Comercio{
 		this.rubro = rubro;
 	}
 
-	public ListadoClientes getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(ListadoClientes clientes) {
-		this.clientes = clientes;
-	}
-
-	public ListadoEmpleados getEmpleados() {
-		return empleados;
-	}
-
-	public void setEmpleados(ListadoEmpleados empleados) {
-		this.empleados = empleados;
-	}
 
 	public ListadoPedidos getPedidos() {
 		return pedidos;
@@ -110,7 +96,7 @@ public class Comercio{
 	@Override
 	public String toString() {
 		return "Comercio: " + nombre + "\n Direccion=" + direccion + "\n CUIT=" + cuit + "\n Rubro=" + rubro
-				+ " \n Listado de Empleados=" + empleados.toString() + "\n Listado de Pedidos=" + pedidos.toString() + "\n Listado de Clientes "+clientes.toString();
+				+ " \n Listado de Empleados=" + "\n Listado de Pedidos=" + pedidos.toString() + "\n Listado de Clientes ";
 	}
 	
 	

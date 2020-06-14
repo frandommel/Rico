@@ -37,7 +37,7 @@ public class Main {
 		
 		
 		
-		ClienteVip cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
+		/*ClienteVip cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
 		ClienteVip cliente2 = new ClienteVip("Juan", "Papi", "CAraza 2040", 2, 0);
 		ClienteVip cliente3 = new ClienteVip("Rodrigo", "Gonzalez", "Balcarce 45", 3, 0);
 		
@@ -67,9 +67,9 @@ public class Main {
 		JSONArray arrayJsonArray = personas.getArregloPersonasArray();
 		arrayJsonArray.put(empleadosJsonArray);
 		arrayJsonArray.put(clientesJsonArray);
+		*/
 		
-		
-		archi.agregarArchivo(arrayJsonArray);
+		//archi.agregarArchivo(arrayJsonArray);
 		System.out.println(archi.leer());
 		//System.out.println(arrayJsonArray.toString());
 		

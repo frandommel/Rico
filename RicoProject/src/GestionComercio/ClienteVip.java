@@ -33,26 +33,18 @@ public class ClienteVip extends Persona{
 	public String toString() {
 		return super.toString()+" ClienteVip " + cantSellos + " Sellos.";
 	}
-	
-	public JSONObject generateJson() throws JSONException
-	{
-		JSONObject personaJsonObject = new JSONObject();
-		try {
-			
-			personaJsonObject.put("nombre",getNombre());
-			personaJsonObject.put("apellido",getApellido());
-			personaJsonObject.put("id", getId());
-			personaJsonObject.put("direccion", getDireccion());
+	@Override
+	public JSONObject generateJson() throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("nombre",getNombre());
+		jsonObject.put("apellido",getApellido());
+		jsonObject.put("direccion",getDireccion());
+		jsonObject.put("id",getId());
+		jsonObject.put("password",getCantSellos());
 
-			personaJsonObject.put("cantSellos", getCantSellos());
-		
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		return personaJsonObject;
+		return jsonObject;
 	}
+	
 
 	
 	

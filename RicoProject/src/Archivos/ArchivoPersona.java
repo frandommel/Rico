@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.security.AllPermission;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import GestionComercio.ListadoClientes;
 import GestionComercio.ListadoEmpleados;
@@ -31,14 +32,24 @@ public class ArchivoPersona {
 			e.printStackTrace();
 		}
 	}
-	public static String leer() {
+	public static JSONArray leer(){
 		String contenido = "";
+		JSONArray array= null;
 		try {
 			contenido = new String(Files.readAllBytes(Paths.get("personas.json")));
-			
+			array = new JSONArray(contenido);
+
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch(JSONException e) {
+			e.printStackTrace();
 		}
-		return contenido;
+		return array;
 	}
+	public static void agregarPersona(Persona persona) 
+	{
+		JSONArray arreglo = leer();
+		
+	}
+		
 }
