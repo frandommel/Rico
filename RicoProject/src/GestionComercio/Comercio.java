@@ -123,8 +123,7 @@ public class Comercio{
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
 		
-		object.get("empleados");
-		object.get("clientes");
+		
 		
 		
 		

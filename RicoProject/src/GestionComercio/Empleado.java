@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public class Empleado extends Persona {
 	private String password;
-	private int sueldo;
+	
 	private String posicion;
 	
 	
@@ -16,16 +16,14 @@ public class Empleado extends Persona {
 	public Empleado() {
 		super();
 		this.password = "";
-		this.sueldo = 0;
 		this.posicion = "";
 	}
 
 
 
-	public Empleado(String nombre, String direccion,int telefono, int id,String password, int sueldo, String posicion) {
+	public Empleado(String nombre, String direccion,int telefono, int id,String password,String posicion) {
 		super(nombre, direccion,telefono, id);
 		this.password = password;
-		this.sueldo = sueldo;
 		this.posicion = posicion;
 		}
 
@@ -44,16 +42,7 @@ public class Empleado extends Persona {
 
 
 
-	public int getSueldo() {
-		return sueldo;
-	}
-
-
-
-	public void setSueldo(int sueldo) {
-		this.sueldo = sueldo;
-	}
-
+	
 
 
 	public String getPosicion() {
@@ -76,7 +65,6 @@ public class Empleado extends Persona {
 		jsonObject.put("direccion", getDireccion());
 		jsonObject.put("id", getId());
 		jsonObject.put("password", getPassword());
-		jsonObject.put("sueldo", getSueldo());
 		jsonObject.put("posicion", getPosicion());
 		
 		return jsonObject;

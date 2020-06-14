@@ -30,64 +30,10 @@ public class Main {
 	public static void main(String[] args) throws JSONException{
 		
 		Comercio comercioRico = new Comercio();
-		//System.out.println(comercioRico.getProductos().toString());
-		//Persona empleado = new Empleado("Pablito","Valentinuzzi","SSS 444",3,"12345",10000,"Dueño");
-		//comercioRico.addPersonas(empleado);
-		
-		
-		System.out.println(comercioRico.getPersonas().toString());
-		
-		
-	
-		
-		/*
-		Persona cliente1 = new ClienteVip("Juan", "Gomez", "SiempreViva 2040", 1, 0);
-		Persona cliente2 = new ClienteVip("Juan", "Papi", "CAraza 2040", 2, 0);
-		Persona cliente3 = new ClienteVip("Rodrigo", "Gonzalez", "Balcarce 45", 3, 0);
-		
-		Persona empleado1 = new Empleado("FRANCISCO","TOMAS","DOMMEL 42",2,"1234",4000, "Cajero");
-		Persona empleado2 = new Empleado("Pepe","Gallo","San Juan 422",2,"1234",8000, "Cocinero");
-		Persona empleado3 = new Empleado("Fran","Dommel","Balcarce 4102",2,"1234",2000, "Delivery");
-		
-		JSONObject jsonCliente1 = cliente1.generateJson();
-		JSONObject jsonCliente2 = cliente2.generateJson();
-		JSONObject jsonCliente3 = cliente3.generateJson();
-		JSONObject jsonEmpleado1 = empleado1.generateJson();
-		JSONObject jsonEmpleado2 = empleado2.generateJson();
-		JSONObject jsonEmpleado3 = empleado3.generateJson();
-		
-		
-		JSONArray empleadosArray = new JSONArray();
-		JSONArray clientesArray = new JSONArray();
-		
-		empleadosArray.put(jsonEmpleado1);
-		empleadosArray.put(jsonEmpleado2);
-		empleadosArray.put(jsonEmpleado3);
-		
-
-		clientesArray.put(jsonCliente1);
-		clientesArray.put(jsonCliente2);
-		clientesArray.put(jsonCliente3);
-		
-		
-		JSONObject objetoArchivo = new JSONObject();
-		
-		objetoArchivo.put("empleados", empleadosArray);
-		objetoArchivo.put("clientes", clientesArray);
-		
-		
-		archi.agregarArchivo(objetoArchivo);
-		*/
-		
-		
-		//System.out.println(arrayJsonArray.toString());
-		
-		//ArchivoProducto archiProductos = new ArchivoProducto();
 		
 		
 		
-		//
-		//System.out.println(persona.toString());
+		
 		/*ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();
 		ArrayList <Pancho> panchos = new ArrayList();
