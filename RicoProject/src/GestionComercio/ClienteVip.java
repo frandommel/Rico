@@ -11,7 +11,7 @@ public class ClienteVip extends Persona{
 		cantSellos=0;
 	}
 
-	public ClienteVip(String nombre, String direccion,int telefono, int id,int cantSellos) {
+	public ClienteVip(String nombre, String direccion,String telefono, int id,int cantSellos) {
 		super(nombre, direccion,telefono, id);
 		this.cantSellos=cantSellos;
 	}
@@ -38,6 +38,7 @@ public class ClienteVip extends Persona{
 	public JSONObject generateJson() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("nombre",getNombre());
+		jsonObject.put("telefono", getTelefono());
 		jsonObject.put("direccion",getDireccion());
 		jsonObject.put("id",getId());
 		jsonObject.put("cantSellos",getCantSellos());

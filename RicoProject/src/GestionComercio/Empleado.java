@@ -21,7 +21,7 @@ public class Empleado extends Persona {
 
 
 
-	public Empleado(String nombre, String direccion,int telefono, int id,String password,String posicion) {
+	public Empleado(String nombre, String direccion,String telefono, int id,String password,String posicion) {
 		super(nombre, direccion,telefono, id);
 		this.password = password;
 		this.posicion = posicion;
@@ -61,7 +61,7 @@ public class Empleado extends Persona {
 	public JSONObject generateJson() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("nombre", getNombre());
-	
+		jsonObject.put("telefono", getTelefono());
 		jsonObject.put("direccion", getDireccion());
 		jsonObject.put("id", getId());
 		jsonObject.put("password", getPassword());

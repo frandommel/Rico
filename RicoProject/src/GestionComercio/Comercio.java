@@ -117,17 +117,13 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(personas);
 	}
 	
-	public void removePersonas(String key) throws JSONException {
+	public void removePersonas(Integer id) throws JSONException {
 
 		
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
 		
-		
-		
-		
-		
-		
+	
 		archivos.actualizarArchivoPersona(personas);
 	}
 	

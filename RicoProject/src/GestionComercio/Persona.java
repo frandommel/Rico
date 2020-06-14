@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public abstract class Persona {
 	private String nombre;
-	private int telefono;
+	private String telefono;
 	private String direccion;
 	private int id;
 	
@@ -14,14 +14,15 @@ public abstract class Persona {
 		this.nombre = "";
 		this.direccion = "";
 		this.id = 0	;
-		telefono=0;
+		telefono="";
 	}
 	
-	public Persona(String nombre, String direccion,int telefono, int id) {
+	public Persona(String nombre, String direccion,String telefono, int id) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.id = id;
+		this.telefono=telefono;
 	}
 	
 	public String getNombre() {
@@ -45,11 +46,13 @@ public abstract class Persona {
 		this.id = id;
 	}
 	
-	public int getTelefono() {
+	
+
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

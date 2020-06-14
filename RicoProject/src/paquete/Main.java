@@ -29,8 +29,41 @@ public class Main {
 
 	public static void main(String[] args) throws JSONException{
 		
+		/*
+		Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0, 0);
+		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582",1, 0);
+		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 2, 0);
+
+		ArchivoPersona archivoPersona = new ArchivoPersona();
+		
+		JSONObject objetoPersonasJsonObject = new JSONObject();
+		JSONArray arrayEmpleados = new JSONArray();
+		JSONArray arrayClientes = new JSONArray();
+		
+		arrayClientes.put(cliente1.generateJson());
+		arrayClientes.put(cliente2.generateJson());
+		arrayClientes.put(cliente3.generateJson());
+		
+		objetoPersonasJsonObject.put("clientes",arrayClientes);
+	
+		Persona cliente4 = new Empleado("Juan Duhalde", "Roldan 890", "22356894782",0, "1234", "Delivery");
+		Persona cliente5 = new Empleado("Fran Dommel", "Sierras de Los Padre 2251", "22356892582",1,"5678","ChePibe");
+		Persona cliente6 = new Empleado("Juan Gomez", "Carasa 890", "22353394782",2, "291011", "Dueño");
+		
+		arrayEmpleados.put(cliente4.generateJson());
+		arrayEmpleados.put(cliente5.generateJson());
+		arrayEmpleados.put(cliente6.generateJson());
+		
+		objetoPersonasJsonObject.put("empleados",arrayEmpleados);
+		 
+		
+		archivoPersona.agregarArchivo(objetoPersonasJsonObject);
+		
+		System.out.println(archivoPersona.leer());*/
+		
 		Comercio comercioRico = new Comercio();
 		
+		System.out.println(comercioRico.getPersonas().toString());
 		
 		
 		
