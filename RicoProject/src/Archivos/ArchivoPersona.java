@@ -18,18 +18,17 @@ import GestionComercio.Empleado;
 import GestionComercio.ListadoClientes;
 import GestionComercio.ListadoEmpleados;
 import GestionComercio.Persona;
-import jSon.JSONPersona;
 
 public class ArchivoPersona {
 	public ArchivoPersona() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void agregarArchivo(JSONArray jsonarray) {
+	public static void agregarArchivo(JSONObject object) {
 		
 		try {
 			 FileWriter file = new FileWriter("personas.json");
-			 file.write(jsonarray.toString());
+			 file.write(object.toString());
 			 file.flush();
 			 file.close();
 		} catch (IOException e) {
@@ -37,23 +36,20 @@ public class ArchivoPersona {
 		}
 	}
 	
-	public static JSONArray leer(){
+	public static JSONObject leer() throws JSONException{
 		String contenido = "";
-		JSONArray array= null;
+		JSONObject objectObject = null;
 		try {
 			contenido = new String(Files.readAllBytes(Paths.get("personas.json")));
-			array = new JSONArray(contenido);
+			objectObject = new JSONObject(contenido);
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch(JSONException e) {
-			e.printStackTrace();
-		}
-		return array;
+		} 
+		return objectObject;
 	}
 	
 	
-	public static void agregarPersona(Persona persona) throws JSONException 
-	{}
+	
 		
 }

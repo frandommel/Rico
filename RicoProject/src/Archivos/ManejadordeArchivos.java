@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import GestionComercio.ListadoClientes;
@@ -40,17 +41,16 @@ public class ManejadordeArchivos {
 		
 	}
 	
-	public void agregarJsonPersona(JSONObject jObject) {
-		//persona.agregarPersona(jObject);
-	}
 	
-	
-	public JSONArray getListadoPersonas() {
+	public JSONObject getListadoPersonas() throws JSONException
+	{
 		return persona.leer();
-
 	}
 	
-	
+	public void actualizarArchivoPersona(JSONObject personas) throws JSONException
+	{
+		persona.agregarArchivo(personas);
+	}
 	
 
 	

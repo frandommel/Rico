@@ -5,22 +5,21 @@ import org.json.JSONObject;
 
 public abstract class Persona {
 	private String nombre;
-	private String apellido;
+	private int telefono;
 	private String direccion;
 	private int id;
 	
 	public Persona() {
 		super();
 		this.nombre = "";
-		this.apellido = "";
 		this.direccion = "";
 		this.id = 0	;
+		telefono=0;
 	}
 	
-	public Persona(String nombre, String apellido, String direccion, int id) {
+	public Persona(String nombre, String direccion,int telefono, int id) {
 		super();
 		this.nombre = nombre;
-		this.apellido = apellido;
 		this.direccion = direccion;
 		this.id = id;
 	}
@@ -31,12 +30,7 @@ public abstract class Persona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+	
 	public String getDireccion() {
 		return direccion;
 	}
@@ -50,10 +44,18 @@ public abstract class Persona {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public int getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
 
 	@Override
 	public String toString() {
-		return "Persona "+id+"--> "+ nombre + " " + apellido + ". Direccion: " + direccion;
+		return "Persona "+id+"--> "+ nombre + ". Direccion: " + direccion;
 	}
 	
 	

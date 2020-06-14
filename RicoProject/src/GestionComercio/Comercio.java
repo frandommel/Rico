@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
@@ -20,13 +21,13 @@ public class Comercio{
 	private String direccion;
 	private String cuit;
 	private String rubro;
-	private JSONArray personas;
+	private JSONObject personas;
 	private ListadoPedidos pedidos;
 	private HashMap<String, ArrayList<Producto>> productos;
 
 	
 	
-	public Comercio() {
+	public Comercio() throws JSONException {
 	nombre ="Rico Pancheria";
 	direccion = "Alem 3550";
 	cuit = "20-28335746-7";
@@ -41,6 +42,7 @@ public class Comercio{
 	personas = archivos.getListadoPersonas();
 	
 	}
+	
 	public static void agregarPersona(Persona persona) throws JSONException 
 	{
 		
@@ -96,6 +98,40 @@ public class Comercio{
 	public void setPedidos(ListadoPedidos pedidos) {
 		this.pedidos = pedidos;
 	}
+	
+	public JSONObject getPersonas() {
+		return personas;
+	}
+	
+	public void addPersonas(Persona persona) throws JSONException {
+		
+		
+		if(persona instanceof ClienteVip)
+		{
+			personas.getJSONArray("clientes").put(persona.generateJson());
+		}else if (persona instanceof Empleado) {
+			personas.getJSONArray("empleados").put(persona.generateJson());
+		}
+		
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		archivos.actualizarArchivoPersona(personas);
+	}
+	
+	public void removePersonas(String key) throws JSONException {
+
+		
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		JSONObject object = archivos.getListadoPersonas();
+		
+		object.get("empleados");
+		object.get("clientes");
+		
+		
+		
+		
+		archivos.actualizarArchivoPersona(personas);
+	}
+	
 
 	@Override
 	public String toString() {
