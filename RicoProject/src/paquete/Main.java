@@ -30,7 +30,7 @@ public class Main {
 	public static void main(String[] args) throws JSONException{
 		
 		
-		Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
+		/*Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
 		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582", 0);
 		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 0);
 		Persona cliente7 = new ClienteVip("eeee DU", "tu vieja 890", "22122223394782", 0);
@@ -59,7 +59,7 @@ public class Main {
 		objetoPersonasJsonObject.put("empleados",arrayEmpleados);
 		 
 		
-		archivoPersona.agregarArchivo(objetoPersonasJsonObject);
+		archivoPersona.agregarArchivo(objetoPersonasJsonObject);*/
 		
 		//System.out.println(archivoPersona.leer());
 		
@@ -70,6 +70,12 @@ public class Main {
 		//System.out.println(archivoPersona.leer());
 		
 		System.out.println(comercioRico.getPersonas().toString());
+		
+		JSONObject buscadObject = comercioRico.buscarEmpleado("fran dommel");
+		
+		System.out.println(buscadObject.toString());
+		
+		
 
 		
 

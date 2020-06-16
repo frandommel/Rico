@@ -36,8 +36,6 @@ public class Empleado extends Persona {
 		return password;
 	}
 
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}

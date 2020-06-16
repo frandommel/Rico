@@ -117,14 +117,31 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(personas);
 	}
 	
-	public JSONObject buscar(String string,Integer id) throws JSONException
+	public JSONObject buscarEmpleado(String string) throws JSONException
 	{
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		/*ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
 		
 		JSONArray array = object.getJSONArray(string);
 		
-		return (JSONObject) array.get(id);
+		return (JSONObject) array.get(id);*/
+		boolean flag=false;
+		int i = 0;
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		JSONObject object = archivos.getListadoPersonas();
+		JSONArray array = object.getJSONArray("empleados");
+		JSONObject aux = null;
+		int size = array.length();
+		while(i<size && flag == false)
+		{
+			aux = array.getJSONObject(i);
+			if(aux.getString("nombre").equalsIgnoreCase(string)) 
+			{
+				flag = true;
+			}
+			i++;
+		}
+		return aux;
 	}
 	
 	public void removePersonas(String string,String id) throws JSONException {
@@ -143,6 +160,26 @@ public class Comercio{
 			i++;
 		}
 		archivos.actualizarArchivoPersona(object);
+	}
+	
+	public boolean validarPersona(String nombre, String password) throws JSONException 
+	{
+		boolean flag=false;
+		int i = 0;
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		JSONObject object = archivos.getListadoPersonas();
+		JSONArray array = object.getJSONArray("empleados");
+		int size = array.length();
+		while(i<size && flag == false)
+		{
+			JSONObject aux = array.getJSONObject(i);
+			if(aux.getString("nombre").equalsIgnoreCase(nombre) && aux.getString("password").equalsIgnoreCase(password)) 
+			{
+				flag = true;
+			}
+			i++;
+		}
+		return flag;
 	}
 
 	
