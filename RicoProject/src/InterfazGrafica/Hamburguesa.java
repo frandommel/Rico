@@ -20,13 +20,22 @@ public class Hamburguesa extends JPanel implements ActionListener{
 	 */
 	public Hamburguesa() {
 		initComponents();
-		ArrayList<Producto> hamburguesas =	traerHamburguesa();
+		//ArrayList<Producto> hamburguesas =	traerHamburguesa();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JButton boton;
 		if(e.getSource() instanceof JButton) {
-			añadirFrameObservacion();
+			boton = (JButton) e.getSource();
+			observacionProducto obs = new observacionProducto();
+			ArrayList<Producto> h = traerHamburguesa();
+			for (int i = 0; i < h.size(); i++) {
+				if(h.get(i).getNombre().equalsIgnoreCase(boton.getText())){
+					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
+					obs.setVisible(true);
+				}
+			}
 		}
 		
 		
@@ -70,15 +79,9 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		add(button6);
 	}
 	
-	public void añadirFrameObservacion() {
-		observacionProducto obs = new observacionProducto();
-		obs.setVisible(true);
-	}
-	
 	public ArrayList<Producto> traerHamburguesa() {
 		ArchivoProducto hamburguesa = new ArchivoProducto();
 		ArrayList<Producto> h = hamburguesa.leerHamburguesa();
-		System.out.println(h.toString());
 		return h;
 	}
 	

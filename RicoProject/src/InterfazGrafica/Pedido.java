@@ -53,7 +53,7 @@ public class Pedido extends JFrame implements ActionListener{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		/*EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Pedido frame = new Pedido();
@@ -62,7 +62,7 @@ public class Pedido extends JFrame implements ActionListener{
 					e.printStackTrace();
 				}
 			}
-		});*/
+		});
 	}
 
 	/**

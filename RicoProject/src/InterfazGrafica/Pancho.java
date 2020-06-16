@@ -5,10 +5,14 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Archivos.ArchivoProducto;
+import claseProductos.Producto;
 
 public class Pancho extends JPanel implements ActionListener {
 	private JButton button,button2,button3,button4;
@@ -28,7 +32,7 @@ public class Pancho extends JPanel implements ActionListener {
 		this.setLayout(null);
 		this.setVisible(false);
 		
-		button = new JButton("Con salsa");
+		button = new JButton("Pancho");
 		button.setBounds(12, 253, 123, 67);
 		button.addActionListener(this);
 		add(button);
@@ -51,15 +55,29 @@ public class Pancho extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JButton boton;
 		if(e.getSource() instanceof JButton) {
-			añadirFrameObservacion();
+			boton = (JButton) e.getSource();
+			observacionProducto obs = new observacionProducto();
+			ArrayList<Producto> h = traerPancho();
+			for (int i = 0; i < h.size(); i++) {
+				if(h.get(i).getNombre().equalsIgnoreCase(boton.getText())){
+					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
+					obs.setVisible(true);
+				}
+			}
 		}
-		
 	}
 	
 	public void añadirFrameObservacion() {
 		observacionProducto obs = new observacionProducto();
 		obs.setVisible(true);
+	}
+	
+	public ArrayList<Producto> traerPancho(){
+		ArchivoProducto bebidas = new ArchivoProducto();
+		ArrayList<Producto> p = bebidas.leerPancho();
+		return p;
 	}
 
 }

@@ -3,10 +3,14 @@ package InterfazGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Archivos.ArchivoProducto;
+import claseProductos.Producto;
 
 public class Combos extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6,button7,button8,button9,button10;
@@ -55,13 +59,13 @@ public class Combos extends JPanel implements ActionListener{
 		button6.addActionListener(this);
 		add(button6);
 		
-		button7 = new JButton("Hamburguesa Veggie");
-		button7.setBounds(12, 298, 155, 44);
+		button7 = new JButton("Veggie");
+		button7.setBounds(12, 298, 100, 44);
 		button7.addActionListener(this);
 		add(button7);
 		
-		button8 = new JButton("2 carne 2 queso");
-		button8.setBounds(12, 241, 143, 44);
+		button8 = new JButton("Doble carne Doble queso");
+		button8.setBounds(12, 241, 175, 44);
 		button8.addActionListener(this);
 		add(button8);
 		
@@ -83,10 +87,25 @@ public class Combos extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JButton boton;
 		if(e.getSource() instanceof JButton) {
-			añadirFrameObservacion();
+			boton = (JButton) e.getSource();
+			observacionProducto obs = new observacionProducto();
+			ArrayList<Producto> h = traerCombo();
+			System.out.println(h.toString());
+			for (int i = 0; i < h.size(); i++) {
+				if(h.get(i).getNombre().equalsIgnoreCase("Combo "+boton.getText())){
+					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
+					obs.setVisible(true);
+				}
+			}
 		}
-		
+	}
+	
+	public ArrayList<Producto> traerCombo(){
+		ArchivoProducto bebidas = new ArchivoProducto();
+		ArrayList<Producto> c = bebidas.leerCombo();
+		return c;
 	}
 
 }

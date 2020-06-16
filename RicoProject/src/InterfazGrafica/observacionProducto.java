@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class observacionProducto extends JFrame implements ActionListener{
-	private Hamburguesa hamburguesa;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -26,7 +25,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					observacionProducto frame = new observacionProducto();
@@ -35,7 +34,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 
 	/**
@@ -43,6 +42,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 	 */
 	public observacionProducto() {
 		initComponents();
+		
 	}
 	
 	public void initComponents() {
@@ -96,6 +96,12 @@ public class observacionProducto extends JFrame implements ActionListener{
 		if(e.getSource()==button) {
 			dispose();
 		}
-		
+	}
+	
+	public void setNombre(String nombre,int precio)
+	{
+		String p = Integer.toString(precio);
+		textField_2.setText(nombre);
+		textField_1.setText(p);
 	}
 }
