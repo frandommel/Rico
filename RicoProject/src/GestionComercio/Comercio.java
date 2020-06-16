@@ -104,8 +104,6 @@ public class Comercio{
 	}
 	
 	public void addPersonas(Persona persona) throws JSONException {
-		
-		
 		if(persona instanceof ClienteVip)
 		{
 			personas.getJSONArray("clientes").put(persona.generateJson());
@@ -117,7 +115,7 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(personas);
 	}
 	
-	public JSONObject buscarEmpleado(String string) throws JSONException
+	public JSONObject buscarPersona(String string, String tipoPersona) throws JSONException
 	{
 		/*ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
@@ -129,7 +127,7 @@ public class Comercio{
 		int i = 0;
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		JSONObject object = archivos.getListadoPersonas();
-		JSONArray array = object.getJSONArray("empleados");
+		JSONArray array = object.getJSONArray(tipoPersona);
 		JSONObject aux = null;
 		int size = array.length();
 		while(i<size && flag == false)
@@ -144,7 +142,7 @@ public class Comercio{
 		return aux;
 	}
 	
-	public void removePersonas(String string,String id) throws JSONException {
+	public void removePersonas(JSONObject aBorrar, String string) throws JSONException {
 		int i=0;
 		boolean flag = false;
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
@@ -153,7 +151,7 @@ public class Comercio{
 		int size=array.length();
 		while(i<size && flag == false) {
 			JSONObject aux = array.getJSONObject(i);
-			if(aux.getString("nombre").equalsIgnoreCase(id)) {
+			if(aux.getString("nombre").equalsIgnoreCase(aBorrar.getString("nombre"))) {
 				array.remove(i);
 				flag = true;
 			}
@@ -182,7 +180,27 @@ public class Comercio{
 		return flag;
 	}
 
-	
+	public void modificarPersona(JSONObject persona, String string) throws JSONException
+	{
+		boolean flag=false;
+		int i = 0;
+		ManejadordeArchivos archivos = new ManejadordeArchivos();
+		JSONObject object = archivos.getListadoPersonas();
+		JSONArray array = object.getJSONArray(string);
+		int size = array.length();
+		while(i<size && flag == false)
+		{
+			JSONObject aux = array.getJSONObject(i);
+			if(aux.getString("nombre").equalsIgnoreCase(persona.getString("nombre"))) 
+			{
+				array.remove(i);
+				flag = true;
+				array.put(persona);
+			}
+			i++;
+		}
+		archivos.actualizarArchivoPersona(object);
+	}
 
 	@Override
 	public String toString() {

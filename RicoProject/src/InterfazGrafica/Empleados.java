@@ -23,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import GestionComercio.Comercio;
+import GestionComercio.Empleado;
+import GestionComercio.Persona;
 
 public class Empleados extends JFrame implements ActionListener {
 
@@ -76,7 +78,7 @@ public class Empleados extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		
 		label=new JLabel("Nombre");
-		  label.setBounds(102,80,80,16);
+		  label.setBounds(87,79,80,16);
 		  label.setFont(new Font("Andale Mono",1,18));
 		  label.setForeground(new Color(255,255,255));  
 		  getContentPane().add(label);
@@ -87,7 +89,7 @@ public class Empleados extends JFrame implements ActionListener {
 		  getContentPane().add(textField);
 			
 		  label2 = new JLabel("Puesto");
-		  label2.setBounds(102,126,80,16);
+		  label2.setBounds(87,125,80,16);
 		  label2.setFont(new Font("Andale Mono",1,18));
 		  label2.setForeground(new Color(255,255,255));  
 		  getContentPane().add(label2);
@@ -95,10 +97,11 @@ public class Empleados extends JFrame implements ActionListener {
 		  textField2 = new JTextField();
 		  textField2.setBounds(204, 122, 177, 24);
 		  textField2.setFont(new Font("Andale Mono",1,14));
+		  textField2.setEnabled(false);
 		  getContentPane().add(textField2);
 			
 		  label3 = new JLabel("Direccion");
-		  label3.setBounds(102,172,84,16);
+		  label3.setBounds(87,171,84,16);
 		  label3.setFont(new Font("Andale Mono",1,18));
 		  label3.setForeground(new Color(255,255,255));  
 		  getContentPane().add(label3);
@@ -106,23 +109,40 @@ public class Empleados extends JFrame implements ActionListener {
 		  textField3 = new JTextField();
 		  textField3.setBounds(204, 168, 177, 24);
 		  textField3.setFont(new Font("Andale Mono",1,14));
+		  textField3.setEnabled(false);
 		  getContentPane().add(textField3);
 			
 		  label4 = new JLabel("Telefono");
-		  label4.setBounds(102,218,80,16);
+		  label4.setBounds(87,218,80,16);
 		  label4.setFont(new Font("Andale Mono",1,18));
 		  label4.setForeground(new Color(255,255,255));  
 		  getContentPane().add(label4);
 			
 		  textField4 = new JTextField();
-		  textField4.setBounds(204, 214, 177, 24);
+		  textField4.setBounds(204, 215, 177, 24);
 		  textField4.setFont(new Font("Andale Mono",1,14));
+		  textField4.setEnabled(false);
 		  getContentPane().add(textField4);
+		  
+		  label5 = new JLabel("Contraseña");
+		  label5.setBounds(82,263,100,20);
+		  label5.setFont(new Font("Andale Mono",1,18));
+		  label5.setForeground(new Color(255,255,255)); 
+		  label5.setVisible(false);
+		  getContentPane().add(label5);
+			
+		  textField5 = new JTextField();
+		  textField5.setBounds(204, 262, 177, 24);
+		  textField5.setFont(new Font("Andale Mono",1,14));
+		  textField5.setVisible(false);
+		  getContentPane().add(textField5);
 		
-			button=new JButton("Aceptar");
+			button=new JButton("Nuevo");
 			button.setBounds(485,78,110,24);
 			button.setFont(new Font("Arial", Font.BOLD, 12));
-			button.setForeground(Color.BLACK);  
+			button.setForeground(Color.BLACK); 
+			button.setEnabled(false);
+			button.addActionListener(this);
 			getContentPane().add(button);
 			
 			buscar = new JButton("Buscar");
@@ -201,25 +221,119 @@ public class Empleados extends JFrame implements ActionListener {
 				try {
 					String usuario = textField.getText();
 					Comercio rico = new Comercio();
-					JSONObject buscado = rico.buscarEmpleado(usuario);
+					JSONObject buscado = rico.buscarPersona(usuario,"empleados");
 					if(buscado.getString("nombre").equalsIgnoreCase(usuario)) {
-						textField2.setText(buscado.getString("posicion").toString());
-						textField3.setText(buscado.getString("direccion").toString());
-						textField4.setText(buscado.getString("telefono").toString());
-						textField2.setEnabled(false);
-						textField3.setEnabled(false);
-						textField4.setEnabled(false);
-					}else {
-						JOptionPane.showMessageDialog(null, "El empleado no existe");
-					}
-
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
+					textField2.setText(buscado.getString("posicion").toString());
+					textField3.setText(buscado.getString("direccion").toString());
+					textField4.setText(buscado.getString("telefono").toString());
+					activarTextfields();
+					modificar.setEnabled(true);
+					borrar.setEnabled(true);
+						}else {
+							JOptionPane.showMessageDialog(null, "El empleado no existe");
+							int valor = JOptionPane.showConfirmDialog(this, "Desea Crear uno nuevo?","ADVERTENCIA"
+									,JOptionPane.YES_NO_OPTION);
+							if(valor == JOptionPane.YES_OPTION) {
+								activarTextfields();
+								button.setEnabled(true);
+								label5.setVisible(true);
+								textField5.setVisible(true);
+							}
+					} 
+				}catch (JSONException e1) {
 					e1.printStackTrace();
 				}
-				
 			}
-			
+			if(e.getSource()== modificar)
+			{
+				String usuario = textField.getText();
+				Comercio rico;
+				try {
+					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
+							,JOptionPane.YES_NO_OPTION);
+					if(valor == JOptionPane.YES_OPTION) {
+						rico = new Comercio();
+						JSONObject buscado = rico.buscarPersona(usuario,"empleados");
+						String nuevaPosicion,nuevaDireccion,nuevoTel;
+						nuevaPosicion = textField2.getText();
+						nuevaDireccion = textField3.getText();
+						nuevoTel = textField4.getText();
+						if(!buscado.getString("posicion").equalsIgnoreCase(nuevaPosicion))
+						{
+							nuevaPosicion = textField2.getText();
+							buscado.put("posicion", nuevaPosicion);
+						}
+						if(!buscado.getString("direccion").equalsIgnoreCase(nuevaDireccion))
+						{
+							nuevaDireccion = textField3.getText();
+							buscado.put("direccion", nuevaDireccion);
+						}
+						if(!buscado.getString("telefono").equalsIgnoreCase(nuevoTel))
+						{
+							nuevoTel = textField4.getText();
+							buscado.put("telefono", nuevoTel);
+						}
+						rico.modificarPersona(buscado, "empleados");
+						JOptionPane.showMessageDialog(null, "Empleado Modificado");
+						Pedido pedido = new Pedido();
+						pedido.setVisible(true);
+						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+						dispose();
+					}
+					
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+			if(e.getSource()==borrar)
+			{
+				String usuario = textField.getText();
+				Comercio rico;
+				try {
+					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
+							,JOptionPane.YES_NO_OPTION);
+					if(valor == JOptionPane.YES_OPTION) {
+						rico = new Comercio();
+						JSONObject buscado = rico.buscarPersona(usuario,"empleados");
+						rico.removePersonas(buscado, "empleados");
+						JOptionPane.showMessageDialog(null, "Empleado Borrado");
+						Pedido pedido = new Pedido();
+						pedido.setVisible(true);
+						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+						dispose();
+					}
+				}catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+			if(e.getSource()==button)
+			{
+				String nombre,direccion,telefono,posicion,password;
+				nombre = textField.getText();
+				posicion = textField2.getText();
+				direccion = textField3.getText();
+				telefono = textField4.getText();
+				password = textField5.getText();
+				Persona nuevo = new Empleado(nombre, direccion, telefono, password, posicion);
+				try {
+					Comercio rico = new Comercio();
+					rico.addPersonas(nuevo);
+					JOptionPane.showMessageDialog(null, "Agregado con Exito");
+					Pedido pedido = new Pedido();
+					pedido.setVisible(true);
+					//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+					dispose();
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
 		}	
+		
+		public void activarTextfields()
+		{
+			textField2.setEnabled(true);
+			textField3.setEnabled(true);
+			textField4.setEnabled(true);	
+		}
 
 }

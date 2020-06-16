@@ -71,9 +71,7 @@ public class Main {
 		
 		System.out.println(comercioRico.getPersonas().toString());
 		
-		JSONObject buscadObject = comercioRico.buscarEmpleado("fran dommel");
-		
-		System.out.println(buscadObject.toString());
+	
 		
 		
 
