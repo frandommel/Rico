@@ -202,12 +202,17 @@ public class Empleados extends JFrame implements ActionListener {
 					String usuario = textField.getText();
 					Comercio rico = new Comercio();
 					JSONObject buscado = rico.buscarEmpleado(usuario);
-					textField2.setText(buscado.getString("posicion").toString());
-					textField3.setText(buscado.getString("direccion").toString());
-					textField4.setText(buscado.getString("telefono").toString());
-					textField2.setEnabled(false);
-					textField3.setEnabled(false);
-					textField4.setEnabled(false);
+					if(buscado.getString("nombre").equalsIgnoreCase(usuario)) {
+						textField2.setText(buscado.getString("posicion").toString());
+						textField3.setText(buscado.getString("direccion").toString());
+						textField4.setText(buscado.getString("telefono").toString());
+						textField2.setEnabled(false);
+						textField3.setEnabled(false);
+						textField4.setEnabled(false);
+					}else {
+						JOptionPane.showMessageDialog(null, "El empleado no existe");
+					}
+
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
