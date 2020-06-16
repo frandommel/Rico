@@ -34,7 +34,7 @@ public class Productos extends JFrame implements ActionListener {
 	private JLabel label1,label,label2,label3,label4,label5,tipoLabel,nombreProd;
 	private JTextField textField,textField2,textField3,textField4;
 	private JButton button,button2,modificar,buscar,borrar;
-	private JComboBox<String> comboBox,comboItemBox,comboItemBox2;
+	private JComboBox<String> comboBox,comboItemBox,comboItemBox2, comboItemBox3;
 
 	
 
@@ -256,17 +256,39 @@ public class Productos extends JFrame implements ActionListener {
 			if(e.getSource()==comboItemBox)
 			{
 				String comparado = (String)comboItemBox.getSelectedItem();
+				ArchivoProducto p = new ArchivoProducto();
+			
+			
 				if(comparado=="Hamburguesa")
 				{
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
 					nombreProd.setVisible(true);
-					comboItemBox2.setVisible(true);
+					comboItemBox2.setVisible(true);		
+					comboItemBox3.setVisible(false);
+					productos = p.leerHamburguesa();
+					if(comboItemBox2.getItemCount() == 0) {
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemBox2);
+					}
 				}
 				if(comparado=="Pancho")
 				{
 					
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					nombreProd.setVisible(true);
+					comboItemBox3.setVisible(true);
+					comboItemBox2.setVisible(false);
+					productos = p.leerPancho();
+					if(comboItemBox3.getItemCount() == 0) 
+					{
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemBox3);
+					}
 				}
-			}
 			
+		  }
 		}
 		
 		public void quitarCalorias() {
@@ -314,16 +336,22 @@ public class Productos extends JFrame implements ActionListener {
 			nombreProd.setFont(new Font("Andale Mono",1,18));
 			nombreProd.setForeground(new Color(255,255,255));  
 			getContentPane().add(nombreProd);
-			ArrayList<String> listaProducto = new ArrayList<String>();
-			ArrayList<Producto> productos = p.leerHamburguesa();
-			listaProducto = pasar2ListaString(productos);
+			
 			comboItemBox2=new JComboBox<String>();
 			comboItemBox2.setBounds(204, 214, 177, 24);
 			comboItemBox2.setVisible(false);
 			comboItemBox2.setFont(new Font("Andale Mono",1,14));
 			getContentPane().add(comboItemBox2);
-			moverArray2Combo(listaProducto, comboItemBox2);
+
 			comboItemBox2.addActionListener(this);
+			
+			comboItemBox3=new JComboBox<String>();
+			comboItemBox3.setBounds(204, 214, 177, 24);
+			comboItemBox3.setVisible(false);
+			comboItemBox3.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemBox3);
+
+			comboItemBox3.addActionListener(this);
 		}
 		
 		public void agregarItem(JComboBox<String> listaItem,String item) {

@@ -4,10 +4,14 @@ package InterfazGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Archivos.ArchivoProducto;
+import claseProductos.Producto;
 
 public class Hamburguesa extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6;
@@ -16,6 +20,7 @@ public class Hamburguesa extends JPanel implements ActionListener{
 	 */
 	public Hamburguesa() {
 		initComponents();
+		ArrayList<Producto> hamburguesas =	traerHamburguesa();
 	}
 	
 	@Override
@@ -23,6 +28,7 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		if(e.getSource() instanceof JButton) {
 			añadirFrameObservacion();
 		}
+		
 		
 	}
 	
@@ -68,5 +74,13 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		observacionProducto obs = new observacionProducto();
 		obs.setVisible(true);
 	}
+	
+	public ArrayList<Producto> traerHamburguesa() {
+		ArchivoProducto hamburguesa = new ArchivoProducto();
+		ArrayList<Producto> h = hamburguesa.leerHamburguesa();
+		System.out.println(h.toString());
+		return h;
+	}
+	
 
 }

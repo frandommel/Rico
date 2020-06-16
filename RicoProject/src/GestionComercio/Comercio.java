@@ -204,18 +204,17 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(object);
 	}
 	
-	public ArrayList<String> leerProductos(ArrayList<String>listaProd,String string) {
+	/*public ArrayList<Producto> leerProductos(ArrayList<Producto>listaProd,String string) 
+	{
 		HashMap<String, ArrayList<Producto>> map = null;
 		map = productos;
 		ArrayList<Producto> aux=map.get(string);
-		String nombreString;
 		for (int i = 0; i < aux.size(); i++) {
-			nombreString=aux.get(i).getNombre();
-			listaProd.add(nombreString);
+		aux.get(i).getNombre();
 		}
 		return listaProd;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Comercio: " + nombre + "\n Direccion=" + direccion + "\n CUIT=" + cuit + "\n Rubro=" + rubro
