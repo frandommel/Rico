@@ -17,6 +17,7 @@ import GestionComercio.Comercio;
 import GestionComercio.Empleado;
 import GestionComercio.Pedido;
 import GestionComercio.Persona;
+import InterfazGrafica.Inicio;
 import claseProductos.Bebida;
 import claseProductos.Combo;
 import claseProductos.Ensalada;
@@ -33,11 +34,11 @@ public class Main {
 		/*Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
 		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582", 0);
 		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 0);
-		Persona cliente7 = new ClienteVip("eeee DU", "tu vieja 890", "22122223394782", 0);
+		Persona cliente7 = new ClienteVip("eeee DU", "tu vieja 890", "22122223394782", 0);*/
 
-		ArchivoPersona archivoPersona = new ArchivoPersona();
+		//ArchivoPersona archivoPersona = new ArchivoPersona();
 		
-		JSONObject objetoPersonasJsonObject = new JSONObject();
+		/*JSONObject objetoPersonasJsonObject = new JSONObject();
 		JSONArray arrayEmpleados = new JSONArray();
 		JSONArray arrayClientes = new JSONArray();
 		
@@ -63,15 +64,16 @@ public class Main {
 		
 		//System.out.println(archivoPersona.leer());
 		
-		Comercio comercioRico = new Comercio();
+		//Comercio comercioRico = new Comercio();
 		
 		//comercioRico.removePersonas("empleados","Pablo Valentinuzzi");
 		
 		//System.out.println(archivoPersona.leer());
 		
-		System.out.println(comercioRico.getPersonas().toString());
+		//System.out.println(comercioRico.getPersonas().toString());
 		
-	
+		Inicio inicio = new Inicio();
+		inicio.iniciar();
 		
 		
 

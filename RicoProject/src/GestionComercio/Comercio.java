@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
@@ -200,6 +202,18 @@ public class Comercio{
 			i++;
 		}
 		archivos.actualizarArchivoPersona(object);
+	}
+	
+	public ArrayList<String> leerProductos(ArrayList<String>listaProd,String string) {
+		HashMap<String, ArrayList<Producto>> map = null;
+		map = productos;
+		ArrayList<Producto> aux=map.get(string);
+		String nombreString;
+		for (int i = 0; i < aux.size(); i++) {
+			nombreString=aux.get(i).getNombre();
+			listaProd.add(nombreString);
+		}
+		return listaProd;
 	}
 
 	@Override

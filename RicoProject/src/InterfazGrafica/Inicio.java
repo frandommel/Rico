@@ -48,7 +48,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 	
 	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Inicio frame = new Inicio();
@@ -58,11 +58,13 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
+		
 	}
 	
 	public Inicio() {
 		initComponents();
+		
 	}
 	
 	public void initComponents() {
@@ -225,6 +227,19 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 			System.exit(0);
 		}
 	}	
+	public void iniciar() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Inicio frame = new Inicio();
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }
 
 

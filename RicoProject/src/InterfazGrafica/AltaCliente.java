@@ -126,6 +126,7 @@ public class AltaCliente extends JPanel implements ActionListener {
 			Pedido pedido = new Pedido();
 			pedido.setVisible(true);
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+			frame.dispose();
 		}
 		if(e.getSource() == buscar)
 		{
@@ -180,6 +181,7 @@ public class AltaCliente extends JPanel implements ActionListener {
 					Pedido pedido = new Pedido();
 					pedido.setVisible(true);
 					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+					frame.dispose();
 				}
 				
 			} catch (JSONException e1) {
@@ -201,6 +203,7 @@ public class AltaCliente extends JPanel implements ActionListener {
 					Pedido pedido = new Pedido();
 					pedido.setVisible(true);
 					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+					frame.dispose();
 				}
 			}catch (JSONException e1) {
 				e1.printStackTrace();
@@ -220,6 +223,7 @@ public class AltaCliente extends JPanel implements ActionListener {
 				Pedido pedido = new Pedido();
 				pedido.setVisible(true);
 				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+				frame.dispose();
 			} catch (JSONException e1) {
 				e1.printStackTrace();
 			}

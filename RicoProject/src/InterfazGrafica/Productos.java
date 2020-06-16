@@ -23,13 +23,18 @@ import javax.swing.border.EmptyBorder;
 import com.itextpdf.text.pdf.AcroFields.Item;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
+import Archivos.ArchivoPedidos;
+import Archivos.ArchivoProducto;
+import GestionComercio.Comercio;
+import claseProductos.Producto;
+
 public class Productos extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JLabel label1,label,label2,label3,label4,label5,tipoLabel;
+	private JLabel label1,label,label2,label3,label4,label5,tipoLabel,nombreProd;
 	private JTextField textField,textField2,textField3,textField4;
 	private JButton button,button2,modificar,buscar,borrar;
-	private JComboBox<String> comboBox,comboItemBox;
+	private JComboBox<String> comboBox,comboItemBox,comboItemBox2;
 
 	
 
@@ -143,11 +148,14 @@ public class Productos extends JFrame implements ActionListener {
 			getContentPane().add(textField4);
 			
 			agregarComboListaProductos();
+			agregarItemsTipoCombo();
 			
-			button=new JButton("Aceptar");
+			button=new JButton("Nuevo");
 			button.setBounds(485,78,110,24);
 			button.setFont(new Font("Arial", Font.BOLD, 12));
-			button.setForeground(Color.BLACK);  
+			button.setForeground(Color.BLACK); 
+			button.addActionListener(this);
+			button.setEnabled(false);
 			getContentPane().add(button);
 			
 			buscar = new JButton("Buscar");
@@ -224,6 +232,7 @@ public class Productos extends JFrame implements ActionListener {
 				quitarCalorias();
 				quitarMarca();
 				quitarCombo();
+				quitarNombreTipoCombo();
 				String comparado = (String)comboBox.getSelectedItem();
 				if(comparado=="Hamburguesa") {
 				
@@ -244,6 +253,19 @@ public class Productos extends JFrame implements ActionListener {
 					comboItemBox.setVisible(true);
 				}
 			}
+			if(e.getSource()==comboItemBox)
+			{
+				String comparado = (String)comboItemBox.getSelectedItem();
+				if(comparado=="Hamburguesa")
+				{
+					nombreProd.setVisible(true);
+					comboItemBox2.setVisible(true);
+				}
+				if(comparado=="Pancho")
+				{
+					
+				}
+			}
 			
 		}
 		
@@ -259,9 +281,13 @@ public class Productos extends JFrame implements ActionListener {
 			label5.setVisible(false);
 			comboItemBox.setVisible(false);
 		}
+		public void quitarNombreTipoCombo() {
+			nombreProd.setVisible(false);
+			comboItemBox2.setVisible(false);
+		}
 		
 		public void agregarComboListaProductos() {
-			label5 =new JLabel("Hamburguesa");
+			label5 =new JLabel("Tipo");
 			label5.setBounds(102,172,84,16);
 			label5.setVisible(false);
 			label5.setFont(new Font("Andale Mono",1,18));
@@ -273,11 +299,31 @@ public class Productos extends JFrame implements ActionListener {
 			comboItemBox.setVisible(false);
 			comboItemBox.setFont(new Font("Andale Mono",1,14));
 			getContentPane().add(comboItemBox);
-			listaProducto.add("Kelly");
-			listaProducto.add("Doble queso");
-			listaProducto.add("Big Wave");
-			listaProducto.add("Jeremy");
+			listaProducto.add("Hamburguesa");
+			listaProducto.add("Pancho");
 			moverArray2Combo(listaProducto, comboItemBox);
+			comboItemBox.addActionListener(this);
+		}
+		
+		public void agregarItemsTipoCombo()
+		{
+			ArchivoProducto p = new ArchivoProducto();
+			nombreProd = new JLabel("Nombre");
+			nombreProd.setBounds(102,218,84,16);
+			nombreProd.setVisible(false);
+			nombreProd.setFont(new Font("Andale Mono",1,18));
+			nombreProd.setForeground(new Color(255,255,255));  
+			getContentPane().add(nombreProd);
+			ArrayList<String> listaProducto = new ArrayList<String>();
+			ArrayList<Producto> productos = p.leerHamburguesa();
+			listaProducto = pasar2ListaString(productos);
+			comboItemBox2=new JComboBox<String>();
+			comboItemBox2.setBounds(204, 214, 177, 24);
+			comboItemBox2.setVisible(false);
+			comboItemBox2.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemBox2);
+			moverArray2Combo(listaProducto, comboItemBox2);
+			comboItemBox2.addActionListener(this);
 		}
 		
 		public void agregarItem(JComboBox<String> listaItem,String item) {
@@ -290,5 +336,14 @@ public class Productos extends JFrame implements ActionListener {
 				item=listaItem.get(i);
 				agregarItem(combo, item);
 			}
+		}
+		
+		public ArrayList<String> pasar2ListaString(ArrayList<Producto>p){
+			ArrayList<String>listaProd=new ArrayList<String>();
+			for (int i = 0; i < p.size(); i++) {
+				String nombre = p.get(i).getNombre();
+				listaProd.add(nombre);
+			}
+			return listaProd;
 		}
 }

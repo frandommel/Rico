@@ -274,7 +274,7 @@ public class Pedido extends JFrame implements ActionListener{
 		menuCliente.addActionListener(this);
 		menu.add(menuCliente);
 		
-		menuEmpleado = new JMenuItem("RRHH");
+		menuEmpleado = new JMenuItem("Empleados");
 		menuEmpleado.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
 		menuEmpleado.addActionListener(this);
 		menu.add(menuEmpleado);
