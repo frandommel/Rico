@@ -28,6 +28,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -35,6 +39,9 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import Archivos.ArchivoProducto;
+import Archivos.ManejadordeArchivos;
 
 import javax.swing.JButton;
 
@@ -74,6 +81,7 @@ public class Pedido extends JFrame implements ActionListener{
 	}		
 	
 	public void initComponents() {
+		
 		cerrar();
 		inicio = new Inicio();
 		setBounds(0, 0, 1125, 743);
@@ -215,18 +223,36 @@ public class Pedido extends JFrame implements ActionListener{
 		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
 		            parrafo.add("Rico Mangment \n\n");
 		            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
-		            parrafo.add("Registros de ventas: \n\n");
-
+		            parrafo.add("Registros de Personas: \n\n");
+		            
+		            Paragraph parrafo2 = new Paragraph();
+		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+		            JSONObject object = new JSONObject();
+		            ManejadordeArchivos archivo = new ManejadordeArchivos();
+		            object = archivo.getListadoPersonas();
+		            JSONArray arrayEmpleado = (JSONArray) object.get("empleados");
+		            JSONArray arrayClientes = (JSONArray) object.get("clientes");
+		            
+		            for(int i=0; i<arrayEmpleado.length(); i++)
+		            {
+		            	JSONObject object1 = new JSONObject();
+		            	object1 = (JSONObject) arrayEmpleado.get(i);
+		            	parrafo2.add("Nombre " + object1.get("nombre").toString() + " Posicion " + object1.get("posicion"));
+		            	parrafo2.add("\n\n");
+		            }
+		            //parrafo2.add(arrayEmpleado.toString());
+	
 		            documento.open();     
 		            //documento.add(header);
 		            documento.add(parrafo);
+		            documento.add(parrafo2);
 		            
-		            PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
-		            tabla.addCell("Codigo");                       
-		            tabla.addCell("Fecha");
-		            tabla.addCell("Pedido");
+		           // PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
+		           //tabla.addCell("Codigo");                       
+		           //tabla.addCell("Fecha");
+		          // tabla.addCell("Pedido");
 		           
-		            documento.add(tabla);
+		            //documento.add(tabla);
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
 		            
@@ -236,7 +262,10 @@ public class Pedido extends JFrame implements ActionListener{
 		        		b.printStackTrace();
 		        } catch (IOException a) {
 		        		a.printStackTrace();
-		        }
+		        } catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
 	}
 	
