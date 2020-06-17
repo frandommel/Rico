@@ -1,12 +1,13 @@
 package GestionComercio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import claseProductos.Producto;
 
 
-public class Pedido {
+public class Pedido implements Serializable{
 	private int id;
 	private String condicion;
 	private ArrayList<Producto> productos;

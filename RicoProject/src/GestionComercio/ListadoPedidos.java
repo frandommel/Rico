@@ -1,5 +1,6 @@
 package GestionComercio;
 
+import java.io.Serializable;
 import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 import interfaces.IAccion;
 
-public class ListadoPedidos implements IAccion<String,Pedido> {
+public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
       private HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap;
       private int montoTotal;
 

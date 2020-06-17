@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import GestionComercio.ListadoPedidos;
@@ -15,7 +16,7 @@ import claseProductos.Bebida;
 import claseProductos.Combo;
 import claseProductos.Producto;
 
-public class ArchivoPedidos {
+public class ArchivoPedidos	implements Serializable {
 
 	public ArchivoPedidos()
 	{
@@ -70,6 +71,7 @@ public class ArchivoPedidos {
 		catch(IOException e) {
 			e.printStackTrace();
 		}
+		
 		
 		return listado;
 
