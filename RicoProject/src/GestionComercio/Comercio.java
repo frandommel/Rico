@@ -40,7 +40,7 @@ public class Comercio{
 	
 	ManejadordeArchivos archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
-	pedidos = archivos.getListadoPedidos();
+	//pedidos = archivos.getListadoPedidos();
 	personas = archivos.getListadoPersonas();
 	
 	}
