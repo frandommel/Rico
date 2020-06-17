@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -213,7 +214,7 @@ public class Pedido extends JFrame implements ActionListener{
 		       Document documento = new Document();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
-		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
+		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Personas.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
 		        
 		           // ImageIcon icono = new ImageIcon(Menu.class.getResource("/paquete/rico.jpeg"));
 		           // icono.scaleToFit(650, 1000);            //para darle dimension a la imagen
@@ -225,28 +226,53 @@ public class Pedido extends JFrame implements ActionListener{
 		            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
 		            parrafo.add("Registros de Personas: \n\n");
 		            
+		            
 		            Paragraph parrafo2 = new Paragraph();
-		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
 		            JSONObject object = new JSONObject();
 		            ManejadordeArchivos archivo = new ManejadordeArchivos();
 		            object = archivo.getListadoPersonas();
 		            JSONArray arrayEmpleado = (JSONArray) object.get("empleados");
 		            JSONArray arrayClientes = (JSONArray) object.get("clientes");
-		            
+		            parrafo2.add("\n\n");
+		            parrafo2.add("Empleados: \n\n");
 		            for(int i=0; i<arrayEmpleado.length(); i++)
 		            {
 		            	JSONObject object1 = new JSONObject();
 		            	object1 = (JSONObject) arrayEmpleado.get(i);
-		            	parrafo2.add("Nombre " + object1.get("nombre").toString() + " Posicion " + object1.get("posicion"));
-		            	parrafo2.add("\n\n");
+		            	parrafo2.setFont(FontFactory.getFont("Tahoma", 12, BaseColor.BLACK));
+		            	parrafo2.add("(-Nombre Completo): " + object1.get("nombre").toString() + ",  (-Posicion): " + object1.get("posicion")
+		            					+ ",  (-Telefono): " + object1.get("telefono") );
+		            	parrafo2.add("\n");
+		            	parrafo2.add("(-Direccion): " + object1.get("direccion"));
+		            	parrafo2.add("\n");
 		            }
-		            //parrafo2.add(arrayEmpleado.toString());
-	
+		            Paragraph parrafo3 = new Paragraph();
+		            parrafo3.add("\n\n");
+		            parrafo3.add("Clientes Vip: \n\n");
+		            for(int i=0; i<arrayClientes.length(); i++)
+		            {
+		            	JSONObject object1 = new JSONObject();
+		            	object1 = (JSONObject) arrayClientes.get(i);
+		            	parrafo3.setFont(FontFactory.getFont("Tahoma", 12, BaseColor.BLACK));
+		            	parrafo3.add("(-Nombre Completo): " + object1.get("nombre").toString() + ",  (-Telefono): " + object1.get("telefono") );
+		            	parrafo3.add("\n");
+		            	parrafo3.add("(-Direccion): " + object1.get("direccion"));
+		            	parrafo3.add("\n");
+		            }
+		            Paragraph parrafo4 = new Paragraph();
+		            java.util.Date fecha = new java.util.Date();
+		            parrafo4.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
+		            parrafo4.setAlignment(Paragraph.ALIGN_RIGHT);
+		            parrafo4.add("\n\n\n");
+		            parrafo4.add("Registro creado el:" + fecha.toString());
+		            
+		            	
 		            documento.open();     
 		            //documento.add(header);
 		            documento.add(parrafo);
 		            documento.add(parrafo2);
-		            
+		            documento.add(parrafo3);
+		            documento.add(parrafo4);
 		           // PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
 		           //tabla.addCell("Codigo");                       
 		           //tabla.addCell("Fecha");
@@ -256,7 +282,7 @@ public class Pedido extends JFrame implements ActionListener{
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
 		            
-		            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ruta + "\\Desktop\\Registro_Rico.pdf");  ///abrimos el pdf automaticamente
+		            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ruta + "\\Desktop\\Registro_Rico_Personas.pdf");  ///abrimos el pdf automaticamente
     
 		        } catch (DocumentException | HeadlessException | FileNotFoundException b) {
 		        		b.printStackTrace();
