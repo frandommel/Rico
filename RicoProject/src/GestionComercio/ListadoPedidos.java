@@ -41,43 +41,83 @@ public class ListadoPedidos implements IAccion<String,Pedido> {
 
 	@Override
 	public void baja(Pedido objeto) {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-
-	@Override
-	public Pedido buscar(String busqueda) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public void listar() {
-		// LISTA EL ARCHIVO COMPLETO
-		
-	}
-
-
 
 	@Override
 	public String listar(String clave) {
-		// LISTA UN DIA EN ESPECIFICO
-		return null;
+		ArrayList<Pedido> diaXpedidos = listaPedidosContenedorMap.get(clave);
+		StringBuilder builder = new StringBuilder();
+		builder.append("Dia "+clave+":\n");
+		for(int i=0;i<diaXpedidos.size();i++)
+		{
+			
+			builder.append(diaXpedidos.get(i));
+			builder.append("\n");
+		}
+		
+		
+		String listado = builder.toString();
+		return listado;
 	}
 
 
 
 	@Override
 	public void alta(Pedido objeto) {
-		// TODO Auto-generated method stub
+		if(listaPedidosContenedorMap.containsKey(objeto.getFecha()))
+		{
+			ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
+			aux.add(objeto);
+			listaPedidosContenedorMap.replace(objeto.getFecha(), aux);
+		}else
+		{
+			ArrayList<Pedido> aux = new ArrayList<Pedido>();
+			aux.add(objeto);
+		listaPedidosContenedorMap.put(objeto.getFecha(), aux);
+		}
+	}
+	
+	public boolean cobro(Pedido objeto)
+	{
+		ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
+		Pedido buscado = new Pedido();
+		int i =0;
+		boolean flag = false;
+		
+		while(i<aux.size()  && flag==false)
+		{
+			if(aux.get(i).equals(objeto))
+			{
+				buscado = aux.get(i);
+				flag=true;
+			}
+			
+			i++;
+		}
+		
+		if(flag==true)
+		{
+			buscado.setCobrado(true);
+		}
+		
+		return flag;
 		
 	}
 
 
+
+	@Override
+	public Pedido buscar(String busqueda, int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	
+
+	
 	
       
 }

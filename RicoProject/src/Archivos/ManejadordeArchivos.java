@@ -7,8 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import GestionComercio.ListadoClientes;
-import GestionComercio.ListadoEmpleados;
 import GestionComercio.ListadoPedidos;
 import claseProductos.Producto;
 
@@ -36,7 +34,7 @@ public class ManejadordeArchivos {
 	public ListadoPedidos getListadoPedidos()
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
-		destinoPedido = pedido.leerPedido();
+		destinoPedido = pedido.leerPedidos();
 		return destinoPedido;
 		
 	}

@@ -15,8 +15,6 @@ import org.json.JSONObject;
 
 import GestionComercio.ClienteVip;
 import GestionComercio.Empleado;
-import GestionComercio.ListadoClientes;
-import GestionComercio.ListadoEmpleados;
 import GestionComercio.Persona;
 
 public class ArchivoPersona {
