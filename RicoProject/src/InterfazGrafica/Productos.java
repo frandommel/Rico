@@ -35,14 +35,14 @@ public class Productos extends JFrame implements ActionListener {
 	private JTextField textField,textField2,textField3,textField4;
 	private JButton button,button2,modificar,buscar,borrar;
 	private JComboBox<String> comboBox,comboItemBox,comboItemBox2, comboItemBox3;
-
+	private Comercio rico;
 	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Productos frame = new Productos();
@@ -51,13 +51,14 @@ public class Productos extends JFrame implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Productos() {
+	public Productos(Comercio comercio) {
+		rico = comercio;
 		initComponents();
 	}
 	
@@ -224,7 +225,7 @@ public class Productos extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == button2) 
 			{
-				Pedido pedido = new Pedido();
+				VentanaPedido pedido = new VentanaPedido(rico);
 				pedido.setVisible(true);
 				dispose();
 			}

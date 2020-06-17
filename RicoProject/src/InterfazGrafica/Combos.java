@@ -10,16 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Archivos.ArchivoProducto;
+import GestionComercio.Comercio;
 import claseProductos.Producto;
 
 public class Combos extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6,button7,button8,button9,button10;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public Combos() {
+	public Combos(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		
 	}
 	
 	public void initComponents() {
@@ -80,26 +82,15 @@ public class Combos extends JPanel implements ActionListener{
 		add(button10);
 	}
 	
-	public void añadirFrameObservacion() {
-		observacionProducto obs = new observacionProducto();
-		obs.setVisible(true);
-	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto();
-			ArrayList<Producto> h = traerCombo();
-			System.out.println(h.toString());
-			for (int i = 0; i < h.size(); i++) {
-				if(h.get(i).getNombre().equalsIgnoreCase("Combo "+boton.getText())){
-					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
-					obs.setVisible(true);
-				}
+			observacionProducto obs = new observacionProducto(rico);
+			obs.setNombre(rico.leerProducto("Combo", "Combo "+boton.getText()).getNombre(), rico.leerProducto("Combo","Combo "+boton.getText()).getPrecio());
+			obs.setVisible(true);
 			}
-		}
 	}
 	
 	public ArrayList<Producto> traerCombo(){

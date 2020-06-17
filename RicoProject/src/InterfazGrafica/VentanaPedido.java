@@ -43,10 +43,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
+import GestionComercio.Comercio;
 
 import javax.swing.JButton;
 
-public class Pedido extends JFrame implements ActionListener{
+public class VentanaPedido extends JFrame implements ActionListener{
 
 	private JPanel contentPane, h,p,combo,ensaladas,bebidas,guarnicion,ventas, pedidosActivos;
 	private JLabel label1, label2;
@@ -56,35 +57,36 @@ public class Pedido extends JFrame implements ActionListener{
 	private JMenu menuRegistro,menu;
 	private Inicio inicio;///MAL HECHO TRAER DATO DE INICIO COMO CORRESPONDE
 	private String nombre;
+	private Comercio rico;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Pedido frame = new Pedido();
+					Pedido frame = new Pedido(rico);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Pedido() {
+	public VentanaPedido(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		inicio.setVisible(false);
 	}		
 	
 	public void initComponents() {
 		
 		cerrar();
-		inicio = new Inicio();
+		inicio = new Inicio(rico);
 		setBounds(0, 0, 1125, 743);
 		setTitle("Pedido");
 		this.setResizable(false);
@@ -101,37 +103,37 @@ public class Pedido extends JFrame implements ActionListener{
 		
 		hamButton = new JButton("HAMBURGUESA");
 		hamButton.setBounds(275,442,205,67);
-		hamButton.setIcon(new ImageIcon(Pedido.class.getResource("/InterfazGrafica/iconoHamb.png")));
+		hamButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("/InterfazGrafica/iconoHamb.png")));
 		hamButton.addActionListener(this);
 		getContentPane().add(hamButton);
 		
 		panchButton = new JButton("PANCHO");
 		panchButton.setBounds(58,602,205,67);
-		panchButton.setIcon(new ImageIcon(Pedido.class.getResource("/InterfazGrafica/iconoPancho.png")));
+		panchButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("/InterfazGrafica/iconoPancho.png")));
 		panchButton.addActionListener(this);
 		getContentPane().add(panchButton);
 		
 		guarnButton = new JButton("GUARNICION");
 		guarnButton.setBounds(275,522,205,67);
-		guarnButton.setIcon(new ImageIcon(Pedido.class.getResource("/InterfazGrafica/iconoGuarnicion.png")));
+		guarnButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("/InterfazGrafica/iconoGuarnicion.png")));
 		guarnButton.addActionListener(this);
 		getContentPane().add(guarnButton);
 		
 		bebButton = new JButton("BEBIDA");
 		bebButton.setBounds(58,442,205,67);
-		bebButton.setIcon(new ImageIcon(Pedido.class.getResource("iconoBebida.png")));
+		bebButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("iconoBebida.png")));
 		bebButton.addActionListener(this);
 		getContentPane().add(bebButton);
 		
 		comboButton = new JButton("COMBO");
 		comboButton.setBounds(58,522,205,67);
-		comboButton.setIcon(new ImageIcon(Pedido.class.getResource("/InterfazGrafica/iconoCombo.png")));
+		comboButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("/InterfazGrafica/iconoCombo.png")));
 		comboButton.addActionListener(this);
 		getContentPane().add(comboButton);
 		
 		ensaladaButton = new JButton("ENSALADA");
 		ensaladaButton.setBounds(275,602,205,67);
-		ensaladaButton.setIcon(new ImageIcon(Pedido.class.getResource("iconoEnsalada.png")));
+		ensaladaButton.setIcon(new ImageIcon(VentanaPedido.class.getResource("iconoEnsalada.png")));
 		ensaladaButton.addActionListener(this);
 		getContentPane().add(ensaladaButton);
 		
@@ -196,17 +198,17 @@ public class Pedido extends JFrame implements ActionListener{
 			guarnicion.setVisible(true);
 		}
 		if(e.getSource()== menuCliente) {
-			Cliente alta = new Cliente();
+			Cliente alta = new Cliente(rico);
 			alta.setVisible(true);
 			dispose();
 		}
 		if(e.getSource()==menuEmpleado) {
-			Empleados empleados = new Empleados();
+			Empleados empleados = new Empleados(rico);
 			empleados.setVisible(true);
 			dispose();
 		}
 		if(e.getSource()==menuProducto) {
-			Productos productos = new Productos();
+			Productos productos = new Productos(rico);
 			productos.setVisible(true);
 			dispose();
 		}
@@ -296,14 +298,14 @@ public class Pedido extends JFrame implements ActionListener{
 	}
 	
 	public void ingresarPaneles() { //Creacion paneles 
-		h = new Hamburguesa();
-		p =new Pancho();
-		combo = new Combos();
-		ensaladas = new Ensaladas();
-		bebidas = new Bebidas();
-		guarnicion = new Guarnicion();
-		ventas = new Venta();
-		pedidosActivos=new PedidosActivos();
+		h = new Hamburguesa(rico);
+		p =new Pancho(rico);
+		combo = new Combos(rico);
+		ensaladas = new Ensaladas(rico);
+		bebidas = new Bebidas(rico);
+		guarnicion = new Guarnicion(rico);
+		ventas = new Venta(rico);
+		pedidosActivos=new PedidosActivos(rico);
 		getContentPane().add(pedidosActivos);
 		getContentPane().add(h);
 		getContentPane().add(p);

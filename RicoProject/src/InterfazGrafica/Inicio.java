@@ -32,6 +32,7 @@ import javax.swing.text.PasswordView;
 import org.json.JSONException;
 
 import GestionComercio.Comercio;
+import GestionComercio.Pedido;
 
 import java.lang.Package;
 import java.security.KeyStore.TrustedCertificateEntry;
@@ -42,29 +43,19 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 	private JLabel label1, label2, label3, label4, label5;
 	private JTextField textfield1;
 	private JPasswordField textfield2;
+	private Comercio rico;
 	private JButton boton1;
-	private Pedido pedido;
+	private static VentanaPedido pedido;
 	
 	
 	
 	public static void main(String[] args) {
-		/*EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio frame = new Inicio();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
 		
 	}
 	
-	public Inicio() {
+	public Inicio(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		
 	}
 	
 	public void initComponents() {
@@ -133,13 +124,12 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 				String usuario = textfield1.getText().trim();
 				String password= textfield2.getText();
 				try {
-					Comercio rico = new Comercio();
 					boolean flag= rico.validarPersona(usuario, password);
 					if(flag==true)
 					{
-						pedido = new Pedido();
+						pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
-						dispose();
+						this.setVisible(false);
 					}else if(usuario.equals("") || password.equals("")) {
 						JOptionPane.showMessageDialog(null, "Debes ingresar usuario y contraseña");   //Para enviar un mensaje por pantalla
 					}else {
@@ -176,13 +166,12 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		if(e.getKeyCode() == 10) 
 		{
 			try {
-				Comercio rico = new Comercio();
 				boolean flag= rico.validarPersona(usuario, password);
 				if(flag==true)
 				{
-					pedido = new Pedido();
+					pedido = new VentanaPedido(rico);
 					pedido.setVisible(true);
-					dispose();
+					this.setVisible(false);
 				}else if(usuario.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(null, "Debes ingresar usuario y contraseña");   //Para enviar un mensaje por pantalla
 				}else {
@@ -226,12 +215,13 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		if(valor == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-	}	
-	public void iniciar() {
+	}
+	
+	/*public void iniciar(Comercio comercio) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inicio frame = new Inicio();
+					Inicio frame = new Inicio(comercio);
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -239,7 +229,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 				}
 			}
 		});
-	}
+	}*/
 }
 
 

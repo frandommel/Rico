@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import GestionComercio.Comercio;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,14 +26,15 @@ public class Venta extends JPanel implements ActionListener {
 	private JButton botonPedido,prueba,prueba2,boton;
 	private ArrayList<JButton>botones;
 	private int indice;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public Venta() {
+	public Venta(Comercio comercio) {
+		rico = comercio;
 		initComponents();
 		botones = new ArrayList<JButton>();
 		indice = 0;
-		
 	}
 	
 	private void initComponents() 

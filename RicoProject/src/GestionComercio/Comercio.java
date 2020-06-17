@@ -14,6 +14,7 @@ import Archivos.ArchivoPedidos;
 import Archivos.ArchivoPersona;
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
+import claseProductos.Bebida;
 import claseProductos.Producto;
 
 import interfaces.IAccion;
@@ -119,12 +120,6 @@ public class Comercio{
 	
 	public JSONObject buscarPersona(String string, String tipoPersona) throws JSONException
 	{
-		/*ManejadordeArchivos archivos = new ManejadordeArchivos();
-		JSONObject object = archivos.getListadoPersonas();
-		
-		JSONArray array = object.getJSONArray(string);
-		
-		return (JSONObject) array.get(id);*/
 		boolean flag=false;
 		int i = 0;
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
@@ -166,8 +161,7 @@ public class Comercio{
 	{
 		boolean flag=false;
 		int i = 0;
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
-		JSONObject object = archivos.getListadoPersonas();
+		JSONObject object = personas;
 		JSONArray array = object.getJSONArray("empleados");
 		int size = array.length();
 		while(i<size && flag == false)
@@ -204,21 +198,38 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(object);
 	}
 	
-	/*public ArrayList<Producto> leerProductos(ArrayList<Producto>listaProd,String string) 
-	{
-		HashMap<String, ArrayList<Producto>> map = null;
-		map = productos;
-		ArrayList<Producto> aux=map.get(string);
+	public Producto leerProducto(String claveString , String producto) {
+		Producto p = null;
+		ArrayList<Producto> aux= productos.get(claveString);
 		for (int i = 0; i < aux.size(); i++) {
-		aux.get(i).getNombre();
+			if(aux.get(i).getNombre().equalsIgnoreCase(producto)) {
+				p=aux.get(i);
+			}
 		}
-		return listaProd;
+		
+		return p;
 	}
-*/
+	
+	public Producto leerCerveza(String claveString , String producto) {
+		Producto producto2 = null;
+		Bebida bebida = null;
+		ArrayList<Producto> aux= productos.get(claveString);
+		for (int i = 0; i < aux.size(); i++) {
+			if(aux.get(i).getNombre().equalsIgnoreCase("Cerveza")) {
+				bebida = (Bebida)aux.get(i);
+				if(bebida.getMarca().equalsIgnoreCase(producto)) {
+					producto2 = bebida;
+				}
+			}
+		}
+		return producto2;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Comercio: " + nombre + "\n Direccion=" + direccion + "\n CUIT=" + cuit + "\n Rubro=" + rubro
-				+ " \n Listado de Empleados=" + "\n Listado de Pedidos=" + pedidos.toString() + "\n Listado de Clientes ";
+		return "Comercio: " + nombre + "\n Direccion=" + direccion + "\n CUIT=" + cuit + "\n Rubro=" + rubro;
+				//+ " \n Listado de Empleados=" + "\n Listado de Pedidos=" + pedidos.toString() + "\n Listado de Clientes ";
 	}
 	
 	

@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import GestionComercio.Comercio;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
@@ -30,12 +33,13 @@ public class Cliente extends JFrame {
 	private JLabel label1,label,label2,label3,label4;
 	private JTextField textField,textField2,textField3,textField4;
 	private JButton button,button2;
+	private Comercio rico;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Cliente frame = new Cliente();
@@ -44,13 +48,14 @@ public class Cliente extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Cliente() {
+	public Cliente(Comercio comercio) {
+		rico = comercio;
 		initComponents();
 	}
 	
@@ -69,7 +74,7 @@ public class Cliente extends JFrame {
 	}
 	
 	public void agregarPaneles() {
-		panelAlta = new AltaCliente();
+		panelAlta = new AltaCliente(rico);
 		panelAlta.setSize(692, 378);
 		panelAlta.setLocation(0, 0);
 		panelAlta.setVisible(true);

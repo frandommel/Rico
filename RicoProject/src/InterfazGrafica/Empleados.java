@@ -33,12 +33,13 @@ public class Empleados extends JFrame implements ActionListener {
 	private JTextField textField,textField2,textField3,textField4,textField5;
 	private JButton button,button2,modificar,buscar,borrar;
 	private Inicio inicio;
+	private Comercio rico;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Empleados frame = new Empleados();
@@ -47,15 +48,16 @@ public class Empleados extends JFrame implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 		
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Empleados() {
-		initComponents();;
+	public Empleados(Comercio comercio) {
+		rico=comercio;
+		initComponents();
 	}
 	
 	public void initComponents() {
@@ -211,10 +213,10 @@ public class Empleados extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == button2) 
 			{
-				Pedido pedido = new Pedido();
+				VentanaPedido pedido = new VentanaPedido(rico);
 				pedido.setVisible(true);
 				//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-				dispose();
+				this.setVisible(false);
 			}
 			if(e.getSource() == buscar)
 			{
@@ -275,10 +277,10 @@ public class Empleados extends JFrame implements ActionListener {
 						}
 						rico.modificarPersona(buscado, "empleados");
 						JOptionPane.showMessageDialog(null, "Empleado Modificado");
-						Pedido pedido = new Pedido();
+						VentanaPedido pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
 						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-						dispose();
+						this.setVisible(false);
 					}
 					
 				} catch (JSONException e1) {
@@ -297,10 +299,10 @@ public class Empleados extends JFrame implements ActionListener {
 						JSONObject buscado = rico.buscarPersona(usuario,"empleados");
 						rico.removePersonas(buscado, "empleados");
 						JOptionPane.showMessageDialog(null, "Empleado Borrado");
-						Pedido pedido = new Pedido();
+						VentanaPedido pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
 						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-						dispose();
+						this.setVisible(false);
 					}
 				}catch (JSONException e1) {
 					e1.printStackTrace();
@@ -318,11 +320,11 @@ public class Empleados extends JFrame implements ActionListener {
 				try {
 					Comercio rico = new Comercio();
 					rico.addPersonas(nuevo);
-					JOptionPane.showMessageDialog(null, "Agregado con Exito");
-					Pedido pedido = new Pedido();
+					JOptionPane.showMessageDialog(null,"Agregado con Exito");
+					VentanaPedido pedido = new VentanaPedido(rico);
 					pedido.setVisible(true);
 					//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-					dispose();
+					this.setVisible(false);
 				} catch (JSONException e1) {
 					e1.printStackTrace();
 				}

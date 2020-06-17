@@ -64,7 +64,7 @@ public class Main {
 		
 		//System.out.println(archivoPersona.leer());
 		
-		//Comercio comercioRico = new Comercio();
+		Comercio comercioRico = new Comercio();
 		
 		//comercioRico.removePersonas("empleados","Pablo Valentinuzzi");
 		
@@ -72,8 +72,9 @@ public class Main {
 		
 		//System.out.println(comercioRico.getPersonas().toString());
 		
-		Inicio inicio = new Inicio();
-		inicio.iniciar();
+		Inicio inicio= new Inicio(comercioRico);
+		inicio.setVisible(true);
+		//System.out.println(comercioRico.getProductos().toString());
 		
 		
 

@@ -11,15 +11,18 @@ import javax.swing.border.EmptyBorder;
 
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoProducto;
+import GestionComercio.Comercio;
 import claseProductos.Bebida;
 import claseProductos.Producto;
 
 public class Bebidas extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5, button6;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public Bebidas() {
+	public Bebidas(Comercio comercio) {
+		rico = comercio;
 		initComponents();
 	}
 	
@@ -67,22 +70,26 @@ public class Bebidas extends JPanel implements ActionListener{
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto();
-			ArrayList<Producto> h = traerBebidas();
-			for (int i = 0; i < h.size(); i++) {
-				if(h.get(i).getNombre().equalsIgnoreCase(boton.getText())){
-					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
+			observacionProducto obs = new observacionProducto(rico);
+			Producto producto =null;
+			Bebida bebida = null;
+			if(boton.getText().equalsIgnoreCase("Corona") || boton.getText().equalsIgnoreCase("Patagonia")|| boton.getText().equalsIgnoreCase("Stella Artois") )
+			{
+				producto =rico.leerCerveza("Bebida", boton.getText());
+				bebida = (Bebida) producto;
+				if(bebida.getMarca().equalsIgnoreCase(boton.getText()))
+				{
+					obs.setNombre(bebida.getMarca(), bebida.getPrecio());
 					obs.setVisible(true);
 				}
-				if(h.get(i).getNombre().equalsIgnoreCase("Cerveza")) {
-					Bebida b = (Bebida) h.get(i);
-					if(b.getMarca().equalsIgnoreCase(boton.getText()))
-					{
-						obs.setNombre(b.getMarca(), h.get(i).getPrecio());
-						obs.setVisible(true);
-					}
+			}else {
+				producto = rico.leerProducto("Bebida", boton.getText());
+				if(producto.getNombre().equalsIgnoreCase(boton.getText())){
+					obs.setNombre(producto.getNombre(), producto.getPrecio());
+					obs.setVisible(true);
 				}
 			}
+			
 		}
 	}
 	

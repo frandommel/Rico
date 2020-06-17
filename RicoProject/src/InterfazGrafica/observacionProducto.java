@@ -8,6 +8,9 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
+
+import GestionComercio.Comercio;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +24,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 	private JSpinner spinner;
 	private JLabel lblNewLabel_1;
 	private JButton button,button2;
+	private Comercio rico;
 	/**
 	 * Launch the application.
 	 */
@@ -40,9 +44,9 @@ public class observacionProducto extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public observacionProducto() {
+	public observacionProducto(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		
 	}
 	
 	public void initComponents() {

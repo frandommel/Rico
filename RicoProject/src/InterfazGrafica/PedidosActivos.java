@@ -11,15 +11,19 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GestionComercio.Comercio;
+
 public class PedidosActivos extends JPanel implements ActionListener{
 	private JButton boton,boton2,botonLista;
 	private JPanel panel;
 	private ArrayList<JButton>buttons;
 	private int indice;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public PedidosActivos() {
+	public PedidosActivos(Comercio comercio) {
+		rico = comercio;
 		initComponents();
 		buttons = new ArrayList<JButton>();
 		indice = 1;

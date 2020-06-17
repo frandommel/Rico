@@ -4,23 +4,22 @@ package InterfazGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Archivos.ArchivoProducto;
-import claseProductos.Producto;
+import GestionComercio.Comercio;
 
 public class Hamburguesa extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public Hamburguesa() {
+	public Hamburguesa(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		//ArrayList<Producto> hamburguesas =	traerHamburguesa();
 	}
 	
 	@Override
@@ -28,17 +27,10 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto();
-			ArrayList<Producto> h = traerHamburguesa();
-			for (int i = 0; i < h.size(); i++) {
-				if(h.get(i).getNombre().equalsIgnoreCase(boton.getText())){
-					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
-					obs.setVisible(true);
-				}
+			observacionProducto obs = new observacionProducto(rico);
+			obs.setNombre(rico.leerProducto("Hamburguesa",boton.getText()).getNombre(), rico.leerProducto("Hamburguesa",boton.getText()).getPrecio());
+			obs.setVisible(true);
 			}
-		}
-		
-		
 	}
 	
 	public void initComponents() {
@@ -77,13 +69,6 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		button6.setBounds(12, 301, 100, 44);
 		button6.addActionListener(this);
 		add(button6);
-	}
-	
-	public ArrayList<Producto> traerHamburguesa() {
-		ArchivoProducto hamburguesa = new ArchivoProducto();
-		ArrayList<Producto> h = hamburguesa.leerHamburguesa();
-		return h;
-	}
-	
+	}	
 
 }

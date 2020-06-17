@@ -12,16 +12,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Archivos.ArchivoProducto;
+import GestionComercio.Comercio;
 import claseProductos.Producto;
 
 public class Pancho extends JPanel implements ActionListener {
 	private JButton button,button2,button3,button4;
+	private Comercio rico;
 	/**
 	 * Create the panel.
 	 */
-	public Pancho() {
+	public Pancho(Comercio comercio) {
+		rico = comercio;
 		initComponents();
-		
 	}
 	
 	
@@ -58,20 +60,10 @@ public class Pancho extends JPanel implements ActionListener {
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto();
-			ArrayList<Producto> h = traerPancho();
-			for (int i = 0; i < h.size(); i++) {
-				if(h.get(i).getNombre().equalsIgnoreCase(boton.getText())){
-					obs.setNombre(h.get(i).getNombre(), h.get(i).getPrecio());
-					obs.setVisible(true);
-				}
+			observacionProducto obs = new observacionProducto(rico);
+			obs.setNombre(rico.leerProducto("Pancho",boton.getText()).getNombre(), rico.leerProducto("Pancho",boton.getText()).getPrecio());
+			obs.setVisible(true);
 			}
-		}
-	}
-	
-	public void añadirFrameObservacion() {
-		observacionProducto obs = new observacionProducto();
-		obs.setVisible(true);
 	}
 	
 	public ArrayList<Producto> traerPancho(){
