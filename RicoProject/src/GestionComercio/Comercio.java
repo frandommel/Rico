@@ -24,7 +24,6 @@ public class Comercio{
 	private String direccion;
 	private String cuit;
 	private String rubro;
-	private JSONObject personas;
 	private ListadoPedidos pedidos;
 	private HashMap<String, ArrayList<Producto>> productos;
 
@@ -42,7 +41,6 @@ public class Comercio{
 	ManejadordeArchivos archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
 	//pedidos = archivos.getListadoPedidos();
-	personas = archivos.getListadoPersonas();
 	
 	}
 	
@@ -102,11 +100,7 @@ public class Comercio{
 		this.pedidos = pedidos;
 	}
 	
-	public JSONObject getPersonas() {
-		return personas;
-	}
-	
-	public void addPersonas(Persona persona) throws JSONException {
+	/*public void addPersonas(Persona persona) throws JSONException {
 		if(persona instanceof ClienteVip)
 		{
 			personas.getJSONArray("clientes").put(persona.generateJson());
@@ -197,7 +191,7 @@ public class Comercio{
 		}
 		archivos.actualizarArchivoPersona(object);
 	}
-	
+	*/
 	public Producto leerProducto(String claveString , String producto) {
 		Producto p = null;
 		ArrayList<Producto> aux= productos.get(claveString);

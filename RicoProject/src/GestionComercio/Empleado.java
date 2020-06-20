@@ -44,8 +44,6 @@ public class Empleado extends Persona {
 		return posicion;
 	}
 
-
-
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
 	}

@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import GestionComercio.ListadoPedidos;
+import GestionComercio.Persona;
 import claseProductos.Producto;
 
 public class ManejadordeArchivos {
@@ -40,9 +41,13 @@ public class ManejadordeArchivos {
 	}
 	
 	
-	public JSONObject getListadoPersonas() throws JSONException
+	public HashMap<String,Persona> getListadoEmpleados() throws JSONException
 	{
-		return persona.leer();
+		return persona.leerEmpleado();
+	}
+	public HashMap<String,Persona> getListadoCliente() throws JSONException
+	{
+		return persona.leerCliente();
 	}
 	
 	public void actualizarArchivoPersona(JSONObject personas) throws JSONException

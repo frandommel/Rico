@@ -49,7 +49,6 @@ public class ClienteVip extends Persona{
 
 		return jsonObject;
 	}
-	
 
 	
 	
