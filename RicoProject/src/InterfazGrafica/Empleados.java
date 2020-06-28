@@ -220,14 +220,12 @@ public class Empleados extends JFrame implements ActionListener {
 			}
 			if(e.getSource() == buscar)
 			{
-				try {
 					String usuario = textField.getText();
-					Comercio rico = new Comercio();
-					JSONObject buscado = rico.buscarPersona(usuario,"empleados");
-					if(buscado.getString("nombre").equalsIgnoreCase(usuario)) {
-					textField2.setText(buscado.getString("posicion").toString());
-					textField3.setText(buscado.getString("direccion").toString());
-					textField4.setText(buscado.getString("telefono").toString());
+					Empleado buscado = rico.buscarEmpleado(usuario);
+					if(buscado.getNombre().equalsIgnoreCase(usuario)) {
+					textField2.setText(buscado.getPosicion());
+					textField3.setText(buscado.getDireccion());
+					textField4.setText(buscado.getTelefono().toString());
 					activarTextfields();
 					modificar.setEnabled(true);
 					borrar.setEnabled(true);
@@ -242,50 +240,42 @@ public class Empleados extends JFrame implements ActionListener {
 								textField5.setVisible(true);
 							}
 					} 
-				}catch (JSONException e1) {
-					e1.printStackTrace();
-				}
 			}
 			if(e.getSource()== modificar)
 			{
 				String usuario = textField.getText();
 				Comercio rico;
-				try {
 					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 							,JOptionPane.YES_NO_OPTION);
 					if(valor == JOptionPane.YES_OPTION) {
 						rico = new Comercio();
-						JSONObject buscado = rico.buscarPersona(usuario,"empleados");
+						Empleado buscado = rico.buscarEmpleado(usuario);
 						String nuevaPosicion,nuevaDireccion,nuevoTel;
 						nuevaPosicion = textField2.getText();
 						nuevaDireccion = textField3.getText();
 						nuevoTel = textField4.getText();
-						if(!buscado.getString("posicion").equalsIgnoreCase(nuevaPosicion))
+						if(!buscado.getPosicion().equalsIgnoreCase(nuevaPosicion))
 						{
 							nuevaPosicion = textField2.getText();
-							buscado.put("posicion", nuevaPosicion);
+							buscado.setPosicion(nuevaPosicion);
 						}
-						if(!buscado.getString("direccion").equalsIgnoreCase(nuevaDireccion))
+						if(!buscado.getDireccion().equalsIgnoreCase(nuevaDireccion))
 						{
 							nuevaDireccion = textField3.getText();
-							buscado.put("direccion", nuevaDireccion);
+							buscado.setDireccion(nuevaDireccion);
 						}
-						if(!buscado.getString("telefono").equalsIgnoreCase(nuevoTel))
+						if(!buscado.getTelefono().equalsIgnoreCase(nuevoTel))
 						{
 							nuevoTel = textField4.getText();
-							buscado.put("telefono", nuevoTel);
+							buscado.setTelefono(nuevoTel);
 						}
-						rico.modificarPersona(buscado, "empleados");
+						rico.modificarPersona(buscado, "empleados");  //TODO HAY QUE HACER METODO MODIFICAR
 						JOptionPane.showMessageDialog(null, "Empleado Modificado");
 						VentanaPedido pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
 						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
 						this.setVisible(false);
 					}
-					
-				} catch (JSONException e1) {
-					e1.printStackTrace();
-				}
 			}
 			if(e.getSource()==borrar)
 			{

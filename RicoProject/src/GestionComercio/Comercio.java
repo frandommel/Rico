@@ -3,6 +3,10 @@ package GestionComercio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +30,7 @@ public class Comercio{
 	private String rubro;
 	private ListadoPedidos pedidos;
 	private HashMap<String, ArrayList<Producto>> productos;
+	private HashMap<String, Empleado> empleados;
 
 	
 	
@@ -40,6 +45,7 @@ public class Comercio{
 	
 	ManejadordeArchivos archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
+	empleados = archivos.getListadoEmpleados();
 	//pedidos = archivos.getListadoPedidos();
 	
 	}
@@ -57,7 +63,15 @@ public class Comercio{
 	public void setProductos(HashMap<String, ArrayList<Producto>> productos) {
 		this.productos = productos;
 	}
-
+	
+	public HashMap<String,Empleado> getEmpleado()
+	{
+		return empleados;
+	}
+	public void setEmpleado( HashMap<String , Empleado> empleados )
+	{
+		this.empleados = empleados;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -100,17 +114,51 @@ public class Comercio{
 		this.pedidos = pedidos;
 	}
 	
-	/*public void addPersonas(Persona persona) throws JSONException {
+	public boolean validarPersona(String nombre, String password)  
+	{
+		boolean flag=false;
+		Set<Entry<String,Empleado>> set = empleados.entrySet();
+		Iterator it = set.iterator();
+		while(it.hasNext()) 
+		{
+			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
+			if(me.getValue().getNombre().equalsIgnoreCase(nombre) && me.getValue().getPassword().equalsIgnoreCase(password)) {
+				flag = true;
+			}
+			
+		}		
+		return flag;
+	}
+	public Empleado buscarEmpleado(String empleadoBuscar) 
+	{
+		Set<Entry<String,Empleado>> set = empleados.entrySet();
+		Empleado empleadoRetorno = new Empleado();
+		Iterator it = set.iterator();
+		while(it.hasNext())	
+		{
+			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
+			if(me.getValue().getNombre().equalsIgnoreCase(empleadoBuscar)){
+				empleadoRetorno = me.getValue();
+			}
+		}
+		return empleadoRetorno;
+	}
+	
+	/* public void addPersonas(Persona persona) throws JSONException 
+	  {
 		if(persona instanceof ClienteVip)
 		{
 			personas.getJSONArray("clientes").put(persona.generateJson());
-		}else if (persona instanceof Empleado) {
+			
+		} else if (persona instanceof Empleado)
+
+		{
 			personas.getJSONArray("empleados").put(persona.generateJson());
 		}
 		
 		ManejadordeArchivos archivos = new ManejadordeArchivos();
 		archivos.actualizarArchivoPersona(personas);
-	}
+	  }
 	
 	public JSONObject buscarPersona(String string, String tipoPersona) throws JSONException
 	{
@@ -151,24 +199,7 @@ public class Comercio{
 		archivos.actualizarArchivoPersona(object);
 	}
 	
-	public boolean validarPersona(String nombre, String password) throws JSONException 
-	{
-		boolean flag=false;
-		int i = 0;
-		JSONObject object = personas;
-		JSONArray array = object.getJSONArray("empleados");
-		int size = array.length();
-		while(i<size && flag == false)
-		{
-			JSONObject aux = array.getJSONObject(i);
-			if(aux.getString("nombre").equalsIgnoreCase(nombre) && aux.getString("password").equalsIgnoreCase(password)) 
-			{
-				flag = true;
-			}
-			i++;
-		}
-		return flag;
-	}
+
 
 	public void modificarPersona(JSONObject persona, String string) throws JSONException
 	{

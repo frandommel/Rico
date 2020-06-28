@@ -42,11 +42,11 @@ public class ArchivoPersona {
 		}
 	}
 	
-	public HashMap<String,Persona>  leerEmpleado() throws JSONException
+	public HashMap<String,Empleado> leerEmpleado() throws JSONException
 	{
 		String contenido = "";
 		JSONObject objectObject = null;
-		HashMap<String, Persona> personas = new HashMap<String, Persona>();
+		HashMap<String, Empleado> personas = new HashMap<String, Empleado>();
 		try {
 			
 			contenido = new String(Files.readAllBytes(Paths.get("personas.json")));
@@ -59,10 +59,10 @@ public class ArchivoPersona {
 		return personas;
 	}
 	
-	public HashMap<String,Persona>  leerCliente() throws JSONException{
+	public HashMap<String,ClienteVip>  leerCliente() throws JSONException{
 		String contenido = "";
 		JSONObject objectObject = null;
-		HashMap<String, Persona> personas = new HashMap<String, Persona>();
+		HashMap<String, ClienteVip> personas = new HashMap<String, ClienteVip>();
 		try {
 			
 			contenido = new String(Files.readAllBytes(Paths.get("personas.json")));
@@ -75,7 +75,7 @@ public class ArchivoPersona {
 		return personas;
 	}
 	
-	public HashMap<String,Persona> generateEmpleado(JSONObject json, HashMap<String, Persona> personas)
+	public HashMap<String,Empleado> generateEmpleado(JSONObject json, HashMap<String, Empleado> personas)
 	{
 		Empleado empleado = new Empleado();
 		JSONArray empleados;
@@ -98,7 +98,8 @@ public class ArchivoPersona {
 		return personas;
 
 	}
-	public HashMap<String,Persona> generateCliente(JSONObject json, HashMap<String, Persona> personas)
+	
+	public HashMap<String,ClienteVip> generateCliente(JSONObject json, HashMap<String, ClienteVip> personas)
 	{
 		ClienteVip cliente = new ClienteVip();
 		JSONArray clientes;
@@ -123,28 +124,28 @@ public class ArchivoPersona {
 
 	}
 	
-	public void recorrerHashMapEmpleado( HashMap<String,Persona> persona ) 
+	public void recorrerHashMapEmpleado( HashMap<String,Empleado> persona ) 
 	{
-		Set<Entry< String ,Persona>> set = persona.entrySet();
+		Set<Entry< String ,Empleado>> set = persona.entrySet();
 		Iterator it =  set.iterator();
 		System.out.println("Empleados");
 		while(it.hasNext())
 		{
 			
-			Map.Entry<String, Persona> me = (Map.Entry<String, Persona>)it.next();
+			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
 			System.out.println(me.getKey().toString() +" "+me.getValue().toString());
 		}
 		
 	}
-	public void recorrerHashMapCliente( HashMap<String,Persona> persona ) 
+	public void recorrerHashMapCliente( HashMap<String,ClienteVip> persona ) 
 	{
-		Set<Entry< String ,Persona>> set = persona.entrySet();
+		Set<Entry< String ,ClienteVip>> set = persona.entrySet();
 		Iterator it =  set.iterator();
 		System.out.println("CLIENTES");
 		while(it.hasNext())
 		{
 
-			Map.Entry<String, Persona> me = (Map.Entry<String, Persona>)it.next();
+			Map.Entry<String, ClienteVip> me = (Map.Entry<String, ClienteVip>)it.next();
 			System.out.println(me.getKey().toString() +" "+me.getValue().toString());
 		}
 		

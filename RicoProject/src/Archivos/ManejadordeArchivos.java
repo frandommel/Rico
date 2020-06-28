@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import GestionComercio.ClienteVip;
+import GestionComercio.Empleado;
 import GestionComercio.ListadoPedidos;
 import GestionComercio.Persona;
 import claseProductos.Producto;
@@ -40,19 +42,22 @@ public class ManejadordeArchivos {
 		
 	}
 	
-	
-	public HashMap<String,Persona> getListadoEmpleados() throws JSONException
+	public HashMap<String, Empleado> getListadoEmpleados() throws JSONException
 	{
 		return persona.leerEmpleado();
 	}
-	public HashMap<String,Persona> getListadoCliente() throws JSONException
+	public HashMap<String ,ClienteVip> getListadoCliente() throws JSONException
 	{
 		return persona.leerCliente();
 	}
 	
-	public void actualizarArchivoPersona(JSONObject personas) throws JSONException
+	public void actualizarArchivoPersona(HashMap<String, Persona> personas)
 	{
-		persona.agregarArchivo(personas);
+		
+		//LOGICA DE TRANFOSRMACION DE HASHMAP A JSON
+		
+		
+		//persona.agregarArchivo(personas);
 		
 	}
 

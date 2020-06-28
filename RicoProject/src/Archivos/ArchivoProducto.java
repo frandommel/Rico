@@ -1,5 +1,6 @@
 package Archivos;
 
+import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
+
+import org.omg.CORBA.DataInputStream;
 
 import claseProductos.Bebida;
 import claseProductos.Combo;
@@ -62,9 +65,7 @@ public class ArchivoProducto
 			
 			file = new FileInputStream("combos.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
-			combo = (ArrayList<Producto>) object.readObject();
-
-		
+			combo = (ArrayList<Producto>) object.readObject();		
 			object.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

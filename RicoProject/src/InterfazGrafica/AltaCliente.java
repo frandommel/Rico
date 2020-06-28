@@ -157,7 +157,6 @@ public class AltaCliente extends JPanel implements ActionListener {
 		if(e.getSource()== modificar)
 		{
 			String usuario = textField.getText();
-			try {
 				int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 						,JOptionPane.YES_NO_OPTION);
 				if(valor == JOptionPane.YES_OPTION) {
@@ -183,9 +182,6 @@ public class AltaCliente extends JPanel implements ActionListener {
 					frame.setVisible(false);
 				}
 				
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
 		}
 		if(e.getSource()==borrar)
 		{
