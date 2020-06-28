@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -31,21 +32,25 @@ public class Comercio{
 	private ListadoPedidos pedidos;
 	private HashMap<String, ArrayList<Producto>> productos;
 	private HashMap<String, Empleado> empleados;
-
+	private HashMap<String,ClienteVip> clientes;
+	private ManejadordeArchivos archivos;
 	
 	
-	public Comercio() throws JSONException {
+	public Comercio() {
 	nombre ="Rico Pancheria";
 	direccion = "Alem 3550";
 	cuit = "20-28335746-7";
 	rubro="FastFood";
 	
-	/*ArchivoProducto archivoProducto = new ArchivoProducto();
-	productos = archivoProducto.leer();*/
 	
-	ManejadordeArchivos archivos = new ManejadordeArchivos();
+	archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
-	empleados = archivos.getListadoEmpleados();
+	try {
+		empleados = archivos.getListadoEmpleados();
+		clientes = archivos.getListadoCliente();
+	} catch (JSONException e) {
+		e.printStackTrace();
+	}
 	//pedidos = archivos.getListadoPedidos();
 	
 	}
@@ -68,11 +73,23 @@ public class Comercio{
 	{
 		return empleados;
 	}
+	
 	public void setEmpleado( HashMap<String , Empleado> empleados )
 	{
 		this.empleados = empleados;
 	}
 
+
+	public HashMap<String,ClienteVip> getCliente()
+	{
+		return clientes;
+	}
+	
+	public void setCliente( HashMap<String , ClienteVip> clientes )
+	{
+		this.clientes = clientes;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -129,6 +146,7 @@ public class Comercio{
 		}		
 		return flag;
 	}
+	
 	public Empleado buscarEmpleado(String empleadoBuscar) 
 	{
 		Set<Entry<String,Empleado>> set = empleados.entrySet();
@@ -144,85 +162,103 @@ public class Comercio{
 		return empleadoRetorno;
 	}
 	
-	/* public void addPersonas(Persona persona) throws JSONException 
-	  {
+	public ClienteVip buscarCliente(String clienteBuscar) 
+	{
+		Set<Entry<String,ClienteVip>> set = clientes.entrySet();
+		ClienteVip clienteRetorno = new ClienteVip();
+		Iterator it = set.iterator();
+		while(it.hasNext())	
+		{
+			Map.Entry<String, ClienteVip> me = (Map.Entry<String, ClienteVip>)it.next();
+			if(me.getValue().getNombre().equalsIgnoreCase(clienteBuscar)){
+				clienteRetorno = me.getValue();
+			}
+		}
+		return clienteRetorno;
+	}
+	
+	public void addPersonas(Persona persona)
+	{
 		if(persona instanceof ClienteVip)
 		{
-			personas.getJSONArray("clientes").put(persona.generateJson());
+			ClienteVip cliente = (ClienteVip) persona;
+			clientes.put(cliente.getNombre(), cliente);
 			
 		} else if (persona instanceof Empleado)
-
 		{
-			personas.getJSONArray("empleados").put(persona.generateJson());
+			Empleado empleado = (Empleado) persona;
+			empleados.put(empleado.getNombre(), empleado);
 		}
 		
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
-		archivos.actualizarArchivoPersona(personas);
+		archivos.actualizarArchivoPersona(this);
 	  }
 	
-	public JSONObject buscarPersona(String string, String tipoPersona) throws JSONException
+	public void removeEmpleado(Empleado aBorrar)
 	{
-		boolean flag=false;
-		int i = 0;
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
-		JSONObject object = archivos.getListadoPersonas();
-		JSONArray array = object.getJSONArray(tipoPersona);
-		JSONObject aux = null;
-		int size = array.length();
-		while(i<size && flag == false)
-		{
-			aux = array.getJSONObject(i);
-			if(aux.getString("nombre").equalsIgnoreCase(string)) 
-			{
-				flag = true;
-			}
-			i++;
-		}
-		return aux;
-	}
-	
-	public void removePersonas(JSONObject aBorrar, String string) throws JSONException {
 		int i=0;
 		boolean flag = false;
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
-		JSONObject object = archivos.getListadoPersonas();
-		JSONArray array = object.getJSONArray(string);
-		int size=array.length();
-		while(i<size && flag == false) {
-			JSONObject aux = array.getJSONObject(i);
-			if(aux.getString("nombre").equalsIgnoreCase(aBorrar.getString("nombre"))) {
-				array.remove(i);
-				flag = true;
+		Set<Entry<String,Empleado>> set = empleados.entrySet();
+		Empleado empleadoRetorno = new Empleado();
+		Iterator it = set.iterator();
+		while(it.hasNext())	
+		{
+			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
+			if(me.getValue().getNombre().equalsIgnoreCase(aBorrar.getNombre())){
+				empleados.remove(me.getKey());
 			}
-			i++;
 		}
-		archivos.actualizarArchivoPersona(object);
+		archivos.actualizarArchivoPersona(this);
 	}
 	
-
-
-	public void modificarPersona(JSONObject persona, String string) throws JSONException
+	public void modificarEmpleado(Empleado buscado,String nuevaPosicion, String nuevaDireccion, String nuevoTel)
 	{
 		boolean flag=false;
-		int i = 0;
-		ManejadordeArchivos archivos = new ManejadordeArchivos();
-		JSONObject object = archivos.getListadoPersonas();
-		JSONArray array = object.getJSONArray(string);
-		int size = array.length();
-		while(i<size && flag == false)
+		if(!buscado.getPosicion().equalsIgnoreCase(nuevaPosicion))
 		{
-			JSONObject aux = array.getJSONObject(i);
-			if(aux.getString("nombre").equalsIgnoreCase(persona.getString("nombre"))) 
-			{
-				array.remove(i);
-				flag = true;
-				array.put(persona);
-			}
-			i++;
+			buscado.setPosicion(nuevaPosicion);
 		}
-		archivos.actualizarArchivoPersona(object);
+		if(!buscado.getDireccion().equalsIgnoreCase(nuevaDireccion))
+		{
+			buscado.setDireccion(nuevaDireccion);
+		}
+		if(!buscado.getTelefono().equalsIgnoreCase(nuevoTel))
+		{
+			buscado.setTelefono(nuevoTel);
+		}
+		archivos.actualizarArchivoPersona(this);
 	}
-	*/
+	
+	public void removeCliente(ClienteVip aBorrar)
+	{
+		int i=0;
+		boolean flag = false;
+		Set<Entry<String,ClienteVip>> set = clientes.entrySet();
+		ClienteVip empleadoRetorno = new ClienteVip();
+		Iterator it = set.iterator();
+		while(it.hasNext())	
+		{
+			Map.Entry<String, ClienteVip> me = (Map.Entry<String, ClienteVip>)it.next();
+			if(me.getValue().getNombre().equalsIgnoreCase(aBorrar.getNombre())){
+				clientes.remove(me.getKey());
+			}
+		}
+		archivos.actualizarArchivoPersona(this);
+	}
+	
+	public void modificarCliente(ClienteVip buscado, String nuevaDireccion, String nuevoTel)
+	{
+		boolean flag=false;
+		if(!buscado.getDireccion().equalsIgnoreCase(nuevaDireccion))
+		{
+			buscado.setDireccion(nuevaDireccion);
+		}
+		if(!buscado.getTelefono().equalsIgnoreCase(nuevoTel))
+		{
+			buscado.setTelefono(nuevoTel);
+		}
+		archivos.actualizarArchivoPersona(this);
+	}
+
 	public Producto leerProducto(String claveString , String producto) {
 		Producto p = null;
 		ArrayList<Producto> aux= productos.get(claveString);

@@ -212,7 +212,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 			productos.setVisible(true);
 			dispose();
 		}
-		if(e.getSource()==registroItem) {
+		/*if(e.getSource()==registroItem) {
 		       Document documento = new Document();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
@@ -294,7 +294,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		}
+		}*/
 	}
 	
 	public void ingresarPaneles() { //Creacion paneles 

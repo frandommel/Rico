@@ -248,55 +248,36 @@ public class Empleados extends JFrame implements ActionListener {
 					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 							,JOptionPane.YES_NO_OPTION);
 					if(valor == JOptionPane.YES_OPTION) {
-						rico = new Comercio();
-						Empleado buscado = rico.buscarEmpleado(usuario);
-						String nuevaPosicion,nuevaDireccion,nuevoTel;
-						nuevaPosicion = textField2.getText();
-						nuevaDireccion = textField3.getText();
-						nuevoTel = textField4.getText();
-						if(!buscado.getPosicion().equalsIgnoreCase(nuevaPosicion))
-						{
+							rico = new Comercio();
+							Empleado buscado = rico.buscarEmpleado(usuario);
+							String nuevaPosicion,nuevaDireccion,nuevoTel;
 							nuevaPosicion = textField2.getText();
-							buscado.setPosicion(nuevaPosicion);
-						}
-						if(!buscado.getDireccion().equalsIgnoreCase(nuevaDireccion))
-						{
 							nuevaDireccion = textField3.getText();
-							buscado.setDireccion(nuevaDireccion);
-						}
-						if(!buscado.getTelefono().equalsIgnoreCase(nuevoTel))
-						{
 							nuevoTel = textField4.getText();
-							buscado.setTelefono(nuevoTel);
-						}
-						rico.modificarPersona(buscado, "empleados");  //TODO HAY QUE HACER METODO MODIFICAR
-						JOptionPane.showMessageDialog(null, "Empleado Modificado");
-						VentanaPedido pedido = new VentanaPedido(rico);
-						pedido.setVisible(true);
-						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-						this.setVisible(false);
+							rico.modificarEmpleado(buscado, nuevaPosicion , nuevaDireccion, nuevoTel);  //TODO HAY QUE HACER METODO MODIFICAR
+							JOptionPane.showMessageDialog(null, "Empleado Modificado");
+							VentanaPedido pedido = new VentanaPedido(rico);
+							pedido.setVisible(true);
+							//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+							this.setVisible(false);
 					}
 			}
 			if(e.getSource()==borrar)
 			{
 				String usuario = textField.getText();
 				Comercio rico;
-				try {
 					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 							,JOptionPane.YES_NO_OPTION);
 					if(valor == JOptionPane.YES_OPTION) {
 						rico = new Comercio();
-						JSONObject buscado = rico.buscarPersona(usuario,"empleados");
-						rico.removePersonas(buscado, "empleados");
+						Empleado buscado = rico.buscarEmpleado(usuario);
+						rico.removeEmpleado(buscado);
 						JOptionPane.showMessageDialog(null, "Empleado Borrado");
 						VentanaPedido pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
 						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
 						this.setVisible(false);
 					}
-				}catch (JSONException e1) {
-					e1.printStackTrace();
-				}
 			}
 			if(e.getSource()==button)
 			{
@@ -307,7 +288,6 @@ public class Empleados extends JFrame implements ActionListener {
 				telefono = textField4.getText();
 				password = textField5.getText();
 				Persona nuevo = new Empleado(nombre, direccion, telefono, password, posicion);
-				try {
 					Comercio rico = new Comercio();
 					rico.addPersonas(nuevo);
 					JOptionPane.showMessageDialog(null,"Agregado con Exito");
@@ -315,9 +295,6 @@ public class Empleados extends JFrame implements ActionListener {
 					pedido.setVisible(true);
 					//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
 					this.setVisible(false);
-				} catch (JSONException e1) {
-					e1.printStackTrace();
-				}
 			}
 		}	
 		

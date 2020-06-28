@@ -2,12 +2,19 @@ package Archivos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import GestionComercio.ClienteVip;
+import GestionComercio.Comercio;
 import GestionComercio.Empleado;
 import GestionComercio.ListadoPedidos;
 import GestionComercio.Persona;
@@ -33,13 +40,11 @@ public class ManejadordeArchivos {
 		return destinoProductos;
 	}
 	
-	
 	public ListadoPedidos getListadoPedidos()
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
 		destinoPedido = pedido.leerPedidos();
-		return destinoPedido;
-		
+		return destinoPedido;	
 	}
 	
 	public HashMap<String, Empleado> getListadoEmpleados() throws JSONException
@@ -51,15 +56,47 @@ public class ManejadordeArchivos {
 		return persona.leerCliente();
 	}
 	
-	public void actualizarArchivoPersona(HashMap<String, Persona> personas)
+	public void actualizarArchivoPersona(Comercio comercio)
 	{
-		
 		//LOGICA DE TRANFOSRMACION DE HASHMAP A JSON
-		
-		
-		//persona.agregarArchivo(personas);
-		
+		HashMap<String, Empleado> empleados = comercio.getEmpleado();
+		HashMap<String, ClienteVip> clientes = comercio.getCliente();
+		try {
+			JSONObject jsonArchivo = new JSONObject();
+			JSONArray jsonEmpleados = mapa2JsonEmpleado(empleados);
+			JSONArray jsonClientes = mapa2JsonCliente(clientes);
+			jsonArchivo.put("empleados", jsonEmpleados);
+			jsonArchivo.put("clientes", jsonClientes);
+			ArchivoPersona.agregarArchivo(jsonArchivo);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
+	public JSONArray mapa2JsonEmpleado(HashMap<String, Empleado> mapa) throws JSONException 
+	{
+		JSONArray array = new JSONArray();
+		Set<Entry< String ,Empleado>> set = mapa.entrySet();
+		Iterator it =  set.iterator();
+		while(it.hasNext())
+		{
+			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
+			array.put(me.getValue().generateJson());
+		}
+		return array;
+	}
+	
+	public JSONArray mapa2JsonCliente(HashMap<String, ClienteVip> mapa) throws JSONException 
+	{
+		JSONArray array = new JSONArray();
+		Set<Entry< String ,ClienteVip>> set = mapa.entrySet();
+		Iterator it =  set.iterator();
+		while(it.hasNext())
+		{
+			Map.Entry<String, ClienteVip> me = (Map.Entry<String, ClienteVip>)it.next();
+			array.put(me.getValue().generateJson());
+		}
+		return array;
+	}
 	
 }

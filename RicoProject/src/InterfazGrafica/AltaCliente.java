@@ -132,12 +132,11 @@ public class AltaCliente extends JPanel implements ActionListener {
 		}
 		if(e.getSource() == buscar)
 		{
-			try {
 				String usuario = textField.getText();
-				JSONObject buscado = rico.buscarPersona(usuario,"clientes");
-				if(buscado.getString("nombre").equalsIgnoreCase(usuario)) {
-				textField3.setText(buscado.getString("direccion").toString());
-				textField4.setText(buscado.getString("telefono").toString());
+				ClienteVip buscado = rico.buscarCliente(usuario);
+				if(buscado.getNombre().equalsIgnoreCase(usuario)) {
+				textField3.setText(buscado.getDireccion());
+				textField4.setText(buscado.getTelefono());
 				activarTextfields();
 				modificar.setEnabled(true);
 				borrar.setEnabled(true);
@@ -150,9 +149,6 @@ public class AltaCliente extends JPanel implements ActionListener {
 							button.setEnabled(true);
 						}
 				} 
-			}catch (JSONException e1) {
-				e1.printStackTrace();
-			}
 		}
 		if(e.getSource()== modificar)
 		{
@@ -160,21 +156,11 @@ public class AltaCliente extends JPanel implements ActionListener {
 				int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 						,JOptionPane.YES_NO_OPTION);
 				if(valor == JOptionPane.YES_OPTION) {
-					JSONObject buscado = rico.buscarPersona(usuario,"clientes");
+					ClienteVip buscado = rico.buscarCliente(usuario);
 					String nuevaDireccion,nuevoTel;
 					nuevaDireccion = textField3.getText();
 					nuevoTel = textField4.getText();
-					if(!buscado.getString("direccion").equalsIgnoreCase(nuevaDireccion))
-					{
-						nuevaDireccion = textField3.getText();
-						buscado.put("direccion", nuevaDireccion);
-					}
-					if(!buscado.getString("telefono").equalsIgnoreCase(nuevoTel))
-					{
-						nuevoTel = textField4.getText();
-						buscado.put("telefono", nuevoTel);
-					}
-					rico.modificarPersona(buscado, "clientes");
+					rico.modificarCliente(buscado, nuevaDireccion, nuevoTel);
 					JOptionPane.showMessageDialog(null, "Cliente Modificado");
 					VentanaPedido pedido = new VentanaPedido(rico);
 					pedido.setVisible(true);
@@ -186,21 +172,17 @@ public class AltaCliente extends JPanel implements ActionListener {
 		if(e.getSource()==borrar)
 		{
 			String usuario = textField.getText();
-			try {
 				int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 						,JOptionPane.YES_NO_OPTION);
 				if(valor == JOptionPane.YES_OPTION) {
-					JSONObject buscado = rico.buscarPersona(usuario,"clientes");
-					rico.removePersonas(buscado, "clientes");
+					ClienteVip buscado = rico.buscarCliente(usuario);
+					rico.removeCliente(buscado);
 					JOptionPane.showMessageDialog(null, "Cliente Borrado");
 					VentanaPedido pedido = new VentanaPedido(rico);
 					pedido.setVisible(true);
 					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
 					frame.setVisible(false);
 				}
-			}catch (JSONException e1) {
-				e1.printStackTrace();
-			}
 		}
 		if(e.getSource()==button)
 		{
@@ -209,16 +191,12 @@ public class AltaCliente extends JPanel implements ActionListener {
 			direccion = textField3.getText();
 			telefono = textField4.getText();
 			Persona nuevo = new ClienteVip(nombre, direccion, telefono, 0);
-			try {
-				rico.addPersonas(nuevo);
-				JOptionPane.showMessageDialog(null, "Agregado con Exito");
-				VentanaPedido pedido = new VentanaPedido(rico);
-				pedido.setVisible(true);
-				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
-				frame.setVisible(false);
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
+			rico.addPersonas(nuevo);
+			JOptionPane.showMessageDialog(null, "Agregado con Exito");
+			VentanaPedido pedido = new VentanaPedido(rico);
+			pedido.setVisible(true);
+			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
+			frame.setVisible(false);
 		}
 	}
 	public void activarTextfields()
