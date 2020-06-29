@@ -89,12 +89,6 @@ public class Venta extends JPanel implements ActionListener {
 		botonPedido.addActionListener(this);
 		add(botonPedido);
 		
-		/*prueba=new JButton("Agregar");
-		prueba.setBounds(182,13,101,27);
-		prueba.addActionListener(this);
-		prueba.setVisible(false);
-		add(prueba);*/
-		
 		prueba2=new JButton("Cancelar");
 		prueba2.setBounds(145,345,101,27);
 		prueba2.addActionListener(this);
@@ -107,6 +101,7 @@ public class Venta extends JPanel implements ActionListener {
 		if(e.getSource()==botonPedido) 
 		{
 			confirmarPedido();
+			initComponents();
 		}
 		if(e.getSource()==prueba2) {
 			quitarBoton();
@@ -120,13 +115,10 @@ public class Venta extends JPanel implements ActionListener {
 			Pedido pedido = new Pedido(0, "Efectivo", listado, false, monto);
 			activos.addVenta(pedido);
 			quitarBoton();
-			
-			}
+		}
 	}	
 	
-	
 	public void quitarBoton() {
-		
 		if(!botones.isEmpty()) {
 			listado.clear();
 			botones.clear();
