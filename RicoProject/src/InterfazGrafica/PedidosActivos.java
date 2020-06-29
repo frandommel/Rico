@@ -13,23 +13,31 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GestionComercio.Comercio;
+import GestionComercio.Pedido;
+import claseProductos.Producto;
 
 public class PedidosActivos extends JPanel implements ActionListener{
 	private JButton boton,boton2,botonLista;
 	private JPanel panel;
 	private ArrayList<JButton>buttons;
+	private ArrayList<Pedido> pedidos;
+
 	private int indice;
 	private Comercio rico;
-	private Date fechaCompare;
+	private Date fechaDiaria;
+	
 	
 	/**
 	 * Create the panel.
 	 */
 	public PedidosActivos(Comercio comercio) {
 		rico = comercio;
-		initComponents();
+		pedidos = new ArrayList<Pedido>();
 		buttons = new ArrayList<JButton>();
-		indice = 1;
+		
+		initComponents();
+	
+		
 	}
 	
 	public void initComponents() {
@@ -45,6 +53,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		panel.setLayout(new GridLayout(0, 5));
 		this.add(panel);
 		
+		
 		boton = new JButton("new");
 		boton.setBounds(12, 161, 97, 25);
 		boton.addActionListener(this);
@@ -54,26 +63,45 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		boton2.setBounds(147, 161, 97, 25);
 		boton2.addActionListener(this);
 		add(boton2);
+	
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==boton) {
-			insertarBoton();
-			
-		}else if(e.getSource()==boton2) {
-			quitarBoton();
-		}
+	public void actionPerformed(ActionEvent e) {	
+		JButton boton;
+		if(e.getSource() instanceof JButton) {
+			boton = (JButton) e.getSource();
+			int numeroPedido=Integer.parseInt(boton.getText());
+			Pedido pedido = pedidos.get(0);
+			System.out.println(pedido.toString());// LANZAR VOMITO AH RE JAJAAJAJ NA MENTIRA LANZAR NUEVA VENTANA
+			rico.setPedidos(pedido);
+			}
+		
+		
 	}
 	
-	public void insertarBoton() {
-		botonLista = new JButton(""+indice);
-		botonLista.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-		panel.add(botonLista);
-		buttons.add(botonLista);
-		indice++;
+	public void addVenta(Pedido pedido) {
+		pedidos.add(pedido);
+		listadoToButton();
+
 		panel.updateUI();
 	}
+	
+	public void listadoToButton()
+	{
+		for(int i=0;i<pedidos.size();i++)
+		{
+			String strButton = String.valueOf(pedidos.get(i).getId());
+			botonLista = new JButton(strButton);
+			botonLista.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+			botonLista.addActionListener(this);
+			buttons.add(botonLista);	
+			
+		}
+		panel.add(botonLista);
+	}
+	
+	
 	public void quitarBoton() {
 		int i= 0;
 		if(!buttons.isEmpty()) {
@@ -83,6 +111,20 @@ public class PedidosActivos extends JPanel implements ActionListener{
 			panel.updateUI();
 		}
 	}
-
+	
+	public String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
+	}
+	
+	
 	
 }

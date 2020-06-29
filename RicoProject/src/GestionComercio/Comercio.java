@@ -42,7 +42,7 @@ public class Comercio{
 	cuit = "20-28335746-7";
 	rubro="FastFood";
 	
-	
+	pedidos = new ListadoPedidos();
 	archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
 	try {
@@ -127,8 +127,8 @@ public class Comercio{
 		return pedidos;
 	}
 
-	public void setPedidos(ListadoPedidos pedidos) {
-		this.pedidos = pedidos;
+	public void setPedidos(Pedido pedido) {
+		pedidos.alta(pedido);
 	}
 	
 	

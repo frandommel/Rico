@@ -18,11 +18,13 @@ import claseProductos.Producto;
 public class Bebidas extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5, button6;
 	private Comercio rico;
+	private Venta venta;
 	/**
 	 * Create the panel.
 	 */
-	public Bebidas(Comercio comercio) {
+	public Bebidas(Comercio comercio, Venta venta) {
 		rico = comercio;
+		this.venta=venta;
 		initComponents();
 	}
 	
@@ -70,13 +72,14 @@ public class Bebidas extends JPanel implements ActionListener{
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto(rico);
+			
 			Producto producto =null;
 			Bebida bebida = null;
 			if(boton.getText().equalsIgnoreCase("Corona") || boton.getText().equalsIgnoreCase("Patagonia")|| boton.getText().equalsIgnoreCase("Stella Artois") )
 			{
 				producto =rico.leerCerveza("Bebida", boton.getText());
 				bebida = (Bebida) producto;
+				observacionProducto obs = new observacionProducto(bebida,venta);
 				if(bebida.getMarca().equalsIgnoreCase(boton.getText()))
 				{
 					obs.setNombre(bebida.getMarca(), bebida.getPrecio());
@@ -85,6 +88,7 @@ public class Bebidas extends JPanel implements ActionListener{
 			}else {
 				producto = rico.leerProducto("Bebida", boton.getText());
 				if(producto.getNombre().equalsIgnoreCase(boton.getText())){
+					observacionProducto obs = new observacionProducto(producto,venta);
 					obs.setNombre(producto.getNombre(), producto.getPrecio());
 					obs.setVisible(true);
 				}
@@ -93,10 +97,6 @@ public class Bebidas extends JPanel implements ActionListener{
 		}
 	}
 	
-	public ArrayList<Producto> traerBebidas(){
-		ArchivoProducto bebidas = new ArchivoProducto();
-		ArrayList<Producto> h = bebidas.leerBebida();
-		return h;
-	}
+	
 
 }

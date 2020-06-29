@@ -32,7 +32,7 @@ public class Main {
 	public static void main(String[] args) throws JSONException{
 
 		Comercio comercioRico = new Comercio();
-
+		
 		
 		Inicio inicio= new Inicio(comercioRico);
 		inicio.setVisible(true);

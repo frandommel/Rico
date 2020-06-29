@@ -32,7 +32,7 @@ public class Pedido implements Serializable{
 		
 	}
 	
-	public Pedido(int id, String condicion, ArrayList<Producto> productos, boolean isVip) {
+	public Pedido(int id, String condicion, ArrayList<Producto> productos, boolean isVip,int montoVenta) {
 		super();
 		this.id = id;
 		this.condicion = condicion;
@@ -41,7 +41,7 @@ public class Pedido implements Serializable{
 		this.fecha = definirFecha();
 		this.cobrado = false;
 		horario=new Date();
-		setMontoVenta();
+		this.montoVenta=montoVenta;
 	}
 	
 	public int getId() {
@@ -62,6 +62,11 @@ public class Pedido implements Serializable{
 		return productos;
 	}
 
+	public void addProductos(Producto prodAgregado) {
+		productos.add(prodAgregado);
+	}
+	
+	
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
@@ -85,15 +90,7 @@ public class Pedido implements Serializable{
 		return montoVenta;
 	}
 
-	public void setMontoVenta() {
-		
-		Integer montoVenta = 0;
-		for(int i=0;i<productos.size();i++)
-		{
-			montoVenta=montoVenta+productos.get(i).getPrecio();
-		}
-		this.montoVenta = montoVenta;
-	}
+	
 
 	@Override
 	public String toString() {

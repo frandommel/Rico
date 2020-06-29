@@ -44,6 +44,7 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 	public void baja(Pedido objeto) {
 		
 	}
+	
 
 	@Override
 	public String listar(String clave) {
@@ -113,7 +114,25 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return listaPedidosContenedorMap.toString();
+	}
 
+
+
+	public HashMap<String, ArrayList<Pedido>> getListaPedidosContenedorMap() {
+		return listaPedidosContenedorMap;
+	}
+
+
+
+	public void setListaPedidosContenedorMap(HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap) {
+		this.listaPedidosContenedorMap = listaPedidosContenedorMap;
+	}
+
+		
 
 
 	

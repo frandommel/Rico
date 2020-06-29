@@ -16,11 +16,13 @@ import claseProductos.Producto;
 public class Combos extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6,button7,button8,button9,button10;
 	private Comercio rico;
+	private Venta venta;
 	/**
 	 * Create the panel.
 	 */
-	public Combos(Comercio comercio) {
+	public Combos(Comercio comercio,Venta venta) {
 		rico = comercio;
+		this.venta=venta;
 		initComponents();
 	}
 	
@@ -87,16 +89,12 @@ public class Combos extends JPanel implements ActionListener{
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto(rico);
-			obs.setNombre(rico.leerProducto("Combo", "Combo "+boton.getText()).getNombre(), rico.leerProducto("Combo","Combo "+boton.getText()).getPrecio());
+			Producto producto = rico.leerProducto("Combo", ("Combo "+boton.getText()));
+			observacionProducto obs = new observacionProducto(producto,venta);
+			obs.setNombre(producto.getNombre(),producto.getPrecio());
 			obs.setVisible(true);
 			}
 	}
 	
-	public ArrayList<Producto> traerCombo(){
-		ArchivoProducto bebidas = new ArchivoProducto();
-		ArrayList<Producto> c = bebidas.leerCombo();
-		return c;
-	}
-
+	
 }

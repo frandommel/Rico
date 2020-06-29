@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
 
 import GestionComercio.Comercio;
+import claseProductos.Producto;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,8 @@ public class observacionProducto extends JFrame implements ActionListener{
 	private JSpinner spinner;
 	private JLabel lblNewLabel_1;
 	private JButton button,button2;
-	private Comercio rico;
+	private Producto producto;
+	private Venta ventanaVenta;
 	/**
 	 * Launch the application.
 	 */
@@ -44,8 +46,9 @@ public class observacionProducto extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public observacionProducto(Comercio comercio) {
-		rico = comercio;
+	public observacionProducto(Producto producto,Venta venta) {
+		this.producto=producto;
+		this.ventanaVenta=venta;
 		initComponents();
 	}
 	
@@ -88,6 +91,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 		button2 = new JButton("Aceptar");
 		button2.setBounds(12, 221, 116, 31);
 		getContentPane().add(button2);
+		button2.addActionListener(this);
 		
 		button = new JButton("Cancelar");
 		button.setBounds(316, 221, 116, 31);
@@ -98,7 +102,12 @@ public class observacionProducto extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==button) {
-			dispose();
+			this.setVisible(false);
+		}
+		if(e.getSource()==button2)
+		{
+			ventanaVenta.addVenta(producto);
+			this.setVisible(false);
 		}
 	}
 	

@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -34,17 +34,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.itextpdf.*;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.ImgTemplate;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.*;
 
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
@@ -54,7 +51,7 @@ import javax.swing.JButton;
 
 public class VentanaPedido extends JFrame implements ActionListener{
 
-	private JPanel contentPane, h,p,combo,ensaladas,bebidas,guarnicion,ventas, pedidosActivos;
+	private JPanel contentPane, h,p,combo,ensaladas,bebidas,guarnicion;
 	private JLabel label1, label2;
 	private JButton hamButton, panchButton, guarnButton, bebButton, comboButton, ensaladaButton;
 	private JMenuBar menuBar;
@@ -63,7 +60,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	private Inicio inicio;///MAL HECHO TRAER DATO DE INICIO COMO CORRESPONDE
 	private String nombre;
 	private Comercio rico;
-
+	private Venta ventas;
+	private PedidosActivos pedidosActivos;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -85,6 +84,8 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	 */
 	public VentanaPedido(Comercio comercio) {
 		rico = comercio;
+		pedidosActivos = new PedidosActivos(rico);
+		ventas = new Venta(rico,pedidosActivos);
 		initComponents();
 	}		
 	
@@ -222,7 +223,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
 		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Personas.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
-		        
+		            
 		           // ImageIcon icono = new ImageIcon(Menu.class.getResource("/paquete/rico.jpeg"));
 		           // icono.scaleToFit(650, 1000);            //para darle dimension a la imagen
 		           // icono.setAlignment(Chunk.ALIGN_CENTER);                   //metodo para alinear nuestra imagen
@@ -267,7 +268,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            	parrafo3.add("\n");
 		            }
 		            Paragraph parrafo4 = new Paragraph();
-		            java.util.Date fecha = new java.util.Date();
+		            Date fecha = new Date();
 		            parrafo4.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
 		            parrafo4.setAlignment(Paragraph.ALIGN_RIGHT);
 		            parrafo4.add("\n\n\n");
@@ -307,8 +308,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
 		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Pedidos.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
 		        
-		           // ImageIcon icono = new ImageIcon(Menu.class.getResource("/paquete/rico.jpeg"));
-		            ImageIcon image = new ImageIcon("rico.jpeg");
+		          
 		       
 		            Paragraph parrafo = new Paragraph();
 		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
@@ -340,14 +340,14 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	}
 	
 	public void ingresarPaneles() { //Creacion paneles 
-		h = new Hamburguesa(rico);
-		p =new Pancho(rico);
-		combo = new Combos(rico);
-		ensaladas = new Ensaladas(rico);
-		bebidas = new Bebidas(rico);
-		guarnicion = new Guarnicion(rico);
-		ventas = new Venta(rico);
-		pedidosActivos=new PedidosActivos(rico);
+		h = new Hamburguesa(rico,ventas);
+		p =new Pancho(rico,ventas);
+		combo = new Combos(rico,ventas);
+		ensaladas = new Ensaladas(rico,ventas);
+		bebidas = new Bebidas(rico,ventas);
+		guarnicion = new Guarnicion(rico,ventas);
+		
+		
 		getContentPane().add(pedidosActivos);
 		getContentPane().add(h);
 		getContentPane().add(p);

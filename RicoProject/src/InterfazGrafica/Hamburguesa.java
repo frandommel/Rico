@@ -10,15 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GestionComercio.Comercio;
+import claseProductos.Producto;
 
 public class Hamburguesa extends JPanel implements ActionListener{
 	private JButton button,button2,button3,button4,button5,button6;
 	private Comercio rico;
+	private Venta venta;
 	/**
 	 * Create the panel.
 	 */
-	public Hamburguesa(Comercio comercio) {
+	public Hamburguesa(Comercio comercio,Venta venta) {
 		rico = comercio;
+		this.venta=venta;
 		initComponents();
 	}
 	
@@ -27,8 +30,9 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		JButton boton;
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
-			observacionProducto obs = new observacionProducto(rico);
-			obs.setNombre(rico.leerProducto("Hamburguesa",boton.getText()).getNombre(), rico.leerProducto("Hamburguesa",boton.getText()).getPrecio());
+			Producto producto = rico.leerProducto("Hamburguesa",boton.getText());
+			observacionProducto obs = new observacionProducto(producto,venta);
+			obs.setNombre(producto.getNombre(), producto.getPrecio());
 			obs.setVisible(true);
 			}
 	}
