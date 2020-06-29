@@ -30,9 +30,15 @@ import claseProductos.Producto;
 public class Main {
 
 	public static void main(String[] args) throws JSONException{
+
+		Comercio comercioRico = new Comercio();
+
 		
-		HashMap<String, Persona> personasHashCliente  = new HashMap<String, Persona>();
-		HashMap<String, Persona> personasHashEmpleado  = new HashMap<String, Persona>();
+		Inicio inicio= new Inicio(comercioRico);
+		inicio.setVisible(true);
+		
+		
+		
 		/*Persona cliente1 = new ClienteVip("Juan Duhalde", "Roldan 890", "22356894782", 0);
 		Persona cliente2 = new ClienteVip("Fran Dommel", "Sierras de Los Padre 2251", "22356892582", 0);
 		Persona cliente3 = new ClienteVip("Juan Gomez", "Carasa 890", "22353394782", 0);
@@ -62,33 +68,14 @@ public class Main {
 		objetoPersonasJsonObject.put("empleados",arrayEmpleados);
 		 
 		
-		archivoPersona.agregarArchivo(objetoPersonasJsonObject);*/
+		archivoPersona.agregarArchivo(objetoPersonasJsonObject);
 		
 		//System.out.println(archivoPersona.leer());
 		
-		Comercio comercioRico = new Comercio();
 		
-		//comercioRico.removePersonas("empleados","Pablo Valentinuzzi");
-		
-		//System.out.println(archivoPersona.leer());
-		
-		//System.out.println(comercioRico.getPersonas().toString());
-		
-		Inicio inicio= new Inicio(comercioRico);
-		inicio.setVisible(true);
-		//System.out.println(comercioRico.getProductos().toString());
-		/*ArchivoPersona personas = new ArchivoPersona();
-		personasHashCliente = personas.leerCliente();
-		personas.recorrerHashMapCliente(personasHashCliente);
-		
-		personasHashEmpleado = personas.leerEmpleado();
-		personas.recorrerHashMapEmpleado(personasHashEmpleado);
-		
-*/
 		
 
-		
-		/*ArrayList <Combo> combos = new ArrayList();
+		ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();
 		ArrayList <Pancho> panchos = new ArrayList();
 		ArrayList <Ensalada> ensaladas = new ArrayList();

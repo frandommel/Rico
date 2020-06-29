@@ -77,18 +77,20 @@ public class ArchivoPersona {
 	
 	public HashMap<String,Empleado> generateEmpleado(JSONObject json, HashMap<String, Empleado> personas)
 	{
-		Empleado empleado = new Empleado();
-		JSONArray empleados;
+		
+		
 		try {
-			empleados = (JSONArray)json.getJSONArray("empleados");
+			JSONArray empleados = (JSONArray)json.getJSONArray("empleados");
 			for(int i=0; i<empleados.length(); i++)
 			{
+				
+				Empleado empleado = new Empleado();
 				JSONObject aux = (JSONObject) empleados.get(i);
-				empleado.setNombre(aux.get("nombre").toString());
-				empleado.setDireccion(aux.get("direccion").toString());
-				empleado.setPassword(aux.get("password").toString());
-				empleado.setPosicion(aux.get("posicion").toString());
-				empleado.setTelefono(aux.get("telefono").toString());	
+				empleado.setNombre(aux.getString("nombre"));
+				empleado.setDireccion(aux.getString("direccion"));
+				empleado.setPassword(aux.getString("password"));
+				empleado.setPosicion(aux.getString("posicion"));
+				empleado.setTelefono(aux.getString("telefono"));	
 				personas.put(empleado.getNombre(), empleado);
 			}
 			
@@ -101,19 +103,19 @@ public class ArchivoPersona {
 	
 	public HashMap<String,ClienteVip> generateCliente(JSONObject json, HashMap<String, ClienteVip> personas)
 	{
-		ClienteVip cliente = new ClienteVip();
-		JSONArray clientes;
+		
+		
 		try {
-			clientes = (JSONArray)json.getJSONArray("clientes");
+			
+			JSONArray clientes= (JSONArray)json.getJSONArray("clientes");
 			for(int i=0; i< clientes.length(); i++)
 			{
+				ClienteVip cliente = new ClienteVip();
 				JSONObject aux = (JSONObject) clientes.get(i);
-				cliente.setNombre(aux.get("nombre").toString());
-				cliente.setDireccion(aux.get("direccion").toString());
-				cliente.setTelefono(aux.get("telefono").toString());
-				String sellos = aux.get("cantSellos").toString();
-				int sellosInt = Integer.parseInt(sellos);
-				cliente.setCantSellos(sellosInt);
+				cliente.setNombre(aux.getString("nombre"));
+				cliente.setDireccion(aux.getString("direccion"));
+				cliente.setTelefono(aux.getString("telefono"));
+				cliente.setCantSellos(aux.getInt("cantSellos"));
 				personas.put(cliente.getNombre(), cliente);
 			}
 			

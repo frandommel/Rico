@@ -1,5 +1,8 @@
 package Archivos;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,11 +59,10 @@ public class ManejadordeArchivos {
 		return persona.leerCliente();
 	}
 	
-	public void actualizarArchivoPersona(Comercio comercio)
+	public void actualizarArchivoPersona(HashMap<String, Empleado> empleados, HashMap<String, ClienteVip> clientes)
 	{
 		//LOGICA DE TRANFOSRMACION DE HASHMAP A JSON
-		HashMap<String, Empleado> empleados = comercio.getEmpleado();
-		HashMap<String, ClienteVip> clientes = comercio.getCliente();
+		
 		try {
 			JSONObject jsonArchivo = new JSONObject();
 			JSONArray jsonEmpleados = mapa2JsonEmpleado(empleados);
@@ -97,6 +99,23 @@ public class ManejadordeArchivos {
 			array.put(me.getValue().generateJson());
 		}
 		return array;
+	}
+	
+	public JSONObject leerPersonas()
+	{
+		String contenido = "";
+		JSONObject objectObject = null;
+		try {
+			
+			contenido = new String(Files.readAllBytes(Paths.get("personas.json")));
+			objectObject = new JSONObject(contenido);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return objectObject; 	
 	}
 	
 }

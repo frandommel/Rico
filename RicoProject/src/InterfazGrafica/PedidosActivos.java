@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -19,6 +20,8 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	private ArrayList<JButton>buttons;
 	private int indice;
 	private Comercio rico;
+	private Date fechaCompare;
+	
 	/**
 	 * Create the panel.
 	 */

@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.Menu;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,10 +37,14 @@ import org.json.JSONObject;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.ImgTemplate;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.*;
 
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
@@ -53,7 +58,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	private JLabel label1, label2;
 	private JButton hamButton, panchButton, guarnButton, bebButton, comboButton, ensaladaButton;
 	private JMenuBar menuBar;
-	private JMenuItem registroItem,menuEmpleado,menuProducto,menuCliente;
+	private JMenuItem registroItem,menuEmpleado,menuProducto,menuCliente,pedidosItem;
 	private JMenu menuRegistro,menu;
 	private Inicio inicio;///MAL HECHO TRAER DATO DE INICIO COMO CORRESPONDE
 	private String nombre;
@@ -212,7 +217,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 			productos.setVisible(true);
 			dispose();
 		}
-		/*if(e.getSource()==registroItem) {
+		if(e.getSource()==registroItem) {
 		       Document documento = new Document();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
@@ -232,7 +237,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            Paragraph parrafo2 = new Paragraph();
 		            JSONObject object = new JSONObject();
 		            ManejadordeArchivos archivo = new ManejadordeArchivos();
-		            object = archivo.getListadoPersonas();
+		            object = archivo.leerPersonas();
 		            JSONArray arrayEmpleado = (JSONArray) object.get("empleados");
 		            JSONArray arrayClientes = (JSONArray) object.get("clientes");
 		            parrafo2.add("\n\n");
@@ -268,19 +273,20 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            parrafo4.add("\n\n\n");
 		            parrafo4.add("Registro creado el:" + fecha.toString());
 		            
-		            	
+		            
+		            
 		            documento.open();     
 		            //documento.add(header);
 		            documento.add(parrafo);
 		            documento.add(parrafo2);
 		            documento.add(parrafo3);
 		            documento.add(parrafo4);
-		           // PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
-		           //tabla.addCell("Codigo");                       
+		           PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
+		           tabla.addCell("Codigo");                       
 		           //tabla.addCell("Fecha");
-		          // tabla.addCell("Pedido");
-		           
-		            //documento.add(tabla);
+		           //tabla.addCell("Pedido");
+		          
+		           documento.add(tabla);
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
 		            
@@ -294,7 +300,43 @@ public class VentanaPedido extends JFrame implements ActionListener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		}*/
+		}
+		if(e.getSource()==pedidosItem) {
+		       Document documento = new Document();
+		        try {
+		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
+		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Pedidos.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
+		        
+		           // ImageIcon icono = new ImageIcon(Menu.class.getResource("/paquete/rico.jpeg"));
+		            ImageIcon image = new ImageIcon("rico.jpeg");
+		       
+		            Paragraph parrafo = new Paragraph();
+		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+		            parrafo.add("RICO REGISTRO DE PEDIDOS \n\n");
+		            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
+		       
+		            documento.open();     
+		            //documento.add(header);
+		            documento.add(parrafo);
+		           
+		           PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
+		           tabla.addCell("Codigo");                       
+		           tabla.addCell("Fecha");
+		           tabla.addCell("Pedido");
+		          // ImgTemplate img = new ImgTemplate(template)
+		          
+		           documento.add(tabla);
+		            documento.close();
+		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
+		            
+		            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ruta + "\\Desktop\\Registro_Rico_Pedidos.pdf");  ///abrimos el pdf automaticamente
+ 
+		        } catch (DocumentException | HeadlessException | FileNotFoundException b) {
+		        		b.printStackTrace();
+		        } catch (IOException a) {
+		        		a.printStackTrace();
+		        } 
+		}
 	}
 	
 	public void ingresarPaneles() { //Creacion paneles 
@@ -346,10 +388,15 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		menuRegistro.addActionListener(this);
 		menu.add(menuRegistro);
 		
-		registroItem = new JMenuItem("Generar Registro");
+		registroItem = new JMenuItem("Generar PDF personas");
 		registroItem.addActionListener(this);
 		registroItem.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
 		menuRegistro.add(registroItem);
+		
+		pedidosItem = new JMenuItem("Generar PDF Pedidos");
+		pedidosItem.addActionListener(this);
+		pedidosItem.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+		menuRegistro.add(pedidosItem);
 	}
 
 	//Cerramos la aplicacion con la cruz

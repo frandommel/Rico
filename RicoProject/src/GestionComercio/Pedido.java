@@ -15,6 +15,7 @@ public class Pedido implements Serializable{
 	private String fecha;
 	private int montoVenta;
 	private boolean cobrado;
+	private Date horario;
 	
 	public Pedido() {
 		
@@ -27,6 +28,7 @@ public class Pedido implements Serializable{
 		
 		this.cobrado = false;
 		this.montoVenta=0;
+		horario=new Date();
 		
 	}
 	
@@ -38,6 +40,7 @@ public class Pedido implements Serializable{
 		this.isVip = isVip;
 		this.fecha = definirFecha();
 		this.cobrado = false;
+		horario=new Date();
 		setMontoVenta();
 	}
 	
@@ -110,6 +113,12 @@ public class Pedido implements Serializable{
 		strFecha = dia+"/"+mes+"/"+anio;
 		
 		return strFecha;
+	}
+	
+	public int verDemora()
+	{
+		Date fechaOrigen = new Date();
+		return fechaOrigen.compareTo(horario);
 	}
 
 	public String getFecha() {

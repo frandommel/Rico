@@ -31,11 +31,19 @@ import javax.swing.text.PasswordView;
 
 import org.json.JSONException;
 
+import Archivos.ManejadordeArchivos;
+import Exceptions.LoginException;
 import GestionComercio.Comercio;
+import GestionComercio.Empleado;
 import GestionComercio.Pedido;
 
 import java.lang.Package;
 import java.security.KeyStore.TrustedCertificateEntry;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class Inicio extends JFrame implements KeyListener,ActionListener{
 
@@ -124,20 +132,19 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 				String usuario = textfield1.getText().trim();
 				String password= textfield2.getText();
 				try {
-					boolean flag= rico.validarPersona(usuario, password);
+					boolean flag= validarPersona(usuario, password);
 					if(flag==true)
 					{
 						pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
 						this.setVisible(false);
-					}else if(usuario.equals("") || password.equals("")) {
-						JOptionPane.showMessageDialog(null, "Debes ingresar usuario y contraseña");   //Para enviar un mensaje por pantalla
-					}else {
-						JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos"); 
 					}
-				} catch (Exception e1) {
+				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch(LoginException e2)
+				{
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
 					
 				/*if(usuario.equals(user)&&password.equals(pass)) {
@@ -147,7 +154,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 				}else if(usuario.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(null, "Debes ingresar usuario y contraseña");   //Para enviar un mensaje por pantalla
 				}else {
-					JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos"); 
+					 
 				}*/
 		  }
 		}
@@ -165,22 +172,21 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		String password= textfield2.getText();
 		if(e.getKeyCode() == 10) 
 		{
+			boolean flag;
 			try {
-				boolean flag= rico.validarPersona(usuario, password);
+				flag = validarPersona(usuario, password);
 				if(flag==true)
 				{
 					pedido = new VentanaPedido(rico);
 					pedido.setVisible(true);
 					this.setVisible(false);
-				}else if(usuario.equals("") || password.equals("")) {
-					JOptionPane.showMessageDialog(null, "Debes ingresar usuario y contraseña");   //Para enviar un mensaje por pantalla
-				}else {
-					JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos"); 
 				}
-			} catch (Exception e1) {
+			} catch (LoginException | JSONException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, e1.getMessage());
 			}
+				
+	 
 		}
 		
 	}
@@ -230,6 +236,29 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 			}
 		});
 	}*/
+	
+	public boolean validarPersona(String nombre, String password) throws LoginException, JSONException  
+	{
+		ManejadordeArchivos manejador = new ManejadordeArchivos();
+		HashMap<String, Empleado> listadoBusqueda;
+		boolean flag=false;
+			listadoBusqueda = manejador.getListadoEmpleados();
+			if(listadoBusqueda.containsKey(nombre))
+			{
+				if(listadoBusqueda.get(nombre).getPassword().equals(password))
+				{
+					flag=true;
+				}else
+				{
+					throw new LoginException("Contraseña invalida");
+				}
+			}else
+			{
+				throw new LoginException("Usuario inexistente");
+			}
+		return flag;
+	}
+	
 }
 
 

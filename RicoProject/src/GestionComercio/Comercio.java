@@ -131,21 +131,6 @@ public class Comercio{
 		this.pedidos = pedidos;
 	}
 	
-	public boolean validarPersona(String nombre, String password)  
-	{
-		boolean flag=false;
-		Set<Entry<String,Empleado>> set = empleados.entrySet();
-		Iterator it = set.iterator();
-		while(it.hasNext()) 
-		{
-			Map.Entry<String, Empleado> me = (Map.Entry<String, Empleado>)it.next();
-			if(me.getValue().getNombre().equalsIgnoreCase(nombre) && me.getValue().getPassword().equalsIgnoreCase(password)) {
-				flag = true;
-			}
-			
-		}		
-		return flag;
-	}
 	
 	public Empleado buscarEmpleado(String empleadoBuscar) 
 	{
@@ -183,6 +168,7 @@ public class Comercio{
 		{
 			ClienteVip cliente = (ClienteVip) persona;
 			clientes.put(cliente.getNombre(), cliente);
+			System.out.println(clientes);
 			
 		} else if (persona instanceof Empleado)
 		{
@@ -190,7 +176,7 @@ public class Comercio{
 			empleados.put(empleado.getNombre(), empleado);
 		}
 		
-		archivos.actualizarArchivoPersona(this);
+		archivos.actualizarArchivoPersona(empleados,clientes);
 	  }
 	
 	public void removeEmpleado(Empleado aBorrar)
@@ -207,7 +193,7 @@ public class Comercio{
 				empleados.remove(me.getKey());
 			}
 		}
-		archivos.actualizarArchivoPersona(this);
+		archivos.actualizarArchivoPersona(empleados,clientes);
 	}
 	
 	public void modificarEmpleado(Empleado buscado,String nuevaPosicion, String nuevaDireccion, String nuevoTel)
@@ -225,7 +211,7 @@ public class Comercio{
 		{
 			buscado.setTelefono(nuevoTel);
 		}
-		archivos.actualizarArchivoPersona(this);
+		archivos.actualizarArchivoPersona(empleados,clientes);
 	}
 	
 	public void removeCliente(ClienteVip aBorrar)
@@ -242,7 +228,7 @@ public class Comercio{
 				clientes.remove(me.getKey());
 			}
 		}
-		archivos.actualizarArchivoPersona(this);
+		archivos.actualizarArchivoPersona(empleados,clientes);
 	}
 	
 	public void modificarCliente(ClienteVip buscado, String nuevaDireccion, String nuevoTel)
@@ -256,7 +242,7 @@ public class Comercio{
 		{
 			buscado.setTelefono(nuevoTel);
 		}
-		archivos.actualizarArchivoPersona(this);
+		archivos.actualizarArchivoPersona(empleados,clientes);
 	}
 
 	public Producto leerProducto(String claveString , String producto) {
