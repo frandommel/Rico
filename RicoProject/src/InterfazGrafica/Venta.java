@@ -22,6 +22,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Venta extends JPanel implements ActionListener {
 	private JLabel label,totalLabel;
@@ -66,6 +68,7 @@ public class Venta extends JPanel implements ActionListener {
 		panel.setBackground(new Color(241,98,63));
 		panel.setLayout(new GridLayout(10,10));
 		this.add(panel);
+		panel.updateUI();
 		
 		totalLabel=new JLabel("Total:");
 		totalLabel.setBounds(220,337,200,40);
@@ -87,11 +90,13 @@ public class Venta extends JPanel implements ActionListener {
 		botonPedido=new JButton("Confirmar");
 		botonPedido.setBounds(32,345,101,27);
 		botonPedido.addActionListener(this);
+		botonPedido.updateUI();
 		add(botonPedido);
 		
 		prueba2=new JButton("Cancelar");
 		prueba2.setBounds(145,345,101,27);
 		prueba2.addActionListener(this);
+		botonPedido.updateUI();
 		add(prueba2);
 		
 	}
@@ -101,10 +106,9 @@ public class Venta extends JPanel implements ActionListener {
 		if(e.getSource()==botonPedido) 
 		{
 			confirmarPedido();
-			initComponents();
 		}
 		if(e.getSource()==prueba2) {
-			quitarBoton();
+			limpiarPanel();
 		}
 	}
 	public void confirmarPedido()
@@ -112,13 +116,20 @@ public class Venta extends JPanel implements ActionListener {
 		int valor = JOptionPane.showConfirmDialog(this, "Confirma Pedido?",	"Pedido", JOptionPane.YES_NO_OPTION);
 		if(valor== JOptionPane.YES_OPTION) {
 			JOptionPane.showMessageDialog(null, "Pedido Confirmado");
-			Pedido pedido = new Pedido(0, "Efectivo", listado, false, monto);
+			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, false, monto);
+			System.out.println(pedido.toString());
 			activos.addVenta(pedido);
-			quitarBoton();
+			try
+			{
+				Thread.sleep(800);
+				limpiarPanel();
+			}catch (InterruptedException e) {
+			e.printStackTrace();
+			}
 		}
 	}	
 	
-	public void quitarBoton() {
+	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
 			listado.clear();
 			botones.clear();
@@ -154,7 +165,42 @@ public class Venta extends JPanel implements ActionListener {
 	
 		
 	}
+
+	public String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
+	}
 	
+	private int getNumeroPedido()
+	{
+		int numeroPedido=0;
+		HashMap<String, ArrayList<Pedido>>  mapaPedidos = rico.getPedidos().getListaPedidosContenedorMap();
+		System.out.println(mapaPedidos.toString());
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		try
+		{
+			pedidos = mapaPedidos.get(definirFecha());
+			
+			//numeroPedido=pedidos.size()+1;
+			
+		}catch(NullPointerException e)
+		{
+			e.printStackTrace();
+			numeroPedido=1;
+		}
+		
+		
+		
+		return numeroPedido;
+	}
 	
 	
 	public int setMontoVenta() {

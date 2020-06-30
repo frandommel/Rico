@@ -69,11 +69,13 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
 			int numeroPedido=Integer.parseInt(boton.getText());
-			Pedido pedido = pedidos.get(0);
-			FrameCerrarVenta cerrar = new FrameCerrarVenta();
-			cerrar.setVisible(true);// LANZAR VOMITO AH RE JAJAAJAJ NA MENTIRA LANZAR NUEVA VENTANA
+			Pedido pedido = pedidos.get(numeroPedido);
+			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedido);
+			cerrar.setVisible(true);
 			rico.setPedidos(pedido);
-			}
+			/*System.out.println("RICO PEDIDOS: \n");
+			System.out.println(rico.getPedidos().toString());
+			*/}
 		
 		
 	}

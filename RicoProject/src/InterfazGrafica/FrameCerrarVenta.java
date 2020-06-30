@@ -17,10 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import GestionComercio.Pedido;
+
 public class FrameCerrarVenta extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton tarjeta,efectivo,cancelar;
+	private Pedido pedido;
 
 	/**
 	 * Launch the application.
@@ -41,7 +44,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public FrameCerrarVenta() {
+	public FrameCerrarVenta(Pedido pedido) {
+		this.pedido=pedido;
 		initComponents();
 	}
 	
@@ -77,6 +81,16 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==cancelar) {
 			this.setVisible(false);
+		}
+		if(e.getSource()==tarjeta)
+		{
+			pedido.setCobrado(true);
+			pedido.setCondicion("Tarjeta");
+		}
+		if(e.getSource()==efectivo)
+		{
+			pedido.setCobrado(true);
+			pedido.setCondicion("Efectivo");
 		}
 		
 	}

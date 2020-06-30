@@ -42,10 +42,11 @@ public class Comercio{
 	cuit = "20-28335746-7";
 	rubro="FastFood";
 	
-	pedidos = new ListadoPedidos();
+	
 	archivos = new ManejadordeArchivos();
 	productos = archivos.getListadoProductos();
 	try {
+		pedidos = archivos.getListadoPedidos();
 		empleados = archivos.getListadoEmpleados();
 		clientes = archivos.getListadoCliente();
 	} catch (JSONException e) {

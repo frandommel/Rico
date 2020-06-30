@@ -54,7 +54,7 @@ public class ArchivoPedidos	implements Serializable {
 		
 		try {
 			
-			file = new FileInputStream("combos.bin");
+			file = new FileInputStream("pedidos.bin");
 			ObjectInputStream object = new ObjectInputStream(file);
 			listado = (ListadoPedidos) object.readObject();
 

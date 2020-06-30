@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import interfaces.IAccion;
@@ -17,6 +18,7 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
       public ListadoPedidos() {
 		
     	  listaPedidosContenedorMap = new HashMap<String, ArrayList<Pedido>>();
+    	  
     	  
 	}
 
@@ -64,6 +66,11 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 	}
 
 
+	public void inciarDia() {
+		String fechaActual = definirFecha();
+		ArrayList<Pedido> listaX = new ArrayList<Pedido>();
+		listaPedidosContenedorMap.put(fechaActual, listaX);
+	}
 
 	@Override
 	public void alta(Pedido objeto) {
@@ -76,7 +83,7 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		{
 			ArrayList<Pedido> aux = new ArrayList<Pedido>();
 			aux.add(objeto);
-		listaPedidosContenedorMap.put(objeto.getFecha(), aux);
+			listaPedidosContenedorMap.put(objeto.getFecha(), aux);
 		}
 	}
 	
@@ -117,7 +124,25 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 	
 	@Override
 	public String toString() {
-		return listaPedidosContenedorMap.toString();
+		StringBuilder stringBuilder= new StringBuilder();
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		Set<Map.Entry<String, ArrayList<Pedido>>> setE = listaPedidosContenedorMap.entrySet();
+		Iterator it =setE.iterator();
+		
+		while(it.hasNext())
+		{
+			Map.Entry<String, ArrayList<Pedido>> me = (Map.Entry<String, ArrayList<Pedido>>) it.next();
+			pedidos = me.getValue();
+			for(int i = 0;i<pedidos.size();i++)
+			{
+				stringBuilder.append(me.getValue().toString());
+				stringBuilder.append("\n");
+			}
+			
+		}
+		
+		
+		return stringBuilder.toString();
 	}
 
 
@@ -132,7 +157,18 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		this.listaPedidosContenedorMap = listaPedidosContenedorMap;
 	}
 
+	public String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
 		
+		return strFecha;
+	}
 
 
 	

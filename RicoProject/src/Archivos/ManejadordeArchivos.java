@@ -47,6 +47,7 @@ public class ManejadordeArchivos {
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
 		destinoPedido = pedido.leerPedidos();
+		destinoPedido.inciarDia();
 		return destinoPedido;	
 	}
 	
