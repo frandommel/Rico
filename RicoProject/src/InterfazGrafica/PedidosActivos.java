@@ -32,7 +32,9 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	 */
 	public PedidosActivos(Comercio comercio) {
 		rico = comercio;
-		pedidos = rico.getPedidos().getListaPedidosContenedorMap().get(definirFecha());
+		
+		
+		pedidos = new ArrayList<Pedido>();
 		buttons = new ArrayList<JButton>();
 		initComponents();
 	}
@@ -49,19 +51,11 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		panel.setBackground(new Color(241,98,63));
 		panel.setLayout(new GridLayout(0, 5));
 		this.add(panel);
-		
-		
-		boton = new JButton("new");
-		boton.setBounds(12, 161, 97, 25);
-		boton.addActionListener(this);
-		add(boton);
-		
-		boton2 = new JButton("quit");
-		boton2.setBounds(147, 161, 97, 25);
-		boton2.addActionListener(this);
-		add(boton2);
+	
 	
 	}
+	
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
@@ -69,17 +63,18 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
 			int numeroPedido=Integer.parseInt(boton.getText());
-			Pedido pedido = pedidos.get(numeroPedido);
-			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedido);
+			numeroPedido=numeroPedido-1;
+			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedidos.get(numeroPedido),rico);
 			cerrar.setVisible(true);
-			rico.setPedidos(pedido);
 			}
 		
 		
 	}
 	
 	public void addVenta(Pedido pedido) {
+		
 		pedidos.add(pedido);
+		
 		listadoToButton();
 
 		panel.updateUI();

@@ -3,6 +3,7 @@ package paquete;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.sound.midi.Soundbank;
@@ -179,5 +180,19 @@ public class Main {
 		
 		
 	}
+	
+	public static String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
+	}
+	
 
 }

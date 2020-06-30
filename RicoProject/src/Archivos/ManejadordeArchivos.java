@@ -119,4 +119,10 @@ public class ManejadordeArchivos {
 		return objectObject; 	
 	}
 	
+	
+	public void actualizarArchivoPedidos(ListadoPedidos pedidos)
+	{
+		pedido.archivarPedido(pedidos);
+	}
+	
 }

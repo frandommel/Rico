@@ -30,14 +30,14 @@ import java.util.HashMap;
 public class Venta extends JPanel implements ActionListener {
 	private JLabel label,totalLabel;
 	private JPanel panel;
-	private JCheckBox checkVip;
 	private JButton botonPedido,prueba,prueba2,boton, botonVip;
 	private ArrayList<JButton>botones;
 	private int indice,monto;
 	private Comercio rico;
 	private ArrayList<Producto> listado;
-	private JTextField montoField;
+	private JTextField montoField,textNumero;
 	private PedidosActivos activos;
+	private JCheckBox checkbox;
 	/**
 	 * Create the panel.
 	 */
@@ -48,6 +48,8 @@ public class Venta extends JPanel implements ActionListener {
 		indice = 0;
 		listado = new ArrayList<Producto>();
 		initComponents();
+		
+	
 		
 	}
 	
@@ -60,7 +62,7 @@ public class Venta extends JPanel implements ActionListener {
 		this.setVisible(true);
 		
 		label = new JLabel("Pedido Nro: ");
-		label.setBounds(12,13,146,40);
+		label.setBounds(12,12,113,40);
 		label.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 18));   //l ("tipo de letra",negrita/no negrita/cursiva),tamanio)
 		label.setForeground(new Color(255,255,255));  //para asignarle color
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,6 +95,7 @@ public class Venta extends JPanel implements ActionListener {
 		botonPedido=new JButton("Confirmar");
 		botonPedido.setBounds(32,345,101,27);
 		botonPedido.addActionListener(this);
+		botonPedido.setEnabled(false);
 		botonPedido.updateUI();
 		add(botonPedido);
 		
@@ -102,46 +105,85 @@ public class Venta extends JPanel implements ActionListener {
 		botonPedido.updateUI();
 		add(prueba2);
 		
-		checkVip=new JCheckbox();
-		checkVip.setBounds(190,345,101,27);
-		//checkVip.addActionListener(this);
-		add(checkVip);
+		checkbox = new JCheckBox("Cliente Vip");
+		checkbox.setBounds(361, 19, 90, 27);
+		checkbox.addActionListener(this);
+		add(checkbox);
+		
+		textNumero = new JTextField();
+		textNumero.setBounds(124, 19, 75, 27);
+		textNumero.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+		textNumero.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		textNumero.setEditable(false);
+		add(textNumero);
+		textNumero.setColumns(10);
+		
+		
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==checkbox)
+		{
+			if(checkbox.isSelected()==true)
+			{
+				String stringMonto = String.valueOf(setMontoVenta(0.85));
+				montoField.setText("$ "+stringMonto);
+			}
+			else
+			{
+				String stringMonto = String.valueOf(setMontoVenta());
+				montoField.setText("$ "+stringMonto);
+			}
+			
+		}
 		if(e.getSource()==botonPedido) 
 		{
-			confirmarPedido();
+			confirmarPedido(checkbox);
+			try
+			{
+				Thread.sleep(800);
+				limpiarPanel();
+			}catch (InterruptedException w) {
+			w.printStackTrace();
+			}
+			
 		}
 		if(e.getSource()==prueba2) {
 			limpiarPanel();
 		}
 	}
-	public void confirmarPedido()
+	
+	public void confirmarPedido(JCheckBox checkbox)
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Confirma Pedido?",	"Pedido", JOptionPane.YES_NO_OPTION);
 		if(valor== JOptionPane.YES_OPTION) {
 			JOptionPane.showMessageDialog(null, "Pedido Confirmado");
-			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, false, monto);
-			activos.addVenta(pedido);
-			try
+			boolean vip = false;
+			if(checkbox.isSelected()==true)
 			{
-				Thread.sleep(800);
-				limpiarPanel();
-			}catch (InterruptedException e) {
-			e.printStackTrace();
+				vip=true;
+				monto = (int)0.85*monto;
+				textNumero.setText(String.valueOf(monto));
+				panel.updateUI();
 			}
+			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, vip, monto);
+			activos.addVenta(pedido);
+			
 		}
 	}	
 	
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
-			listado.clear();
+		
+			
 			botones.clear();
 			panel.removeAll();
 			montoField.setText("$ 0");
+			textNumero.setText(String.valueOf(getNumeroPedido()));
+			botonPedido.setEnabled(false);
 			panel.updateUI();
 		}
 	}
@@ -149,10 +191,13 @@ public class Venta extends JPanel implements ActionListener {
 	public void addVenta(Producto producto)
 	{
 		listado.add(producto);
+		botonPedido.setEnabled(true);
 		listadoToButton();
 		monto = setMontoVenta();
+		checkbox.setSelected(false);
 		String montoString = String.valueOf(monto);
 		montoField.setText("$ "+montoString);
+		textNumero.setText(String.valueOf(getNumeroPedido()));
 		panel.updateUI();
 	}
 	
@@ -186,7 +231,7 @@ public class Venta extends JPanel implements ActionListener {
 		return strFecha;
 	}
 	
-	//estamos pasando el size de algo que no esta creado aun
+
 	private int getNumeroPedido()
 	{
 		int numeroPedido=0;
@@ -219,6 +264,25 @@ public class Venta extends JPanel implements ActionListener {
 		{
 			return 0;
 		}
+		return montoVenta;
+	}
+	
+public int setMontoVenta(double d) {
+		
+
+		int montoVenta = 0;
+		if(listado!=null)
+		{
+			for(int i=0;i<listado.size();i++)
+			{
+				montoVenta=montoVenta+listado.get(i).getPrecio();
+			}
+		}else
+		{
+			return 0;
+		}
+		
+		montoVenta = (int) (montoVenta*d);
 		return montoVenta;
 	}
 }

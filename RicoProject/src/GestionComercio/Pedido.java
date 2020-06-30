@@ -32,6 +32,22 @@ public class Pedido implements Serializable{
 		
 	}
 	
+		public Pedido(Pedido pedido2) {
+		
+		this.id = pedido2.getId();
+		this.condicion = pedido2.getCondicion();
+		this.productos = pedido2.getProductos();
+		this.isVip = pedido2.isVip();
+		
+		fecha=pedido2.getFecha();
+		
+		this.cobrado = pedido2.isCobrado();
+		this.montoVenta=pedido2.getMontoVenta();
+		horario=pedido2.getHorario();
+		
+	}
+	
+	
 	public Pedido(int id, String condicion, ArrayList<Producto> productos, boolean isVip,int montoVenta) {
 		super();
 		this.id = id;
@@ -90,12 +106,25 @@ public class Pedido implements Serializable{
 		return montoVenta;
 	}
 
-	
+	public Date getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Date horario) {
+		this.horario = horario;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setMontoVenta(int montoVenta) {
+		this.montoVenta = montoVenta;
+	}
 
 	@Override
 	public String toString() {
-		return "Pedido " + id + "--> Condicion: " + condicion + ", fecha=" + fecha + "\n"
-				+ " Pedido: " + productos.toString() + ", Cliente Vip: " + isVip + ", Cobro: " + cobrado;
+		return "Pedido " + id + "--> Condicion: " + condicion + ", fecha=" + fecha + " Productos del pedido-> " + productos.toString() + ", Cliente Vip: " + isVip + ", Cobro: " + cobrado+", Monto: $"+montoVenta;
 	}
 	
 	

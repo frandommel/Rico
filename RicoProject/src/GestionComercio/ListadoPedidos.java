@@ -72,17 +72,8 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 
 	@Override
 	public void alta(Pedido objeto) {
-		if(listaPedidosContenedorMap.containsKey(objeto.getFecha()))
-		{
 			ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
 			aux.add(objeto);
-			listaPedidosContenedorMap.replace(objeto.getFecha(), aux);
-		}else
-		{
-			ArrayList<Pedido> aux = new ArrayList<Pedido>();
-			aux.add(objeto);
-			listaPedidosContenedorMap.put(objeto.getFecha(), aux);
-		}
 	}
 	
 	public boolean cobro(Pedido objeto)

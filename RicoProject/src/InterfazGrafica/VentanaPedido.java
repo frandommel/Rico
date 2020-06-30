@@ -46,6 +46,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
 import GestionComercio.Comercio;
+import GestionComercio.Pedido;
 
 import javax.swing.JButton;
 

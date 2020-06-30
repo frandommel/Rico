@@ -22,7 +22,6 @@ public class observacionProducto extends JFrame implements ActionListener{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JSpinner spinner;
 	private JLabel lblNewLabel_1;
 	private JButton button,button2;
 	private Producto producto;
@@ -61,10 +60,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(new Color(241,98,63));
 		
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinner.setBounds(12, 32, 61, 31);
-		getContentPane().add(spinner);
+	
 		
 		textField = new JTextField();
 		textField.setBounds(12, 164, 420, 31);
@@ -84,7 +80,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 		
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
-		textField_2.setBounds(85, 32, 219, 31);
+		textField_2.setBounds(12, 32, 292, 31);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		

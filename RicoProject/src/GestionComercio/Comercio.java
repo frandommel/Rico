@@ -52,7 +52,6 @@ public class Comercio{
 	} catch (JSONException e) {
 		e.printStackTrace();
 	}
-	//pedidos = archivos.getListadoPedidos();
 	
 	}
 	
@@ -133,6 +132,16 @@ public class Comercio{
 	}
 	
 	
+	
+	
+	public ManejadordeArchivos getArchivos() {
+		return archivos;
+	}
+
+	public void setArchivos(ManejadordeArchivos archivos) {
+		this.archivos = archivos;
+	}
+
 	public Empleado buscarEmpleado(String empleadoBuscar) 
 	{
 		Set<Entry<String,Empleado>> set = empleados.entrySet();

@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 
 public class FrameCerrarVenta extends JFrame implements ActionListener {
@@ -24,6 +26,7 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JButton tarjeta,efectivo,cancelar;
 	private Pedido pedido;
+	private Comercio rico;
 
 	/**
 	 * Launch the application.
@@ -44,8 +47,9 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public FrameCerrarVenta(Pedido pedido) {
-		this.pedido=pedido;
+	public FrameCerrarVenta(Pedido pedido2,Comercio comercioRico) {
+		this.pedido=pedido2;
+		rico = comercioRico;
 		initComponents();
 	}
 	
@@ -84,15 +88,41 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		}
 		if(e.getSource()==tarjeta)
 		{
+			
 			pedido.setCobrado(true);
 			pedido.setCondicion("Tarjeta");
+			rico.setPedidos(pedido);
+			this.setVisible(false);
+			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
+		
 		}
 		if(e.getSource()==efectivo)
 		{
 			pedido.setCobrado(true);
 			pedido.setCondicion("Efectivo");
+			rico.setPedidos(pedido);
+			this.setVisible(false);
+			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 		}
+	
 		
 	}
+	
+
+	public String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
+	}
+	
+	
+	
 
 }
