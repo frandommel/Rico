@@ -1,10 +1,12 @@
 package InterfazGrafica;
 
+import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,7 +30,8 @@ import java.util.HashMap;
 public class Venta extends JPanel implements ActionListener {
 	private JLabel label,totalLabel;
 	private JPanel panel;
-	private JButton botonPedido,prueba,prueba2,boton;
+	private JCheckBox checkVip;
+	private JButton botonPedido,prueba,prueba2,boton, botonVip;
 	private ArrayList<JButton>botones;
 	private int indice,monto;
 	private Comercio rico;
@@ -99,6 +102,11 @@ public class Venta extends JPanel implements ActionListener {
 		botonPedido.updateUI();
 		add(prueba2);
 		
+		checkVip=new JCheckbox();
+		checkVip.setBounds(190,345,101,27);
+		//checkVip.addActionListener(this);
+		add(checkVip);
+		
 	}
 
 	@Override
@@ -117,7 +125,6 @@ public class Venta extends JPanel implements ActionListener {
 		if(valor== JOptionPane.YES_OPTION) {
 			JOptionPane.showMessageDialog(null, "Pedido Confirmado");
 			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, false, monto);
-			System.out.println(pedido.toString());
 			activos.addVenta(pedido);
 			try
 			{
@@ -179,25 +186,21 @@ public class Venta extends JPanel implements ActionListener {
 		return strFecha;
 	}
 	
+	//estamos pasando el size de algo que no esta creado aun
 	private int getNumeroPedido()
 	{
 		int numeroPedido=0;
-		HashMap<String, ArrayList<Pedido>>  mapaPedidos = rico.getPedidos().getListaPedidosContenedorMap();
-		System.out.println(mapaPedidos.toString());
+		HashMap<String, ArrayList<Pedido>>  mapaPedidos = rico.getPedidos().getListaPedidosContenedorMap();		
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		try
 		{
 			pedidos = mapaPedidos.get(definirFecha());
-			
-			//numeroPedido=pedidos.size()+1;
+			numeroPedido=pedidos.size()+1;
 			
 		}catch(NullPointerException e)
 		{
 			e.printStackTrace();
-			numeroPedido=1;
 		}
-		
-		
 		
 		return numeroPedido;
 	}

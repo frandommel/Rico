@@ -18,8 +18,6 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
       public ListadoPedidos() {
 		
     	  listaPedidosContenedorMap = new HashMap<String, ArrayList<Pedido>>();
-    	  
-    	  
 	}
 
 	

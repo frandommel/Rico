@@ -32,7 +32,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	 */
 	public PedidosActivos(Comercio comercio) {
 		rico = comercio;
-		pedidos = new ArrayList<Pedido>();
+		pedidos = rico.getPedidos().getListaPedidosContenedorMap().get(definirFecha());
 		buttons = new ArrayList<JButton>();
 		initComponents();
 	}
@@ -73,9 +73,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedido);
 			cerrar.setVisible(true);
 			rico.setPedidos(pedido);
-			/*System.out.println("RICO PEDIDOS: \n");
-			System.out.println(rico.getPedidos().toString());
-			*/}
+			}
 		
 		
 	}
