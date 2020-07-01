@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Exceptions.CobroException;
 import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 import claseProductos.Producto;
@@ -59,17 +60,17 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
-		JButton boton;
+		JButton boton;	
 		if(e.getSource() instanceof JButton) {
-			boton = (JButton) e.getSource();
-			int numeroPedido=Integer.parseInt(boton.getText());
-			numeroPedido=numeroPedido-1;
-			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedidos.get(numeroPedido),rico);
-			cerrar.setVisible(true);
-			}
+				boton = (JButton) e.getSource();
+				int numeroPedido=Integer.parseInt(boton.getText());
+				numeroPedido=numeroPedido-1;
+				FrameCerrarVenta cerrar = new FrameCerrarVenta(pedidos.get(numeroPedido),rico,this,boton);
+				cerrar.setVisible(true);
+				//quitarBoton(boton);
+				}
 		
-		
-	}
+		}
 	
 	public void addVenta(Pedido pedido) {
 		
@@ -82,6 +83,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	
 	public void listadoToButton()
 	{
+
 		for(int i=0;i<pedidos.size();i++)
 		{
 			String strButton = String.valueOf(pedidos.get(i).getId());
@@ -95,14 +97,10 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	}
 	
 	
-	public void quitarBoton() {
-		int i= 0;
-		if(!buttons.isEmpty()) {
-			buttons.remove(i);
-			panel.remove(i);
-			i++;
-			panel.updateUI();
-		}
+	public void quitarBoton(JButton boton) {
+		buttons.remove(boton);
+		panel.remove(boton);
+		panel.updateUI();
 	}
 	
 	public String definirFecha()

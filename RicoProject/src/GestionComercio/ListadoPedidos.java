@@ -18,10 +18,28 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
       public ListadoPedidos() {
 		
     	  listaPedidosContenedorMap = new HashMap<String, ArrayList<Pedido>>();
+    	  montoTotal = getMontoTotal();
+    	  
 	}
 
 	
 	
+	private int getMontoTotal() {
+		int montoTotal = 0;
+		Set<Map.Entry<String, ArrayList<Pedido>>> setE = getListaPedidosContenedorMap().entrySet();
+		Iterator it = setE.iterator();
+		
+		while(it.hasNext())
+		{
+			Map.Entry<String, ArrayList<Pedido>> me = (Map.Entry<String, ArrayList<Pedido>>) it.next();
+			montoTotal = montoTotal + getMontoDiario(me.getKey());
+		}
+		
+		return montoTotal;
+	}
+
+
+
 	public int getMontoDiario (String keyDia)
 	{
 		int monto=0;
@@ -39,28 +57,9 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 	}
 
 
-
-	@Override
-	public void baja(Pedido objeto) {
-		
-	}
-	
-
 	@Override
 	public String listar(String clave) {
-		ArrayList<Pedido> diaXpedidos = listaPedidosContenedorMap.get(clave);
-		StringBuilder builder = new StringBuilder();
-		builder.append("Dia "+clave+":\n");
-		for(int i=0;i<diaXpedidos.size();i++)
-		{
-			
-			builder.append(diaXpedidos.get(i));
-			builder.append("\n");
-		}
-		
-		
-		String listado = builder.toString();
-		return listado;
+		return getListaPedidosContenedorMap().toString();
 	}
 
 
@@ -110,7 +109,6 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	
 	public HashMap<String, ArrayList<Pedido>> getListaPedidosContenedorMap() {
 		return listaPedidosContenedorMap;

@@ -163,7 +163,6 @@ public class Venta extends JPanel implements ActionListener {
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Confirma Pedido?",	"Pedido", JOptionPane.YES_NO_OPTION);
 		if(valor== JOptionPane.YES_OPTION) {
-			JOptionPane.showMessageDialog(null, "Pedido Confirmado");
 			boolean vip = false;
 			if(checkbox.isSelected()==true)
 			{
@@ -172,17 +171,34 @@ public class Venta extends JPanel implements ActionListener {
 				textNumero.setText(String.valueOf(monto));
 				panel.updateUI();
 			}
-			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, vip, monto);
+			ArrayList<Producto> listaPedido = new ArrayList<Producto>();
+			bucleLimpiezaListado(listado, listaPedido);
+			Pedido pedido = new Pedido(getNumeroPedido(), "", listaPedido, vip, monto);
+			listado.clear();
 			numeroPedidoIncremen();
 			activos.addVenta(pedido);
 			
 		}
 	}	
 	
+	
+	private void bucleLimpiezaListado(ArrayList<Producto> origen,ArrayList<Producto> destino)
+	{
+		for(int i=0;i<origen.size();i++)
+		{ 
+			Producto productoI = origen.get(i);
+			if((productoI instanceof claseProductos.Pancho)||(productoI instanceof claseProductos.Bebida)||
+					(productoI instanceof claseProductos.Combo)||(productoI instanceof claseProductos.Guarnicion)||
+					(productoI instanceof claseProductos.Hamburguesa)||(productoI instanceof claseProductos.Guarnicion))
+			{
+				destino.add(productoI);
+			}
+		}
+	}
+	
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
 		
-			
 			botones.clear();
 			panel.removeAll();
 			montoField.setText("$ 0");

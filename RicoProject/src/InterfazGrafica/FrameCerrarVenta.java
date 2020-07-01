@@ -18,17 +18,19 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import Exceptions.CobroException;
 import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 
 public class FrameCerrarVenta extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton tarjeta,efectivo,cancelar;
+	private JButton tarjeta,efectivo,cancelar,boton;
 	private Pedido pedido;
 	private Comercio rico;
 	private JTextField demoraField;
 	private JLabel demoraText;
+	private PedidosActivos panelAnterior;
 
 	/**
 	 * Launch the application.
@@ -48,10 +50,13 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
+	 * @param pedidosActivos 
 	 */
-	public FrameCerrarVenta(Pedido pedido2,Comercio comercioRico) {
+	public FrameCerrarVenta(Pedido pedido2,Comercio comercioRico, PedidosActivos pedidosActivos,JButton boton) {
 		this.pedido=pedido2;
 		rico = comercioRico;
+		this.boton=boton;
+		panelAnterior = pedidosActivos;
 		initComponents();
 	}
 	
@@ -95,7 +100,7 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==cancelar) {
-			this.setVisible(false);
+			this.setVisible(false);			
 		}
 		if(e.getSource()==tarjeta)
 		{
@@ -106,6 +111,7 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			this.setVisible(false);
 			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
+			panelAnterior.quitarBoton(boton);
 		
 		}
 		if(e.getSource()==efectivo)
@@ -116,10 +122,13 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			this.setVisible(false);
 			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
+
+			panelAnterior.quitarBoton(boton);
 		}
 	
 		
 	}
+	
 	
 
 	public String definirFecha()

@@ -32,7 +32,7 @@ public class Pedido implements Serializable{
 		
 	}
 	
-		public Pedido(Pedido pedido2) {
+	public Pedido(Pedido pedido2) {
 		
 		this.id = pedido2.getId();
 		this.condicion = pedido2.getCondicion();
