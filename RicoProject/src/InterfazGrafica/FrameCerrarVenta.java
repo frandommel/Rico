@@ -27,6 +27,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	private JButton tarjeta,efectivo,cancelar;
 	private Pedido pedido;
 	private Comercio rico;
+	private JTextField demoraField;
+	private JLabel demoraText;
 
 	/**
 	 * Launch the application.
@@ -79,6 +81,15 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		getContentPane().add(cancelar);
 		cancelar.addActionListener(this);
 		
+		demoraField = new JTextField();
+		demoraField.setBounds(248, 11, 86, 20);
+		getContentPane().add(demoraField);
+		demoraField.setColumns(10);
+		String demoraStr = String.valueOf(pedido.verDemora());
+		demoraField.setText(demoraStr);
+		
+		
+		
 	}
 
 	@Override
@@ -93,8 +104,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			pedido.setCondicion("Tarjeta");
 			rico.setPedidos(pedido);
 			this.setVisible(false);
+			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
-			//rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 		
 		}
 		if(e.getSource()==efectivo)
@@ -103,8 +114,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			pedido.setCondicion("Efectivo");
 			rico.setPedidos(pedido);
 			this.setVisible(false);
+			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
-			//rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 		}
 	
 		
@@ -123,8 +134,4 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		
 		return strFecha;
 	}
-	
-	
-	
-
 }

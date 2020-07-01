@@ -60,17 +60,13 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JButton boton;
-		if(e.getSource() instanceof JButton) 
-		{
-			
+		if(e.getSource() instanceof JButton) {
 			boton = (JButton) e.getSource();
 			int numeroPedido=Integer.parseInt(boton.getText());
 			numeroPedido=numeroPedido-1;
 			FrameCerrarVenta cerrar = new FrameCerrarVenta(pedidos.get(numeroPedido),rico);
-			
 			cerrar.setVisible(true);
-			
-		}
+			}
 		
 		
 	}

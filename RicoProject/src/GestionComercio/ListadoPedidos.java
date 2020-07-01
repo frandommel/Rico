@@ -13,6 +13,7 @@ import interfaces.IAccion;
 
 public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
       private HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap;
+      private int montoTotal;
 
       public ListadoPedidos() {
 		
@@ -110,31 +111,7 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		return null;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder= new StringBuilder();
-		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-		Set<Map.Entry<String, ArrayList<Pedido>>> setE = listaPedidosContenedorMap.entrySet();
-		Iterator it =setE.iterator();
-		
-		while(it.hasNext())
-		{
-			Map.Entry<String, ArrayList<Pedido>> me = (Map.Entry<String, ArrayList<Pedido>>) it.next();
-			pedidos = me.getValue();
-			for(int i = 0;i<pedidos.size();i++)
-			{
-				stringBuilder.append(me.getValue().toString());
-				stringBuilder.append("\n");
-			}
-			
-		}
-		
-		
-		return stringBuilder.toString();
-	}
-
-
-
+	
 	public HashMap<String, ArrayList<Pedido>> getListaPedidosContenedorMap() {
 		return listaPedidosContenedorMap;
 	}

@@ -38,15 +38,22 @@ public class Venta extends JPanel implements ActionListener {
 	private JTextField montoField,textNumero;
 	private PedidosActivos activos;
 	private JCheckBox checkbox;
+	private static int numeroPedido=1;
+	
 	/**
-	 * Create the panel.
+	 * 
 	 */
 	public Venta(Comercio comercio,PedidosActivos pedidosActivos) {
+		
 		rico = comercio;
 		activos = pedidosActivos;
 		botones = new ArrayList<JButton>();
+		setInicioNumPedido();
 		listado = new ArrayList<Producto>();
 		initComponents();
+		
+	
+		
 	}
 	
 	private void initComponents() 
@@ -166,6 +173,7 @@ public class Venta extends JPanel implements ActionListener {
 				panel.updateUI();
 			}
 			Pedido pedido = new Pedido(getNumeroPedido(), "", listado, vip, monto);
+			numeroPedidoIncremen();
 			activos.addVenta(pedido);
 			
 		}
@@ -173,10 +181,12 @@ public class Venta extends JPanel implements ActionListener {
 	
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
+		
+			
 			botones.clear();
 			panel.removeAll();
 			montoField.setText("$ 0");
-			textNumero.setText(String.valueOf(getNumeroPedido()));
+			textNumero.setText("");
 			botonPedido.setEnabled(false);
 			panel.updateUI();
 		}
@@ -184,6 +194,7 @@ public class Venta extends JPanel implements ActionListener {
 	
 	public void addVenta(Producto producto)
 	{
+		textNumero.setText(String.valueOf(getNumeroPedido()));
 		listado.add(producto);
 		botonPedido.setEnabled(true);
 		listadoToButton();
@@ -191,7 +202,6 @@ public class Venta extends JPanel implements ActionListener {
 		checkbox.setSelected(false);
 		String montoString = String.valueOf(monto);
 		montoField.setText("$ "+montoString);
-		textNumero.setText(String.valueOf(getNumeroPedido()));
 		panel.updateUI();
 	}
 	
@@ -228,9 +238,18 @@ public class Venta extends JPanel implements ActionListener {
 
 	private int getNumeroPedido()
 	{
-		int numeroPedido=0;
+		return numeroPedido;
+	}
+	
+	private void numeroPedidoIncremen()
+	{
+		numeroPedido++;
+	}
+	
+	private void setInicioNumPedido()
+	{
 		HashMap<String, ArrayList<Pedido>>  mapaPedidos = rico.getPedidos().getListaPedidosContenedorMap();		
-		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		ArrayList<Pedido> pedidos =null;
 		try
 		{
 			pedidos = mapaPedidos.get(definirFecha());
@@ -240,8 +259,6 @@ public class Venta extends JPanel implements ActionListener {
 		{
 			e.printStackTrace();
 		}
-		
-		return numeroPedido;
 	}
 	
 	
@@ -279,4 +296,8 @@ public int setMontoVenta(double d) {
 		montoVenta = (int) (montoVenta*d);
 		return montoVenta;
 	}
+
+
+
+	
 }
