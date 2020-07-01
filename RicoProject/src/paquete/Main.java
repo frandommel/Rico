@@ -75,8 +75,6 @@ public class Main {
 		
 		//System.out.println(archivoPersona.leer());
 		
-		
-		
 
 		ArrayList <Combo> combos = new ArrayList();
 		ArrayList <Hamburguesa> hamburguesas = new ArrayList();
@@ -127,8 +125,6 @@ public class Main {
 		panchos.add(panchoSalsas);
 		panchos.add(panchoRookie);
 		panchos.add(panchoVeggie);
-		
-		
 		
 		Hamburguesa burguerKelly = new Hamburguesa("Kelly",200,false);
 		Hamburguesa burguerDobleQueso = new Hamburguesa("Doble queso",110,false);

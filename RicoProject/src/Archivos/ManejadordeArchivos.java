@@ -21,6 +21,12 @@ import GestionComercio.Comercio;
 import GestionComercio.Empleado;
 import GestionComercio.ListadoPedidos;
 import GestionComercio.Persona;
+import claseProductos.Bebida;
+import claseProductos.Combo;
+import claseProductos.Ensalada;
+import claseProductos.Guarnicion;
+import claseProductos.Hamburguesa;
+import claseProductos.Pancho;
 import claseProductos.Producto;
 
 public class ManejadordeArchivos {
@@ -123,6 +129,60 @@ public class ManejadordeArchivos {
 	public void actualizarArchivoPedidos(ListadoPedidos pedidos)
 	{
 		pedido.archivarPedido(pedidos);
+	}
+	
+	public void actualizarArchivoProducto(Producto productoNuevo)
+	{
+		if(productoNuevo instanceof Hamburguesa) {
+			ArrayList<Hamburguesa> lista = productos.leerHamburguesaCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarHamburguesa(lista);
+		}else if(productoNuevo instanceof Pancho) {
+			ArrayList<Pancho> lista = productos.leerPanchoCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarPancho(lista);
+		}else if(productoNuevo instanceof Ensalada) {
+			ArrayList<Ensalada> lista = productos.leerEnsaladaCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarEnsalada(lista);
+		}else if(productoNuevo instanceof Guarnicion) {
+			ArrayList<Guarnicion> lista = productos.leerGuarnicionCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarGuarnicion(lista);
+		}else if(productoNuevo instanceof Bebida) {
+			ArrayList<Bebida> lista = productos.leerBebidaCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getMarca().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarBebida(lista);
+		}else if (productoNuevo instanceof Combo) {
+			ArrayList<Combo> lista = productos.leerComboCambio();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getNombre().equalsIgnoreCase(productoNuevo.getNombre())) {
+					lista.get(i).setPrecio(productoNuevo.getPrecio());
+				}
+			}
+			productos.agregarCombo(lista);
+		}
+		
 	}
 	
 }

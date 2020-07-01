@@ -131,9 +131,6 @@ public class Comercio{
 		pedidos.alta(pedido);
 	}
 	
-	
-	
-	
 	public ManejadordeArchivos getArchivos() {
 		return archivos;
 	}
@@ -262,8 +259,13 @@ public class Comercio{
 			if(aux.get(i).getNombre().equalsIgnoreCase(producto)) {
 				p=aux.get(i);
 			}
+			if(aux.get(i).getNombre().equalsIgnoreCase("Cerveza")) {
+				Bebida bebida = (Bebida) aux.get(i);
+				if(bebida.getMarca().equalsIgnoreCase(producto)) {
+					p = bebida;
+				}
+			}
 		}
-		
 		return p;
 	}
 	
@@ -280,6 +282,13 @@ public class Comercio{
 			}
 		}
 		return producto2;
+	}
+	
+	public void modificarProducto(Producto producto,String nuevoPrecio)
+	{
+		boolean flag=false;
+		producto.setPrecio(Integer.parseInt(nuevoPrecio));
+		archivos.actualizarArchivoProducto(producto);
 	}
 	
 	
