@@ -32,7 +32,7 @@ public class Venta extends JPanel implements ActionListener {
 	private JPanel panel;
 	private JButton botonPedido,prueba,prueba2,boton, botonVip;
 	private ArrayList<JButton>botones;
-	private int indice,monto;
+	private int monto;
 	private Comercio rico;
 	private ArrayList<Producto> listado;
 	private JTextField montoField,textNumero;
@@ -45,12 +45,8 @@ public class Venta extends JPanel implements ActionListener {
 		rico = comercio;
 		activos = pedidosActivos;
 		botones = new ArrayList<JButton>();
-		indice = 0;
 		listado = new ArrayList<Producto>();
 		initComponents();
-		
-	
-		
 	}
 	
 	private void initComponents() 
@@ -177,8 +173,6 @@ public class Venta extends JPanel implements ActionListener {
 	
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
-		
-			
 			botones.clear();
 			panel.removeAll();
 			montoField.setText("$ 0");

@@ -93,7 +93,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			pedido.setCondicion("Tarjeta");
 			rico.setPedidos(pedido);
 			this.setVisible(false);
-			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
+			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
+			//rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 		
 		}
 		if(e.getSource()==efectivo)
@@ -102,7 +103,8 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			pedido.setCondicion("Efectivo");
 			rico.setPedidos(pedido);
 			this.setVisible(false);
-			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
+			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
+			//rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
 		}
 	
 		
