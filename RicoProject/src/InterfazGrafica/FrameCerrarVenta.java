@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
-import Exceptions.CobroException;
+//import Exceptions.CobroException;
 import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 

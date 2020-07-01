@@ -26,15 +26,16 @@ import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import Archivos.ArchivoPedidos;
 import Archivos.ArchivoProducto;
 import GestionComercio.Comercio;
+import claseProductos.Bebida;
 import claseProductos.Producto;
 
 public class Productos extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JLabel label1,label,label2,label3,label4,label5,tipoLabel,nombreProd;
-	private JTextField textField,textField2,textField3,textField4;
-	private JButton button,button2,modificar,buscar,borrar;
-	private JComboBox<String> comboBox,comboItemBox,comboItemBox2, comboItemBox3;
+	private JLabel label1,label,label2,label5,tipoLabel;
+	private JTextField textField,textField2;
+	private JButton button2,modificar,buscar;
+	private JComboBox<String> comboBox,comboItemBox,comboItemHamb, comboItemPancho,comboItemEnsalada,comboItemGuarnicion,comboItemBebida;
 	private Comercio rico;
 	
 
@@ -101,63 +102,24 @@ public class Productos extends JFrame implements ActionListener {
 		
 		
 		label=new JLabel("Nombre");
-		  label.setBounds(102,80,80,16);
+		  label.setBounds(102,109,80,16);
 		  label.setFont(new Font("Andale Mono",1,18));
 		  label.setForeground(new Color(255,255,255));
 		  getContentPane().add(label);
 			
-		  textField = new JTextField();
-		  textField.setBounds(204, 76, 177, 24);
-		  textField.setFont(new Font("Andale Mono",1,14));
-		  getContentPane().add(textField);
-			
 		  label2 = new JLabel("Precio");
-		  label2.setBounds(102,126,80,16);
+		  label2.setBounds(102,146,80,16);
 			label2.setFont(new Font("Andale Mono",1,18));
 			label2.setForeground(new Color(255,255,255));  
 			getContentPane().add(label2);
 			
 			textField2 = new JTextField();
-			textField2.setBounds(204, 122, 177, 24);
+			textField2.setBounds(204, 143, 177, 24);
 			textField2.setFont(new Font("Andale Mono",1,14));
 			getContentPane().add(textField2);
 			
-			label3 = new JLabel("Calorias");
-			label3.setBounds(102,172,84,16);
-			label3.setVisible(false);
-			label3.setFont(new Font("Andale Mono",1,18));
-			label3.setForeground(new Color(255,255,255));  
-			getContentPane().add(label3);
-			
-			textField3 = new JTextField();
-			textField3.setBounds(204, 168, 177, 24);
-			textField3.setVisible(false);
-			textField3.setFont(new Font("Andale Mono",1,18));
-			getContentPane().add(textField3);
-			
-			label4 = new JLabel("Marca");
-			label4.setBounds(102,172,84,16);
-			label4.setVisible(false);
-			label4.setFont(new Font("Andale Mono",1,18));
-			label4.setForeground(new Color(255,255,255));  
-			getContentPane().add(label4);
-			
-			textField4 = new JTextField();
-			textField4.setBounds(204, 168, 177, 24);
-			textField4.setVisible(false);
-			textField4.setFont(new Font("Andale Mono",1,18));
-			getContentPane().add(textField4);
-			
 			agregarComboListaProductos();
 			agregarItemsTipoCombo();
-			
-			button=new JButton("Nuevo");
-			button.setBounds(485,78,110,24);
-			button.setFont(new Font("Arial", Font.BOLD, 12));
-			button.setForeground(Color.BLACK); 
-			button.addActionListener(this);
-			button.setEnabled(false);
-			getContentPane().add(button);
 			
 			buscar = new JButton("Buscar");
 			buscar.setBounds(485,124,110,24);
@@ -173,14 +135,6 @@ public class Productos extends JFrame implements ActionListener {
 			modificar.setForeground(Color.BLACK);  
 			modificar.addActionListener(this);
 			getContentPane().add(modificar);
-			
-			borrar = new JButton("Borrar");
-			borrar.setBounds(485,216,110,24);
-			borrar.setEnabled(false);
-			borrar.setFont(new Font("Arial", Font.BOLD, 12));
-			borrar.setForeground(Color.BLACK);
-			borrar.addActionListener(this);
-			getContentPane().add(borrar);
 			
 			button2=new JButton("Volver");
 			button2.setBounds(12,341,110,24);
@@ -223,6 +177,7 @@ public class Productos extends JFrame implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			ArchivoProducto p = new ArchivoProducto();
 			if(e.getSource() == button2) 
 			{
 				VentanaPedido pedido = new VentanaPedido(rico);
@@ -230,24 +185,66 @@ public class Productos extends JFrame implements ActionListener {
 				dispose();
 			}
 			if(e.getSource()==comboBox) {
-				quitarCalorias();
-				quitarMarca();
 				quitarCombo();
 				quitarNombreTipoCombo();
 				String comparado = (String)comboBox.getSelectedItem();
 				if(comparado=="Hamburguesa") {
-				
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					productos = p.leerHamburguesa();
+					comboItemHamb.setVisible(true);		
+					comboItemPancho.setVisible(false);
+					comboItemBebida.setVisible(false);
+					comboItemEnsalada.setVisible(false);
+					comboItemGuarnicion.setVisible(false);
+					if(comboItemHamb.getItemCount() == 0) {
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemHamb);
+					}
 				}
 				if (comparado=="Pancho") {
-					
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					productos = p.leerPancho();
+					comboItemHamb.setVisible(false);		
+					comboItemPancho.setVisible(true);
+					comboItemBebida.setVisible(false);
+					comboItemEnsalada.setVisible(false);
+					comboItemGuarnicion.setVisible(false);
+					if(comboItemPancho.getItemCount() == 0) 
+					{
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemPancho);
+					}
 				}
 				if (comparado=="Ensalada") {
-					label3.setVisible(true);
-					textField3.setVisible(true);
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					productos = p.leerEnsalada();
+					comboItemHamb.setVisible(false);		
+					comboItemPancho.setVisible(false);
+					comboItemBebida.setVisible(false);
+					comboItemEnsalada.setVisible(true);
+					comboItemGuarnicion.setVisible(false);
+					if(comboItemEnsalada.getItemCount() == 0) {
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemEnsalada);
+					}
 				}
 				if(comparado=="Bebida") {
-					label4.setVisible(true);
-					textField4.setVisible(true);
+					comboItemBebida.removeAll();
+					ArrayList<String> listaProducto = new ArrayList<String>();
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					productos = p.leerBebida();
+					comboItemHamb.setVisible(false);		
+					comboItemPancho.setVisible(false);
+					comboItemBebida.setVisible(true);
+					comboItemEnsalada.setVisible(false);
+					comboItemGuarnicion.setVisible(false);
+					if(comboItemBebida.getItemCount() == 0) {
+						listaProducto = pasar2ListaString(productos);
+						moverArray2Combo(listaProducto, comboItemBebida);
+					}
 				}
 				if(comparado == "Combo") {
 					label5.setVisible(true);
@@ -257,68 +254,58 @@ public class Productos extends JFrame implements ActionListener {
 			if(e.getSource()==comboItemBox)
 			{
 				String comparado = (String)comboItemBox.getSelectedItem();
-				ArchivoProducto p = new ArchivoProducto();
-			
-			
 				if(comparado=="Hamburguesa")
 				{
-					ArrayList<String> listaProducto = new ArrayList<String>();
-					ArrayList<Producto> productos = new ArrayList<Producto>();
-					nombreProd.setVisible(true);
-					comboItemBox2.setVisible(true);		
-					comboItemBox3.setVisible(false);
-					productos = p.leerHamburguesa();
-					if(comboItemBox2.getItemCount() == 0) {
-						listaProducto = pasar2ListaString(productos);
-						moverArray2Combo(listaProducto, comboItemBox2);
-					}
+					comboItemHamb.setVisible(true);		
+					comboItemPancho.setVisible(false);
+					comboItemBebida.setVisible(false);
+					comboItemEnsalada.setVisible(false);
+					comboItemGuarnicion.setVisible(false);
+					
 				}
 				if(comparado=="Pancho")
 				{
+					comboItemHamb.setVisible(false);		
+					comboItemPancho.setVisible(true);
+					comboItemBebida.setVisible(false);
+					comboItemEnsalada.setVisible(false);
+					comboItemGuarnicion.setVisible(false);
 					
-					ArrayList<String> listaProducto = new ArrayList<String>();
-					ArrayList<Producto> productos = new ArrayList<Producto>();
-					nombreProd.setVisible(true);
-					comboItemBox3.setVisible(true);
-					comboItemBox2.setVisible(false);
-					productos = p.leerPancho();
-					if(comboItemBox3.getItemCount() == 0) 
-					{
-						listaProducto = pasar2ListaString(productos);
-						moverArray2Combo(listaProducto, comboItemBox3);
-					}
 				}
-			
 		  }
+			if(e.getSource()==comboItemEnsalada) {
+				String comparado2 = (String)comboItemEnsalada.getSelectedItem();
+				if(comparado2.equals("Ukelele"))
+				{
+					String string = comparado2;
+					ArrayList<Producto> productos = new ArrayList<Producto>();
+					productos=p.leerEnsalada();
+					int precio =precioFromArchivo(productos, string);
+					textField2.setText(String.valueOf(precio));
+				}
+			}
 		}
 		
-		public void quitarCalorias() {
-			label3.setVisible(false);
-			textField3.setVisible(false);
-		}
-		public void quitarMarca() {
-			label4.setVisible(false);
-			textField4.setVisible(false);
-		}
+		
+		
 		public void quitarCombo() {
 			label5.setVisible(false);
 			comboItemBox.setVisible(false);
 		}
 		public void quitarNombreTipoCombo() {
-			nombreProd.setVisible(false);
-			comboItemBox2.setVisible(false);
+			comboItemHamb.setVisible(false);
 		}
 		
 		public void agregarComboListaProductos() {
 			label5 =new JLabel("Tipo");
-			label5.setBounds(102,172,84,16);
+			label5.setBounds(102,72,84,16);
 			label5.setVisible(false);
 			label5.setFont(new Font("Andale Mono",1,18));
 			label5.setForeground(new Color(255,255,255));  
 			getContentPane().add(label5);
 			ArrayList<String> listaProducto = new ArrayList<String>();
 			comboItemBox=new JComboBox<String>();
-			comboItemBox.setBounds(204, 168, 177, 24);
+			comboItemBox.setBounds(204, 69, 177, 24);
 			comboItemBox.setVisible(false);
 			comboItemBox.setFont(new Font("Andale Mono",1,14));
 			getContentPane().add(comboItemBox);
@@ -331,28 +318,40 @@ public class Productos extends JFrame implements ActionListener {
 		public void agregarItemsTipoCombo()
 		{
 			ArchivoProducto p = new ArchivoProducto();
-			nombreProd = new JLabel("Nombre");
-			nombreProd.setBounds(102,218,84,16);
-			nombreProd.setVisible(false);
-			nombreProd.setFont(new Font("Andale Mono",1,18));
-			nombreProd.setForeground(new Color(255,255,255));  
-			getContentPane().add(nombreProd);
 			
-			comboItemBox2=new JComboBox<String>();
-			comboItemBox2.setBounds(204, 214, 177, 24);
-			comboItemBox2.setVisible(false);
-			comboItemBox2.setFont(new Font("Andale Mono",1,14));
-			getContentPane().add(comboItemBox2);
-
-			comboItemBox2.addActionListener(this);
+			comboItemHamb=new JComboBox<String>();
+			comboItemHamb.setBounds(204, 106, 177, 24);
+			comboItemHamb.setVisible(false);
+			comboItemHamb.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemHamb);
+			comboItemHamb.addActionListener(this);
 			
-			comboItemBox3=new JComboBox<String>();
-			comboItemBox3.setBounds(204, 214, 177, 24);
-			comboItemBox3.setVisible(false);
-			comboItemBox3.setFont(new Font("Andale Mono",1,14));
-			getContentPane().add(comboItemBox3);
+			comboItemPancho=new JComboBox<String>();
+			comboItemPancho.setBounds(204, 106, 177, 24);
+			comboItemPancho.setVisible(false);
+			comboItemPancho.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemPancho);
 
-			comboItemBox3.addActionListener(this);
+			comboItemPancho.addActionListener(this);
+			
+			comboItemEnsalada = new JComboBox<String>();
+			comboItemEnsalada.setBounds(204, 106, 177, 24);
+			comboItemEnsalada.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemEnsalada);
+			comboItemEnsalada.addActionListener(this);
+			
+			comboItemBebida = new JComboBox<String>();
+			comboItemBebida.setBounds(204, 106, 177, 24);
+			comboItemBebida.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemBebida);
+			comboItemBebida.addActionListener(this);
+			
+			comboItemGuarnicion = new JComboBox<String>();
+			comboItemGuarnicion.setBounds(204, 106, 177, 24);
+			comboItemGuarnicion.setFont(new Font("Andale Mono",1,14));
+			getContentPane().add(comboItemGuarnicion);
+			comboItemGuarnicion.addActionListener(this);
+			
 		}
 		
 		public void agregarItem(JComboBox<String> listaItem,String item) {
@@ -370,9 +369,27 @@ public class Productos extends JFrame implements ActionListener {
 		public ArrayList<String> pasar2ListaString(ArrayList<Producto>p){
 			ArrayList<String>listaProd=new ArrayList<String>();
 			for (int i = 0; i < p.size(); i++) {
-				String nombre = p.get(i).getNombre();
-				listaProd.add(nombre);
+				if(p.get(i) instanceof Bebida && p.get(i).getNombre().equalsIgnoreCase("Cerveza")){
+					Bebida b = (Bebida) p.get(i);
+					String nombre = b.getMarca();
+					listaProd.add(nombre);
+				}else {
+					String nombre = p.get(i).getNombre();
+					listaProd.add(nombre);
+				}
 			}
 			return listaProd;
+		}
+		
+		public int precioFromArchivo(ArrayList<Producto> p, String producto) {
+			
+			int buscado=0;
+			for (int i = 0; i < p.size(); i++) {
+				if(p.get(i).getNombre().equalsIgnoreCase(producto)) {
+					buscado= p.get(i).getPrecio();
+				}
+			}
+			
+			return buscado;
 		}
 }
