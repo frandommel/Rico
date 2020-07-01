@@ -6,7 +6,7 @@ import java.util.HashMap;
 import claseProductos.Producto;
 
 public interface IAccion<V,T> {
-	public T  buscar(V busqueda,int id);
-	public String listar(V clave);
+	public ArrayList<T>  buscar(V busqueda);
+	public String listar();
 	public void alta(T objeto);
 }

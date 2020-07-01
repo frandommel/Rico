@@ -19,12 +19,9 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		
     	  listaPedidosContenedorMap = new HashMap<String, ArrayList<Pedido>>();
     	  montoTotal = getMontoTotal();
-    	  
 	}
 
-	
-	
-	private int getMontoTotal() {
+      private int getMontoTotal() {
 		int montoTotal = 0;
 		Set<Map.Entry<String, ArrayList<Pedido>>> setE = getListaPedidosContenedorMap().entrySet();
 		Iterator it = setE.iterator();
@@ -38,8 +35,6 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		return montoTotal;
 	}
 
-
-
 	public int getMontoDiario (String keyDia)
 	{
 		int monto=0;
@@ -52,16 +47,32 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 			monto = monto + cuentaDiaria.get(i).getMontoVenta();
 		}
 		
-		return monto;
+		return monto;		
+	}
+
+	@Override
+	public String listar() {
+		return getListaPedidosContenedorMap().toString();
+	}
+	
+	@Override
+	public void alta(Pedido objeto) {
+			ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
+			aux.add(objeto);
+	}
+	
+
+	@Override
+	public ArrayList<Pedido> buscar(String busqueda) {
+		
+		return getListaPedidosContenedorMap().get(busqueda);
 		
 	}
 
-
-	@Override
-	public String listar(String clave) {
-		return getListaPedidosContenedorMap().toString();
+	
+	public String listarDia(String busqueda) {
+		return buscar(busqueda).toString();
 	}
-
 
 	public void inciarDia() {
 		String fechaActual = definirFecha();
@@ -69,52 +80,10 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		listaPedidosContenedorMap.put(fechaActual, listaX);
 	}
 
-	@Override
-	public void alta(Pedido objeto) {
-			ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
-			aux.add(objeto);
-	}
-	
-	public boolean cobro(Pedido objeto)
-	{
-		ArrayList<Pedido> aux = listaPedidosContenedorMap.get(objeto.getFecha());
-		Pedido buscado = new Pedido();
-		int i =0;
-		boolean flag = false;
-		
-		while(i<aux.size()  && flag==false)
-		{
-			if(aux.get(i).equals(objeto))
-			{
-				buscado = aux.get(i);
-				flag=true;
-			}
-			
-			i++;
-		}
-		
-		if(flag==true)
-		{
-			buscado.setCobrado(true);
-		}
-		
-		return flag;
-		
-	}
-
-
-
-	@Override
-	public Pedido buscar(String busqueda, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public HashMap<String, ArrayList<Pedido>> getListaPedidosContenedorMap() {
 		return listaPedidosContenedorMap;
 	}
-
-
 
 	public void setListaPedidosContenedorMap(HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap) {
 		this.listaPedidosContenedorMap = listaPedidosContenedorMap;
@@ -132,11 +101,5 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		
 		return strFecha;
 	}
-
-
-	
-
-	
-	
       
 }
