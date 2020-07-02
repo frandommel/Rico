@@ -18,6 +18,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -45,6 +49,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
+import GestionComercio.ClienteVip;
+import GestionComercio.Empleado;
 import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 
@@ -56,7 +62,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	private JLabel label1, label2;
 	private JButton hamButton, panchButton, guarnButton, bebButton, comboButton, ensaladaButton;
 	private JMenuBar menuBar;
-	private JMenuItem registroItem,menuEmpleado,menuProducto,menuCliente,pedidosItem;
+	private JMenuItem registroItem,menuEmpleado,menuProducto,menuCliente,pedidosItem, menuPedido;
 	private JMenu menuRegistro,menu;
 	private Inicio inicio;///MAL HECHO TRAER DATO DE INICIO COMO CORRESPONDE
 	private String nombre;
@@ -219,8 +225,15 @@ public class VentanaPedido extends JFrame implements ActionListener{
 			productos.setVisible(true);
 			dispose();
 		}
+		if(e.getSource()==menuPedido) {
+			DetallePedidos detalle = new DetallePedidos(rico);
+			detalle.setVisible(true);
+			dispose();
+		}
 		if(e.getSource()==registroItem) {
 		       Document documento = new Document();
+		       HashMap<String, Empleado> empleados = new HashMap<String, Empleado>();
+		       HashMap<String, ClienteVip> clientes = new HashMap<String, ClienteVip>();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
 		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Personas.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
@@ -228,6 +241,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		           // ImageIcon icono = new ImageIcon(Menu.class.getResource("/paquete/rico.jpeg"));
 		           // icono.scaleToFit(650, 1000);            //para darle dimension a la imagen
 		           // icono.setAlignment(Chunk.ALIGN_CENTER);                   //metodo para alinear nuestra imagen
+		            
 
 		            Paragraph parrafo = new Paragraph();
 		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
@@ -237,71 +251,89 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            
 		            
 		            Paragraph parrafo2 = new Paragraph();
-		            JSONObject object = new JSONObject();
-		            ManejadordeArchivos archivo = new ManejadordeArchivos();
-		            object = archivo.leerPersonas();
-		            JSONArray arrayEmpleado = (JSONArray) object.get("empleados");
-		            JSONArray arrayClientes = (JSONArray) object.get("clientes");
+
 		            parrafo2.add("\n\n");
+		            parrafo2.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
 		            parrafo2.add("Empleados: \n\n");
-		            for(int i=0; i<arrayEmpleado.length(); i++)
-		            {
-		            	JSONObject object1 = new JSONObject();
-		            	object1 = (JSONObject) arrayEmpleado.get(i);
-		            	parrafo2.setFont(FontFactory.getFont("Tahoma", 12, BaseColor.BLACK));
-		            	parrafo2.add("(-Nombre Completo): " + object1.get("nombre").toString() + ",  (-Posicion): " + object1.get("posicion")
-		            					+ ",  (-Telefono): " + object1.get("telefono") );
-		            	parrafo2.add("\n");
-		            	parrafo2.add("(-Direccion): " + object1.get("direccion"));
-		            	parrafo2.add("\n");
-		            }
+		            
+		            
+			        PdfPTable tablaEmpleado = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
+			        tablaEmpleado.addCell("NOMBRE Y APELLIDO");                       
+			        tablaEmpleado.addCell("DIRECCION");
+			        tablaEmpleado.addCell("TELEFONO");
+			        
+			        try {
+						empleados = rico.getArchivos().getListadoEmpleados();
+						
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+			        Set<Entry<String,Empleado>> set = empleados.entrySet();
+			        Iterator it = set.iterator();
+			        
+			        while(it.hasNext()) 
+			        {
+			        	Entry<String,Empleado> entry = (Entry<String,Empleado>) it.next();
+			        	tablaEmpleado.addCell(entry.getValue().getNombre());
+			        	tablaEmpleado.addCell(entry.getValue().getDireccion());
+			        	tablaEmpleado.addCell(entry.getValue().getTelefono());
+			        }
+			        
+			        PdfPTable tablaCliente = new PdfPTable(3);   
+			        tablaCliente.addCell("NOMBRE Y APELLIDO");                       
+			        tablaCliente.addCell("DIRECCION");
+			        tablaCliente.addCell("TELEFONO");
+			        
+			        try {
+								clientes = rico.getArchivos().getListadoCliente();
+								
+						} catch (JSONException e1) {
+							e1.printStackTrace();
+						}
+			        
+			        Set<Entry<String,ClienteVip>> setC = clientes.entrySet();
+			        Iterator itC = setC.iterator();
+			        
+			        while(itC.hasNext()) 
+			        {
+			        	Entry<String,ClienteVip> entryC = (Entry<String,ClienteVip>) itC.next();
+			        	tablaCliente.addCell(entryC.getValue().getNombre());
+			        	tablaCliente.addCell(entryC.getValue().getDireccion());
+			        	tablaCliente.addCell(entryC.getValue().getTelefono());
+			        }
+							
+
 		            Paragraph parrafo3 = new Paragraph();
 		            parrafo3.add("\n\n");
+		            parrafo3.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
 		            parrafo3.add("Clientes Vip: \n\n");
-		            for(int i=0; i<arrayClientes.length(); i++)
-		            {
-		            	JSONObject object1 = new JSONObject();
-		            	object1 = (JSONObject) arrayClientes.get(i);
-		            	parrafo3.setFont(FontFactory.getFont("Tahoma", 12, BaseColor.BLACK));
-		            	parrafo3.add("(-Nombre Completo): " + object1.get("nombre").toString() + ",  (-Telefono): " + object1.get("telefono") );
-		            	parrafo3.add("\n");
-		            	parrafo3.add("(-Direccion): " + object1.get("direccion"));
-		            	parrafo3.add("\n");
-		            }
+
 		            Paragraph parrafo4 = new Paragraph();
 		            Date fecha = new Date();
 		            parrafo4.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
 		            parrafo4.setAlignment(Paragraph.ALIGN_RIGHT);
 		            parrafo4.add("\n\n\n");
 		            parrafo4.add("Registro creado el:" + fecha.toString());
-		            
-		            
-		            
+		               
 		            documento.open();     
-		            //documento.add(header);
 		            documento.add(parrafo);
 		            documento.add(parrafo2);
+		            documento.add(tablaEmpleado);
 		            documento.add(parrafo3);
+		            documento.add(tablaCliente);
 		            documento.add(parrafo4);
-		           PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
-		           tabla.addCell("Codigo");                       
-		           //tabla.addCell("Fecha");
-		           //tabla.addCell("Pedido");
+
 		          
-		           documento.add(tabla);
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
 		            
 		            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ruta + "\\Desktop\\Registro_Rico_Personas.pdf");  ///abrimos el pdf automaticamente
-    
+ 
 		        } catch (DocumentException | HeadlessException | FileNotFoundException b) {
 		        		b.printStackTrace();
 		        } catch (IOException a) {
 		        		a.printStackTrace();
-		        } catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+		        } 
 		}
 		if(e.getSource()==pedidosItem) {
 		       Document documento = new Document();
@@ -383,6 +415,11 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		menuProducto.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
 		menuProducto.addActionListener(this);
 		menu.add(menuProducto);
+		
+		menuPedido = new JMenuItem("Buscar Pedidos");
+		menuPedido.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+		menuPedido.addActionListener(this);
+		menu.add(menuPedido);
 		
 		menuRegistro = new JMenu("Registro");
 		menuRegistro.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));

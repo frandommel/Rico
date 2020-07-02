@@ -60,8 +60,6 @@ public class observacionProducto extends JFrame implements ActionListener{
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(new Color(241,98,63));
 		
-	
-		
 		textField = new JTextField();
 		textField.setBounds(12, 164, 420, 31);
 		getContentPane().add(textField);
