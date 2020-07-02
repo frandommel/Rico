@@ -63,6 +63,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 	
 	public Inicio(Comercio comercio) {
 		rico = comercio;
+		
 		initComponents();
 	}
 	

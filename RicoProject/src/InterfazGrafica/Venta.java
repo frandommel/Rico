@@ -189,7 +189,7 @@ public class Venta extends JPanel implements ActionListener {
 			Producto productoI = origen.get(i);
 			if((productoI instanceof claseProductos.Pancho)||(productoI instanceof claseProductos.Bebida)||
 					(productoI instanceof claseProductos.Combo)||(productoI instanceof claseProductos.Guarnicion)||
-					(productoI instanceof claseProductos.Hamburguesa)||(productoI instanceof claseProductos.Guarnicion))
+					(productoI instanceof claseProductos.Hamburguesa)||(productoI instanceof claseProductos.Ensalada))
 			{
 				destino.add(productoI);
 			}
@@ -212,6 +212,7 @@ public class Venta extends JPanel implements ActionListener {
 	{
 		textNumero.setText(String.valueOf(getNumeroPedido()));
 		listado.add(producto);
+		System.out.println(listado.toString());
 		botonPedido.setEnabled(true);
 		listadoToButton();
 		monto = setMontoVenta();
