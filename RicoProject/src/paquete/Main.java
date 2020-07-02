@@ -177,18 +177,7 @@ public class Main {
 		
 	}
 	
-	public static String definirFecha()
-	{
-		Date fechaOrigen = new Date();
-		int dia,mes,anio;
-		String strFecha;
-		dia=fechaOrigen.getDate();
-		mes=fechaOrigen.getMonth()+1;
-		anio=fechaOrigen.getYear()+1900;
-		strFecha = dia+"/"+mes+"/"+anio;
-		
-		return strFecha;
-	}
+	
 	
 
 }

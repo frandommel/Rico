@@ -136,6 +136,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 					if(flag==true)
 					{
 						pedido = new VentanaPedido(rico);
+						
 						pedido.setVisible(true);
 						this.setVisible(false);
 					}
