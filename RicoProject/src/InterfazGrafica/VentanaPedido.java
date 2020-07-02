@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -51,6 +53,7 @@ import Archivos.ArchivoProducto;
 import Archivos.ManejadordeArchivos;
 import GestionComercio.ClienteVip;
 import GestionComercio.Empleado;
+import GestionComercio.ListadoPedidos;
 import GestionComercio.Comercio;
 import GestionComercio.Pedido;
 
@@ -64,7 +67,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 	private JMenuBar menuBar;
 	private JMenuItem registroItem,menuEmpleado,menuProducto,menuCliente,pedidosItem, menuPedido;
 	private JMenu menuRegistro,menu;
-	private Inicio inicio;///MAL HECHO TRAER DATO DE INICIO COMO CORRESPONDE
+	private Inicio inicio;
 	private String nombre;
 	private Comercio rico;
 	private Venta ventas;
@@ -96,6 +99,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		initComponents();
 	}		
 	
+	/**
+	 * Metodo para iniciar los componentes de la ventana.
+	 */
 	public void initComponents() {
 		
 		cerrar();
@@ -159,7 +165,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 
 
 	}
-	
+	/**
+	 * @param Se le pasa el Action Event para saber donde tiene que escuchar el ActionListener	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== hamButton) {
@@ -337,28 +345,53 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		}
 		if(e.getSource()==pedidosItem) {
 		       Document documento = new Document();
+		       HashMap<String, ArrayList<Pedido>> listadoHash = new HashMap<String, ArrayList<Pedido>>();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
 		            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "\\Desktop\\Registro_Rico_Pedidos.pdf"));     //para crear el reporte y indicarle donde se va a guardar y como se va a llamar el mismo
 		        
-		          
-		       
 		            Paragraph parrafo = new Paragraph();
 		            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
 		            parrafo.add("RICO REGISTRO DE PEDIDOS \n\n");
 		            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.BLACK));
 		       
 		            documento.open();     
-		            //documento.add(header);
+		            
 		            documento.add(parrafo);
 		           
 		           PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
-		           tabla.addCell("Codigo");                       
 		           tabla.addCell("Fecha");
-		           tabla.addCell("Pedido");
-		          // ImgTemplate img = new ImgTemplate(template)
+		           tabla.addCell("Codigo");                            
+		           tabla.addCell("Monto Total");
+		           
+		           PdfPTable tablaPedido = new PdfPTable(3);  
+		           ListadoPedidos listado = rico.getArchivos().getListadoPedidos();
+		           listadoHash = listado.getListaPedidosContenedorMap();
+		           
+			        Set<Entry<String,ArrayList<Pedido>>> set = listadoHash.entrySet();
+			        Iterator it = set.iterator();
+			        while(it.hasNext()) 
+			        {
+			        	Entry<String,ArrayList<Pedido>> entry = (Entry<String,ArrayList<Pedido>>) it.next();
+			        	for(int i=0; i<entry.getValue().size(); i++) {
+			        		tablaPedido.addCell(entry.getValue().get(i).getFecha());
+			        	   	tablaPedido.addCell(String.valueOf(entry.getValue().get(i).getId()));
+			        		tablaPedido.addCell("$  "+ String.valueOf(entry.getValue().get(i).getMontoVenta()));
+			        	}
+			        }
+		           
+		            Paragraph parrafo4 = new Paragraph();
+		            Date fecha = new Date();
+		            parrafo4.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
+		            parrafo4.setAlignment(Paragraph.ALIGN_RIGHT);
+		            parrafo4.add("\n\n\n");
+		            parrafo4.add("Registro creado el:" + fecha.toString());
+		    
 		          
-		           documento.add(tabla);
+		            documento.add(tabla);
+		            documento.add(tablaPedido);
+		            documento.add(parrafo4);
+		            
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");
 		            
@@ -372,6 +405,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Se creaon los diferentes tipos de panales de los botones de los productos.
+	 */
 	public void ingresarPaneles() { //Creacion paneles 
 		h = new Hamburguesa(rico,ventas);
 		p =new Pancho(rico,ventas);
@@ -437,7 +473,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		menuRegistro.add(pedidosItem);
 	}
 
-	//Cerramos la aplicacion con la cruz
+	/**
+	 * Validamos el cierre de la aplicacion para mayor seguridad
+	 */
 	public void cerrar() 
 	{
 		try {
@@ -453,7 +491,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Confirmacion de salida de la aplicacion
+	 */
 	public void confirmarSalida()
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de cerrar la aplicacion","ADVERTENCIA"
