@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -53,7 +54,11 @@ public class ManejadordeArchivos {
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
 		destinoPedido = pedido.leerPedidos();
-		destinoPedido.inciarDia();
+		if(destinoPedido.getListaPedidosContenedorMap().containsKey(definirFecha())==false)
+		{
+			destinoPedido.inciarDia();
+		}
+	
 		return destinoPedido;	
 	}
 	
@@ -183,6 +188,20 @@ public class ManejadordeArchivos {
 			productos.agregarCombo(lista);
 		}
 		
+	}
+	
+	
+	public static String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
 	}
 	
 }

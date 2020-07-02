@@ -47,6 +47,7 @@ public class Comercio{
 	productos = archivos.getListadoProductos();
 	try {
 		pedidos = archivos.getListadoPedidos();
+		
 		empleados = archivos.getListadoEmpleados();
 		clientes = archivos.getListadoCliente();
 	} catch (JSONException e) {
@@ -298,7 +299,18 @@ public class Comercio{
 				//+ " \n Listado de Empleados=" + "\n Listado de Pedidos=" + pedidos.toString() + "\n Listado de Clientes ";
 	}
 	
-	
+	public static String definirFecha()
+	{
+		Date fechaOrigen = new Date();
+		int dia,mes,anio;
+		String strFecha;
+		dia=fechaOrigen.getDate();
+		mes=fechaOrigen.getMonth()+1;
+		anio=fechaOrigen.getYear()+1900;
+		strFecha = dia+"/"+mes+"/"+anio;
+		
+		return strFecha;
+	}
 	
 	
 	

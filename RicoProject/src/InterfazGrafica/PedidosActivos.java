@@ -35,7 +35,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		rico = comercio;
 		
 		
-		pedidos = new ArrayList<Pedido>();
+		pedidos = new ArrayList<Pedido>(rico.getPedidos().getListaPedidosContenedorMap().get(definirFecha()));
 		buttons = new ArrayList<JButton>();
 		initComponents();
 	}

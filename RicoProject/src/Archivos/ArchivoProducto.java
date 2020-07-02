@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import org.json.JSONObject;
 import org.omg.CORBA.DataInputStream;
 
 import claseProductos.Bebida;
@@ -68,7 +69,8 @@ public class ArchivoProducto
 			combo = (ArrayList<Producto>) object.readObject();		
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+				agregarCombo(new ArrayList<Combo>());
+				leerCombo();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -95,7 +97,8 @@ public class ArchivoProducto
 			combo = (ArrayList<Combo>) object.readObject();		
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarCombo(new ArrayList<Combo>());
+			leerCombo();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -146,7 +149,8 @@ public class ArchivoProducto
 			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarHamburguesa(new ArrayList<Hamburguesa>());
+			leerHamburguesa();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -220,7 +224,8 @@ public class ArchivoProducto
 			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarPancho(new ArrayList<Pancho>());
+			leerPancho();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -294,7 +299,8 @@ public class ArchivoProducto
 			lista = (ArrayList<Producto>)object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarEnsalada(new ArrayList<Ensalada>());
+			leerEnsalada();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -372,7 +378,8 @@ public class ArchivoProducto
 			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarGuarnicion(new ArrayList<Guarnicion>());
+			leerGuarnicion();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -449,7 +456,8 @@ public class ArchivoProducto
 			lista = (ArrayList<Producto>) object.readObject();
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			agregarBebida(new ArrayList<Bebida>());
+			leerBebida();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}

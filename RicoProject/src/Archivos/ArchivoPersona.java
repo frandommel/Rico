@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import GestionComercio.ClienteVip;
 import GestionComercio.Empleado;
+import GestionComercio.ListadoPedidos;
 import GestionComercio.Persona;
 import InterfazGrafica.Cliente;
 
@@ -53,7 +54,12 @@ public class ArchivoPersona {
 			objectObject = new JSONObject(contenido);
 			personas = generateEmpleado(objectObject, personas);
 			
-		} catch (IOException e) {
+		} 
+		catch (FileNotFoundException e) {
+			agregarArchivo(new JSONObject());
+			leerEmpleado();
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		} 
 		return personas;
@@ -69,7 +75,10 @@ public class ArchivoPersona {
 			objectObject = new JSONObject(contenido);
 			personas = generateCliente(objectObject, personas);
 			
-		} catch (IOException e) {
+		} catch (FileNotFoundException e) {
+			agregarArchivo(new JSONObject());
+			leerCliente();
+		}catch (IOException e) {
 			e.printStackTrace();
 		} 
 		return personas;

@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import GestionComercio.ListadoPedidos;
 import GestionComercio.Pedido;
 import claseProductos.Bebida;
@@ -61,7 +63,10 @@ public class ArchivoPedidos	implements Serializable {
 		
 			object.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Bienvenido a su nuevo sistema !\nGracias por utilizar nuestros servicios \nDVD® Software Development ");
+			archivarPedido(new ListadoPedidos());
+			leerPedidos();
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
