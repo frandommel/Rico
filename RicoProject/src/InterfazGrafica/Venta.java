@@ -167,7 +167,7 @@ public class Venta extends JPanel implements ActionListener {
 			if(checkbox.isSelected()==true)
 			{
 				vip=true;
-				monto = (int)0.85*monto;
+				monto = setMontoVenta(0.85);
 				textNumero.setText(String.valueOf(monto));
 				panel.updateUI();
 			}
