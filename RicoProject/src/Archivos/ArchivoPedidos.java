@@ -26,7 +26,7 @@ public class ArchivoPedidos	implements Serializable {
 	}
 	
 	/**
-	 * {@docRoot}
+	 * Archivo{@docRoot}
 	 * @param Recibe ListadoPedido y se guardae en el archivo pedidos.bin
 	 */
 	public void archivarPedido(ListadoPedidos pedido) 
@@ -52,7 +52,7 @@ public class ArchivoPedidos	implements Serializable {
 	}
 	
 	/**
-	 * {@docRoot}
+	 * Archivo {@docRoot}
 	 * @return Lee los pedidos del archivo "pedidos.bin" y devuelve un ListadoPedido
 	 */
 	public ListadoPedidos leerPedidos()

@@ -32,7 +32,6 @@ public class ArchivoPersona {
 	}
 	/**
 	 * 
-	 * Archivo {@docRoot}
 	 * @param Recibe un JsonObject y lo guarda en personas.Json
 	 * @throws IOException
 	 */
@@ -49,7 +48,7 @@ public class ArchivoPersona {
 	}
 	
 	/**
-	 * Archivo {@docRoot}
+	 * 
 	 * @return HashMap de <String,Empleado>
 	 * @throws JSONException
 	 */
@@ -75,8 +74,7 @@ public class ArchivoPersona {
 		return personas;
 	}
 	
-	/**
-	 * Archivo {@docRoot}
+	/** 
 	 * @return HashMap de tipo <String,ClienteVip>
 	 * @throws JSONException
 	 */
@@ -100,9 +98,9 @@ public class ArchivoPersona {
 	}
 	
 	/**
-	 * Archivo {@docRoot}
-	 * @param  json JSONobject
-	 * @param  personas HashMap<String,Empleado>
+	 * 
+	 * @param  JSONobject
+	 * @param  HashMap<String,Empleado>
 	 * @return HashMap<String,Empleado>
 	 */
 	public HashMap<String,Empleado> generateEmpleado(JSONObject json, HashMap<String, Empleado> personas)
@@ -132,8 +130,8 @@ public class ArchivoPersona {
 	}
 	/**
 	 * 
-	 * @param  json JSONobject
-	 * @param  personas HashMap<String,ClienteVip>
+	 * @param  JSONobject
+	 * @param  HashMap<String,ClienteVip>
 	 * @return HashMap<String,ClienteVip>
 	 */
 	public HashMap<String,ClienteVip> generateCliente(JSONObject json, HashMap<String, ClienteVip> personas)
