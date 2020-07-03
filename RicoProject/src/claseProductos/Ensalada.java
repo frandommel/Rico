@@ -14,7 +14,12 @@ public class Ensalada extends Producto {
 		calorias = 0;
 		
 	}
-
+	/**
+	 * 
+	 * @param String
+	 * @param int
+	 * @param double
+	 */
 	public Ensalada(String nombre, int precio,double calorias)
 	{
 		super(nombre, precio, "");
@@ -22,18 +27,27 @@ public class Ensalada extends Producto {
 		
 	}
 
-	//**Getters**//
 	
+	/**
+	 * 
+	 * @return Double
+	 */
 	public double getCalorias() {
 		return calorias;
 	}
 
-	//**Setters**//
-
+	
+	/**
+	 * 
+	 * @param Double
+	 */
 	public void setCalorias(double calorias) {
 		this.calorias = calorias;
 	}
-
+	
+	/**
+	 * To string
+	 */
 	@Override
 	public String toString() {
 		return "Ensalada "+super.getNombre()+" -> Calorias : " + calorias+"\n";

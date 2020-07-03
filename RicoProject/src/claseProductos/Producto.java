@@ -16,57 +16,73 @@ public abstract class Producto implements Serializable {
 		observaciones="";
 
 	}
-	
+	/**
+	 * 
+	 * @param String
+	 * @param int
+	 * @param String
+	 */
 	public Producto(String nombre, int precio, String observaciones ) {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.observaciones = observaciones;
-
 	}
 	
 	///**Getters**//
 	
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getNombre() {
 		return nombre;
 	}
-
+	/**
+	 * 
+	 * @return int
+	 */
 	public int getPrecio() {
 		return precio;
 	}
 	
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getObservaciones() {
 		return observaciones;
-	}
-	
-	
-	
+	}	
 	///***Setters**///
 	
+	/**
+	 * 
+	 * @param int
+	 */
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	
+	/**
+	 * 
+	 * @param String
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
+	/**
+	 * 
+	 * @param String
+	 */
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
+	/**
+	 * To string
+	 */
 	@Override
 	public String toString() {
 		return nombre + " Precio : $" + precio;
-	}
-	
-	
-	
-	//**Metodos**//
-	
-	
-	
-
-	
-	
+	}	
 	
 }

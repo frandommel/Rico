@@ -31,6 +31,9 @@ public class Combo extends Producto implements Serializable{
 		}	
 	
 	
+	/**
+	 * To string
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -44,6 +47,11 @@ public class Combo extends Producto implements Serializable{
 		return builder.toString();
 	}
 	
+	/**
+	 * 
+	 * @param boolean
+	 * @param ArrayList<Producto>
+	 */
 	private void funcionAgrandado(boolean agrandado, ArrayList<Producto> listaCombo) 
 	{
 		Bebida bebidaGrande = new Bebida("Gaseosa 500 cc",70,"Linea Pepsi");
@@ -56,6 +64,13 @@ public class Combo extends Producto implements Serializable{
 	
 	}
 	
+	/**
+	 * 
+	 * @param Bebida
+	 * @param Producto
+	 * @param Producto
+	 * @return ArrayList<Producto> 
+	 */
 	private ArrayList<Producto> generarListado(Bebida bebida,Producto producto1,Producto producto2) {
 		
 		ArrayList<Producto> listado = new ArrayList<Producto>();

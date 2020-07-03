@@ -12,22 +12,31 @@ public class Hamburguesa extends Producto {
 		esVeggie=false;
 		
 	}
+	/**
+	 * 
+	 * @param String
+	 * @param int
+	 * @param boolean
+	 */
 	public Hamburguesa(String nombre, int precio,boolean esVeggie) {
 		super(nombre, precio, "");
 		this.esVeggie=esVeggie;
 		
 	}
 	
-	//**Getters**//
+	/**
+	 * 
+	 * @return boolean
+	 */
 	public boolean isEsVeggie() {
 		return this.esVeggie;
 	}
-	
-		
-	
-		
-	
+
 	//**Setters**//
+	/**
+	 * 
+	 * @return boolean
+	 */
 	public boolean setEsVeggie() {
 		return true;
 	}
@@ -35,7 +44,9 @@ public class Hamburguesa extends Producto {
 	
 	
 	
-	
+	/**
+	 * To string
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
