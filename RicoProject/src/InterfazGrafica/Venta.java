@@ -42,6 +42,9 @@ public class Venta extends JPanel implements ActionListener {
 	
 	/**
 	 * 
+	 * @param comercio Comercio
+	 * @see Comercio
+	 * @param pedidosActivos
 	 */
 	public Venta(Comercio comercio,PedidosActivos pedidosActivos) {
 		
@@ -192,8 +195,8 @@ public class Venta extends JPanel implements ActionListener {
 	
 	/**
 	 * 
-	 * @param ArrayList<Producto> 
-	 * @param ArrayList<Producto>
+	 * @param origen ArrayList<Producto> 
+	 * @param destino ArrayList<Producto>
 	 */
 	private void bucleLimpiezaListado(ArrayList<Producto> origen,ArrayList<Producto> destino)
 	{
@@ -211,6 +214,7 @@ public class Venta extends JPanel implements ActionListener {
 	
 	/**
 	 * Se limpia el panel
+	 * @
 	 */
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
@@ -232,7 +236,6 @@ public class Venta extends JPanel implements ActionListener {
 	{
 		textNumero.setText(String.valueOf(getNumeroPedido()));
 		listado.add(producto);
-		System.out.println(listado.toString());
 		botonPedido.setEnabled(true);
 		listadoToButton();
 		monto = setMontoVenta();

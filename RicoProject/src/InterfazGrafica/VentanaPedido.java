@@ -345,6 +345,7 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		}
 		if(e.getSource()==pedidosItem) {
 		       Document documento = new Document();
+		       int montoAnual = 0;
 		       HashMap<String, ArrayList<Pedido>> listadoHash = new HashMap<String, ArrayList<Pedido>>();
 		        try {
 		            String ruta = System.getProperty("user.home");   //para obtener la ruta de nuestro usuario en nuestra pc
@@ -359,12 +360,11 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		            
 		            documento.add(parrafo);
 		           
-		           PdfPTable tabla = new PdfPTable(3);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
-		           tabla.addCell("Fecha");
-		           tabla.addCell("Codigo");                            
+		           PdfPTable tabla = new PdfPTable(2);           //para crear la tabla por parametro le pasas la cantidad de columnas que va a tener el reporte
+		           tabla.addCell("Fecha");                           
 		           tabla.addCell("Monto Total");
 		           
-		           PdfPTable tablaPedido = new PdfPTable(3);  
+		           PdfPTable tablaPedido = new PdfPTable(2);  
 		           ListadoPedidos listado = rico.getArchivos().getListadoPedidos();
 		           listadoHash = listado.getListaPedidosContenedorMap();
 		           
@@ -372,14 +372,25 @@ public class VentanaPedido extends JFrame implements ActionListener{
 			        Iterator it = set.iterator();
 			        while(it.hasNext()) 
 			        {
+			        	
 			        	Entry<String,ArrayList<Pedido>> entry = (Entry<String,ArrayList<Pedido>>) it.next();
-			        	for(int i=0; i<entry.getValue().size(); i++) {
-			        		tablaPedido.addCell(entry.getValue().get(i).getFecha());
-			        	   	tablaPedido.addCell(String.valueOf(entry.getValue().get(i).getId()));
-			        		tablaPedido.addCell("$  "+ String.valueOf(entry.getValue().get(i).getMontoVenta()));
-			        	}
+			        	int montoTotal=0;
+			        		tablaPedido.addCell(entry.getKey());
+			        		for(int i=0;i<entry.getValue().size();i++)
+			        		{
+			        			montoTotal+=entry.getValue().get(i).getMontoVenta();
+			        		}
+			        		tablaPedido.addCell("$  "+ String.valueOf(montoTotal));
+			        		montoAnual+=montoTotal;
+			        	
 			        }
 		           
+		            Paragraph parrafo6 = new Paragraph();
+		            parrafo6.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
+		            parrafo6.setAlignment(Paragraph.ALIGN_RIGHT);
+		            parrafo6.add("\n\n\n");
+		            parrafo6.add("MONTO A LA FECHA: $" + String.valueOf(montoAnual));
+		            
 		            Paragraph parrafo4 = new Paragraph();
 		            Date fecha = new Date();
 		            parrafo4.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
@@ -390,7 +401,9 @@ public class VentanaPedido extends JFrame implements ActionListener{
 		          
 		            documento.add(tabla);
 		            documento.add(tablaPedido);
+		            documento.add(parrafo6);
 		            documento.add(parrafo4);
+		            
 		            
 		            documento.close();
 		            JOptionPane.showMessageDialog(null, "Reporte creado en su escritorio");

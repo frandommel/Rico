@@ -21,6 +21,10 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
     	  montoTotal = getMontoTotal();
 	}
 
+      /**
+       * 
+       * @return El monto total de del Listado completo
+       */
       private int getMontoTotal() {
 		int montoTotal = 0;
 		Set<Map.Entry<String, ArrayList<Pedido>>> setE = getListaPedidosContenedorMap().entrySet();
@@ -35,6 +39,11 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		return montoTotal;
 	}
 
+      /**
+       * 
+       * @param keyDia String
+       * @return int con el monto especifico de un dia del listado
+       */
 	public int getMontoDiario (String keyDia)
 	{
 		int monto=0;
@@ -69,26 +78,38 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		
 	}
 
-	
+	/**
+	 * 
+	 * @param busqueda String
+	 * @return String 
+	 */
 	public String listarDia(String busqueda) {
 		return buscar(busqueda).toString();
 	}
 
+	/**
+	 * inicia el dia en caso de que sea la primer vez que se abra el programa en esa fecha
+	 * @see ArchivoPedidos
+	 * @see ListadoPedidos
+	 */
 	public void inciarDia() {
 		String fechaActual = definirFecha();
 		ArrayList<Pedido> listaX = new ArrayList<Pedido>();
 		listaPedidosContenedorMap.put(fechaActual, listaX);
 	}
 
-	
+	/**
+	 * 
+	 * @return HashMap con el listado completo
+	 */
 	public HashMap<String, ArrayList<Pedido>> getListaPedidosContenedorMap() {
 		return listaPedidosContenedorMap;
 	}
 
-	public void setListaPedidosContenedorMap(HashMap<String, ArrayList<Pedido>> listaPedidosContenedorMap) {
-		this.listaPedidosContenedorMap = listaPedidosContenedorMap;
-	}
-
+	/**
+	 * 
+	 * @return String con la fecha actual;
+	 */
 	public String definirFecha()
 	{
 		Date fechaOrigen = new Date();
@@ -101,5 +122,9 @@ public class ListadoPedidos implements IAccion<String,Pedido>, Serializable {
 		
 		return strFecha;
 	}
+
+
+	
+	
       
 }

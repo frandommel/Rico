@@ -32,6 +32,7 @@ public class ArchivoPersona {
 	}
 	/**
 	 * 
+	 * Archivo {@docRoot}
 	 * @param Recibe un JsonObject y lo guarda en personas.Json
 	 * @throws IOException
 	 */
@@ -48,7 +49,7 @@ public class ArchivoPersona {
 	}
 	
 	/**
-	 * 
+	 * Archivo {@docRoot}
 	 * @return HashMap de <String,Empleado>
 	 * @throws JSONException
 	 */
@@ -75,7 +76,7 @@ public class ArchivoPersona {
 	}
 	
 	/**
-	 * 
+	 * Archivo {@docRoot}
 	 * @return HashMap de tipo <String,ClienteVip>
 	 * @throws JSONException
 	 */
@@ -99,9 +100,9 @@ public class ArchivoPersona {
 	}
 	
 	/**
-	 * 
-	 * @param  JSONobject
-	 * @param  HashMap<String,Empleado>
+	 * Archivo {@docRoot}
+	 * @param  json JSONobject
+	 * @param  personas HashMap<String,Empleado>
 	 * @return HashMap<String,Empleado>
 	 */
 	public HashMap<String,Empleado> generateEmpleado(JSONObject json, HashMap<String, Empleado> personas)
@@ -131,8 +132,8 @@ public class ArchivoPersona {
 	}
 	/**
 	 * 
-	 * @param  JSONobject
-	 * @param  HashMap<String,ClienteVip>
+	 * @param  json JSONobject
+	 * @param  personas HashMap<String,ClienteVip>
 	 * @return HashMap<String,ClienteVip>
 	 */
 	public HashMap<String,ClienteVip> generateCliente(JSONObject json, HashMap<String, ClienteVip> personas)
@@ -162,7 +163,7 @@ public class ArchivoPersona {
 	
 	/**
 	 * 
-	 * @param HashMap<String,Empleado>
+	 * @param persona HashMap<String,Empleado>
 	 */
 	public void recorrerHashMapEmpleado( HashMap<String,Empleado> persona ) 
 	{
@@ -179,7 +180,7 @@ public class ArchivoPersona {
 	}
 	/**
 	 * 
-	 * @param HashMap<String,ClienteVip>
+	 * @param persona HashMap<String,ClienteVip>
 	 */
 	public void recorrerHashMapCliente( HashMap<String,ClienteVip> persona ) 
 	{

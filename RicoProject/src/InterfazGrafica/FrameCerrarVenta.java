@@ -28,7 +28,6 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	private JButton tarjeta,efectivo,cancelar,boton;
 	private Pedido pedido;
 	private Comercio rico;
-	private JTextField demoraField;
 	private JLabel demoraText;
 	private PedidosActivos panelAnterior;
 
@@ -91,12 +90,6 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		getContentPane().add(cancelar);
 		cancelar.addActionListener(this);
 		
-		demoraField = new JTextField();
-		demoraField.setBounds(248, 11, 86, 20);
-		getContentPane().add(demoraField);
-		demoraField.setColumns(10);
-		String demoraStr = String.valueOf(pedido.verDemora());
-		demoraField.setText(demoraStr);
 		
 		
 		
@@ -118,7 +111,7 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			rico.setPedidos(pedido);
 			this.setVisible(false);
 			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
-			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
+			
 			panelAnterior.quitarBoton(boton);
 		
 		}

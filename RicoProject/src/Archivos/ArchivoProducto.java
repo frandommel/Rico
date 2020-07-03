@@ -33,8 +33,8 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
-	 * @param ArrayList<Combo>
+	 * Archivo {@docRoot}
+	 * @param combo ArrayList<Combo>
 	 * Guarda en el archivo un combo combos.bin
 	 */
 	public void agregarCombo(ArrayList <Combo> combo) 
@@ -61,7 +61,7 @@ public class ArchivoProducto
 	
 	
 	/**
-	 * 
+	 * Archivo {@docRoot}
 	 * @return ArrayList<Producto>
 	 */
 	public ArrayList<Producto> leerCombo()
@@ -92,7 +92,7 @@ public class ArchivoProducto
 
 	}
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList<Combo>
 	 */
 	public ArrayList<Combo> leerComboCambio()
@@ -180,7 +180,7 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList <Hamburguesa>
 	 */
 	public ArrayList<Hamburguesa> leerHamburguesaCambio()
@@ -210,7 +210,7 @@ public class ArchivoProducto
 	
 	/**
 	 * 
-	 * @param ArrayList<Pancho>
+	 * @param pancho ArrayList<Pancho>
 	 */
 	public void agregarPancho(ArrayList <Pancho> pancho) 
 	{
@@ -265,7 +265,7 @@ public class ArchivoProducto
 		return lista;
 	}
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList<Pancho>
 	 */
 	public ArrayList<Pancho> leerPanchoCambio()
@@ -295,7 +295,7 @@ public class ArchivoProducto
 	
 	/**
 	 * 
-	 * @param ArrayList<Ensalada>
+	 * @param ensalada ArrayList<Ensalada>
 	 */
 	public void agregarEnsalada(ArrayList <Ensalada> ensalada) 
 	{
@@ -320,7 +320,7 @@ public class ArchivoProducto
 
 	}
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo a Producto
 	 * @return ArrayList<Producto>
 	 */
 	public ArrayList<Producto> leerEnsalada()
@@ -352,7 +352,7 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList<Ensalada>
 	 */
 	public ArrayList<Ensalada> leerEnsaladaCambio()
@@ -442,7 +442,7 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList<Guarnicion>
 	 */
 	public ArrayList<Guarnicion> leerGuarnicionCambio()
@@ -473,8 +473,8 @@ public class ArchivoProducto
 	}
 
 	/**
-	 * 
-	 * @param ArrayList<Bebida>
+	 * Agrega una bebida al archivo
+	 * @param bebida ArrayList<Bebida>
 	 */
 	public void agregarBebida(ArrayList <Bebida> bebida) 
 	{
@@ -500,7 +500,7 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
+	 * Busca el archivo de bebidas
 	 * @return ArrayList<Producto>
 	 */
 	public ArrayList<Producto> leerBebida()
@@ -531,7 +531,7 @@ public class ArchivoProducto
 	}
 	
 	/**
-	 * 
+	 * Busca en el archivo y obtiene un ArrayList casteandolo al objeto correspondiente
 	 * @return ArrayList<Bebida>
 	 */
 	public ArrayList<Bebida> leerBebidaCambio()
@@ -562,7 +562,7 @@ public class ArchivoProducto
 	
 	
 	/**
-	 * 
+	 *
 	 * @return HashMap<String, ArrayList<Producto>>
 	 * Retornamos todos los productos leeidos del archivo.
 	 */

@@ -258,11 +258,9 @@ public class Empleados extends JFrame implements ActionListener {
 			if(e.getSource()== modificar)
 			{
 				String usuario = textField.getText();
-				Comercio rico;
-					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
+				int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
 							,JOptionPane.YES_NO_OPTION);
 					if(valor == JOptionPane.YES_OPTION) {
-							rico = new Comercio();
 							Empleado buscado = rico.buscarEmpleado(usuario);
 							String nuevaPosicion,nuevaDireccion,nuevoTel;
 							nuevaPosicion = textField2.getText();
@@ -279,17 +277,15 @@ public class Empleados extends JFrame implements ActionListener {
 			if(e.getSource()==borrar)
 			{
 				String usuario = textField.getText();
-				Comercio rico;
-					int valor = JOptionPane.showConfirmDialog(this, "Desea modificar?","ADVERTENCIA"
+					int valor = JOptionPane.showConfirmDialog(this, "Desea borrar el empleado?","ADVERTENCIA"
 							,JOptionPane.YES_NO_OPTION);
 					if(valor == JOptionPane.YES_OPTION) {
-						rico = new Comercio();
+					
 						Empleado buscado = rico.buscarEmpleado(usuario);
 						rico.removeEmpleado(buscado);
 						JOptionPane.showMessageDialog(null, "Empleado Borrado");
 						VentanaPedido pedido = new VentanaPedido(rico);
 						pedido.setVisible(true);
-						//JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);///cambiar a otra ventana desde otro jpanel
 						this.setVisible(false);
 					}
 			}
@@ -302,7 +298,6 @@ public class Empleados extends JFrame implements ActionListener {
 				telefono = textField4.getText();
 				password = textField5.getText();
 				Persona nuevo = new Empleado(nombre, direccion, telefono, password, posicion);
-					Comercio rico = new Comercio();
 					rico.addPersonas(nuevo);
 					JOptionPane.showMessageDialog(null,"Agregado con Exito");
 					VentanaPedido pedido = new VentanaPedido(rico);

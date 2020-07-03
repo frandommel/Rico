@@ -9,12 +9,18 @@ import Archivos.ArchivoPersona;
 public class ClienteVip extends Persona{
 	public int cantSellos;
 
-
 	public ClienteVip() {
 		super();
 		cantSellos=0;
 	}
 
+	/**
+	 * 
+	 * @param nombre String
+	 * @param direccion String
+	 * @param telefono String
+	 * @param cantSellos int , generalmente 0 en el inicio de nuevos clientes
+	 */
 	public ClienteVip(String nombre, String direccion,String telefono,int cantSellos) {
 		super(nombre, direccion,telefono);
 		this.cantSellos=cantSellos;
@@ -26,10 +32,18 @@ public class ClienteVip extends Persona{
 		this.cantSellos=0;
 	}
 
+	/**
+	 * 
+	 * @return cantSellos
+	 */
 	public int getCantSellos() {
 		return cantSellos;
 	}
 
+	/**
+	 * 
+	 * @param cantSellos int 
+	 */
 	public void setCantSellos(int cantSellos) {
 		this.cantSellos = cantSellos;
 	}

@@ -18,9 +18,9 @@ public abstract class Producto implements Serializable {
 	}
 	/**
 	 * 
-	 * @param String
-	 * @param int
-	 * @param String
+	 * @param nombre String
+	 * @param precio int
+	 * @param observaciones String
 	 */
 	public Producto(String nombre, int precio, String observaciones ) {
 		this.nombre = nombre;
@@ -82,7 +82,7 @@ public abstract class Producto implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return nombre + " Precio : $" + precio;
+		return nombre;
 	}	
 	
 }

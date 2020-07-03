@@ -32,6 +32,10 @@ public class Pedido implements Serializable{
 		
 	}
 	
+	/**
+	 * 
+	 * @param pedido2 crea una copia en base a otro pedido
+	 */
 	public Pedido(Pedido pedido2) {
 		
 		this.id = pedido2.getId();
@@ -47,7 +51,14 @@ public class Pedido implements Serializable{
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param id int
+	 * @param condicion String
+	 * @param productos ArrayList(Producto)
+	 * @param isVip boolean
+	 * @param montoVenta int
+	 */
 	public Pedido(int id, String condicion, ArrayList<Producto> productos, boolean isVip,int montoVenta) {
 		super();
 		this.id = id;
@@ -60,64 +71,122 @@ public class Pedido implements Serializable{
 		this.montoVenta=montoVenta;
 	}
 	
+	/**
+	 * 
+	 * @return int attribute ID
+	 */
 	public int getId() {
 		return id;
 	}
+	
+	/**
+	 * 
+	 * @param id int
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+	/**
+	 * 
+	 * @return String Condicion de pago del pedido
+	 */
 	public String getCondicion() {
 		return condicion;
 	}
+	/**
+	 * 
+	 * @param condicion String
+	 */
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
 
 
+	/**
+	 * 
+	 * @return Listado de Productos de un pedido
+	 */
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
 
+	/**
+	 * Agrega un producto al listado del pedido
+	 * @param prodAgregado Producot
+	 */
 	public void addProductos(Producto prodAgregado) {
 		productos.add(prodAgregado);
 	}
 	
-	
+	/**
+	 * 
+	 * @param productos ArrayList de Productos
+	 */
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
 
+	/**
+	 * 
+	 * @return condicion del cliente
+	 */
 	public boolean isVip() {
 		return isVip;
 	}
+	
+	/**
+	 * 
+	 * @param isVip
+	 */
 	public void setVip(boolean isVip) {
 		this.isVip = isVip;
 	}
 	
-	
+	/**
+	 * 
+	 * @return true si el pedido fue cobrado
+	 */
 	public boolean isCobrado() {
 		return cobrado;
 	}
+	
+	/**
+	 * setea el cobro
+	 * @param cobrado 
+	 */
 	public void setCobrado(boolean cobrado) {
 		this.cobrado = cobrado;
 	}
 	
+	/**
+	 * 
+	 * @return monto final del Pedido
+	 */
 	public int getMontoVenta() {
 		return montoVenta;
 	}
 
+	/**
+	 * 
+	 * @return el Horario en que hizo el pedido en un formato Date
+	 */
 	public Date getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Date horario) {
-		this.horario = horario;
-	}
-
+	
+	/**
+	 * 
+	 * @param fecha String
+	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
+	/**
+	 * 
+	 * @param montoVenta int
+	 */
 	public void setMontoVenta(int montoVenta) {
 		this.montoVenta = montoVenta;
 	}
@@ -127,7 +196,10 @@ public class Pedido implements Serializable{
 		return "Pedido " + id + "--> Condicion: " + condicion + ", fecha=" + fecha + " Productos del pedido-> " + productos.toString() + ", Cliente Vip: " + isVip + ", Cobro: " + cobrado+", Monto: $"+montoVenta;
 	}
 	
-	
+	/**
+	 * 
+	 * @return String con la fecha actual;
+	 */
 	public String definirFecha()
 	{
 		Date fechaOrigen = new Date();
@@ -141,11 +213,7 @@ public class Pedido implements Serializable{
 		return strFecha;
 	}
 	
-	public int verDemora()
-	{
-		Date fechaOrigen = new Date();
-		return fechaOrigen.compareTo(horario);
-	}
+	
 
 	public String getFecha() {
 		return fecha;

@@ -10,9 +10,9 @@ public class Bebida extends Producto{
 	}
 	
 	/**
-	 * @param String
-	 * @param Int
-	 * @param String
+	 * @param nombre String
+	 * @param precio Int
+	 * @param marca String
 	 * Constructor
 	 */
 	public Bebida(String nombre, int precio,String marca) {
@@ -41,7 +41,7 @@ public class Bebida extends Producto{
 	 */
 	@Override
 	public String toString() {
-		return super.getNombre()+" "+ marca + " Precio : $" + super.getPrecio()+"\n";
+		return super.getNombre();
 	}
 	
 	

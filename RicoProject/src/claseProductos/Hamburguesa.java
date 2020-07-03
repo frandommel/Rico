@@ -14,9 +14,9 @@ public class Hamburguesa extends Producto {
 	}
 	/**
 	 * 
-	 * @param String
-	 * @param int
-	 * @param boolean
+	 * @param nombre String
+	 * @param precio int
+	 * @param esVeggie boolean
 	 */
 	public Hamburguesa(String nombre, int precio,boolean esVeggie) {
 		super(nombre, precio, "");
@@ -49,18 +49,7 @@ public class Hamburguesa extends Producto {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Hamburguesa " );
-		builder.append(super.toString());
-		if(esVeggie==true)
-		{
-			builder.append(" VEGETARIANA.");
-		}
-		builder.append("\n");
-		
-		
-		
-		return builder.toString();
+		return "Hamburguesa " + super.getNombre();
 	}
 	
 	

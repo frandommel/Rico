@@ -8,8 +8,8 @@ public class Guarnicion extends Producto {
 	
 	/**
 	 * 
-	 * @param String
-	 * @param int
+	 * @param nombre String
+	 * @param precio int
 	 * Constructor
 	 */
 	public Guarnicion(String nombre, int precio) {
@@ -20,7 +20,7 @@ public class Guarnicion extends Producto {
 	 */
 	@Override
 	public String toString() {
-		return super.getNombre()+"\n";
+		return super.getNombre();
 	}
 
 	

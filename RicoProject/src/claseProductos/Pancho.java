@@ -13,9 +13,9 @@ public class Pancho extends Producto{
 	}
 	/**
 	 * 
-	 * @param String
-	 * @param  precio
-	 * @param boolean
+	 * @param nombre String
+	 * @param  precio int
+	 * @param esVeggie boolean
 	 * Constructor
 	 */
 	public Pancho(String nombre, int precio, boolean esVeggie) {
@@ -49,7 +49,7 @@ public class Pancho extends Producto{
 	 */
 	@Override
 	public String toString() {
-		return super.getNombre() +" Pancho [esVeggie=" + esVeggie+"\n";
+		return "Pancho" + super.getNombre() ;
 	}
 
 	

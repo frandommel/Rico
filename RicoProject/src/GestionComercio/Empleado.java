@@ -31,19 +31,34 @@ public class Empleado extends Persona {
 
 	
 
-
+/**
+ * 
+ * @return String con el password
+ */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * 
+	 * @param password String
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * 
+	 * @return String con la posicion(puesto) dentro del Comercio
+	 */
 	public String getPosicion() {
 		return posicion;
 	}
 
+	/**
+	 * 
+	 * @param posicion String
+	 */
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
 	}

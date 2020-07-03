@@ -36,21 +36,14 @@ public class Combo extends Producto implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(super.getNombre());
-		if(agrandado==true)
-		{
-			builder.append(" AGRANDADO ");
-		}
-		builder.append("\n Precio = $" + super.getPrecio()+ " Productos --> " + productosCombo.toString()	+ " // Observaciones: " + super.getObservaciones()+ "\n");
 		
-		return builder.toString();
+		return super.getNombre();
 	}
 	
 	/**
 	 * 
-	 * @param boolean
-	 * @param ArrayList<Producto>
+	 * @param agrandado boolean
+	 * @param listaCombo ArrayList<Producto>
 	 */
 	private void funcionAgrandado(boolean agrandado, ArrayList<Producto> listaCombo) 
 	{
@@ -66,8 +59,8 @@ public class Combo extends Producto implements Serializable{
 	
 	/**
 	 * 
-	 * @param Bebida
-	 * @param Producto
+	 * @param bebida Bebida
+	 * @param producto1 Producto
 	 * @param Producto
 	 * @return ArrayList<Producto> 
 	 */

@@ -6,12 +6,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowStateListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -23,6 +25,8 @@ import GestionComercio.Pedido;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import Exceptions.BusquedaException;
 
 public class DetallePedidos extends JFrame implements ActionListener{
 
@@ -132,17 +136,25 @@ public class DetallePedidos extends JFrame implements ActionListener{
 			String clave = dateField.getText();
 			int montoTotal=0;
 			int numCol = table_1.getModel().getColumnCount();
-			pedidos = rico.getArchivos().getListadoPedidos().buscar(clave);
-			for (int i = 0; i < pedidos.size(); i++) {
-				Object [] fila= new Object[numCol];
-				fila[0] = pedidos.get(i).getId();
-				fila[1] = pedidos.get(i).getProductos().toString();
-				fila[2] = "$    "+pedidos.get(i).getMontoVenta();
-				((DefaultTableModel)table_1.getModel()).addRow(fila);
-				montoTotal+=pedidos.get(i).getMontoVenta();
+			try
+			{
+				pedidos=busquedaPedido(pedidos, clave);
+				for (int i = 0; i < pedidos.size(); i++) {
+					Object [] fila= new Object[numCol];
+					fila[0] = pedidos.get(i).getId();
+					fila[1] = pedidos.get(i).getProductos().toString();
+					fila[2] = "$    "+pedidos.get(i).getMontoVenta();
+					((DefaultTableModel)table_1.getModel()).addRow(fila);
+					montoTotal+=pedidos.get(i).getMontoVenta();
+				}
+				montoTotalField.setText("$   "+String.valueOf(montoTotal));
+				buscar.setEnabled(false);
+			}catch(BusquedaException x)
+			{
+				JOptionPane.showMessageDialog(null, x.getMessage());
+				buscar.setEnabled(true);
 			}
-			montoTotalField.setText("$   "+String.valueOf(montoTotal));
-			buscar.setEnabled(false);
+			
 		}
 		if(e.getSource()==volver) {
 			VentanaPedido pedido = new VentanaPedido(rico);
@@ -151,5 +163,15 @@ public class DetallePedidos extends JFrame implements ActionListener{
 			this.setVisible(false);
 		}
 		
+	}
+	
+	public ArrayList<Pedido> busquedaPedido(ArrayList<Pedido> pedidos,String clave) throws BusquedaException
+	{
+		pedidos = rico.getPedidos().buscar(clave);
+		if(pedidos==null)
+		{
+			throw new BusquedaException(clave);
+		}
+		return pedidos;
 	}
 }

@@ -95,8 +95,8 @@ public class ManejadordeArchivos {
 	
 	/**
 	 * 
-	 * @param HashMap<String, Empleado> 
-	 * @param  HashMap<String, ClienteVip>
+	 * @param  empleados HashMap<String, Empleado> 
+	 * @param  clientes HashMap<String, ClienteVip>
 	 * Actualizamos el archivo de personas
 	 */
 	public void actualizarArchivoPersona(HashMap<String, Empleado> empleados, HashMap<String, ClienteVip> clientes)
@@ -117,7 +117,7 @@ public class ManejadordeArchivos {
 	
 	/**
 	 * 
-	 * @param HashMap<String, Empleado> 
+	 * @param mapa HashMap<String, Empleado> 
 	 * @return JSONArray
 	 * @throws JSONException
 	 * 
@@ -136,7 +136,7 @@ public class ManejadordeArchivos {
 	}
 	/**
 	 * 
-	 * @param HashMap<String, ClienteVip> 
+	 * @param mapa HashMap<String, ClienteVip> 
 	 * @return JSONArray
 	 * @throws JSONException
 	 */
