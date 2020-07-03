@@ -131,7 +131,7 @@ public class Venta extends JPanel implements ActionListener {
 		
 	}
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
@@ -169,7 +169,7 @@ public class Venta extends JPanel implements ActionListener {
 	
 	/**
 	 * 
-	 * @param JCheckBox
+	 * @param checkbox JCheckBox
 	 */
 	public void confirmarPedido(JCheckBox checkbox)
 	{
@@ -230,7 +230,7 @@ public class Venta extends JPanel implements ActionListener {
 	
 	/**
 	 * 
-	 * @param Producto
+	 * @param producto Producto
 	 */
 	public void addVenta(Producto producto)
 	{

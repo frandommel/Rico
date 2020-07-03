@@ -49,10 +49,10 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
-	 * @param pedidosActivos
-	 * @param Comercio 
-	 * @param Pedido 
-	 * @param  JButton
+	 * @param pedido2 pedidosActivos
+	 * @param comercioRico Comercio 
+	 * @param pedidosActivos PedidosActivos 
+	 * @param  boton JButton
 	 */
 	public FrameCerrarVenta(Pedido pedido2,Comercio comercioRico, PedidosActivos pedidosActivos,JButton boton) {
 		this.pedido=pedido2;
@@ -95,7 +95,7 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		
 	}
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override

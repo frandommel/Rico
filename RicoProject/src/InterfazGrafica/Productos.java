@@ -643,8 +643,8 @@ public class Productos extends JFrame implements ActionListener {
 		
 		/**
 		 * 
-		 * @param JComboBox<String>
-		 * @param String
+		 * @param listaItem JComboBox<String>
+		 * @param item String
 		 */
 		public void agregarItem(JComboBox<String> listaItem,String item) {
 			listaItem.addItem(item);
@@ -652,8 +652,8 @@ public class Productos extends JFrame implements ActionListener {
 		
 		/**
 		 * 
-		 * @param ArrayList<String>
-		 * @param JComboBox<String> c
+		 * @param listaItem ArrayList<String>
+		 * @param combo JComboBox<String> c
 		 */
 		public void moverArray2Combo(ArrayList<String>listaItem,JComboBox<String> combo) {
 			String item="";
@@ -665,7 +665,7 @@ public class Productos extends JFrame implements ActionListener {
 		
 		/**
 		 * 
-		 * @param ArrayList<Producto>
+		 * @param p ArrayList<Producto>
 		 * @return ArrayList<String> 
 		 */
 		public ArrayList<String> pasar2ListaString(ArrayList<Producto>p){
@@ -686,8 +686,8 @@ public class Productos extends JFrame implements ActionListener {
 		
 		/**
 		 * 
-		 * @param ArrayList<Producto> 
-		 * @param String
+		 * @param p ArrayList<Producto> 
+		 * @param producto String
 		 * @return int
 		 */
 		public int precioFromArchivo(ArrayList<Producto> p, String producto) {	
