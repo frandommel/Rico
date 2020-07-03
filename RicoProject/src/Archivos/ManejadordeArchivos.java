@@ -42,7 +42,12 @@ public class ManejadordeArchivos {
 		this.productos = new ArchivoProducto();
 	}
 	
-		
+	
+	/**
+	 * 
+	 * @return HashMap<String, ArrayList<Producto>>
+	 * Obtengo los listados de los productos
+	 */
 	public HashMap<String, ArrayList<Producto>> getListadoProductos()
 	{
 		HashMap<String, ArrayList<Producto>> destinoProductos = new HashMap<String, ArrayList<Producto>>();
@@ -50,6 +55,11 @@ public class ManejadordeArchivos {
 		return destinoProductos;
 	}
 	
+	/**
+	 * 
+	 * @return ListadoPedidos 
+	 * Obtengo los listados de los pedidos.
+	 */
 	public ListadoPedidos getListadoPedidos()
 	{
 		ListadoPedidos destinoPedido = new ListadoPedidos();
@@ -62,15 +72,33 @@ public class ManejadordeArchivos {
 		return destinoPedido;	
 	}
 	
+	/**
+	 * 
+	 * @return HashMap<String, Empleado> 
+	 * @throws JSONException
+	 * Obtengo listado de empleados
+	 */
 	public HashMap<String, Empleado> getListadoEmpleados() throws JSONException
 	{
 		return persona.leerEmpleado();
 	}
+	/**
+	 * 
+	 * @return HashMap<String ,ClienteVip> 
+	 * @throws JSONException
+	 * Obtengo listado de clientes
+	 */
 	public HashMap<String ,ClienteVip> getListadoCliente() throws JSONException
 	{
 		return persona.leerCliente();
 	}
 	
+	/**
+	 * 
+	 * @param HashMap<String, Empleado> 
+	 * @param  HashMap<String, ClienteVip>
+	 * Actualizamos el archivo de personas
+	 */
 	public void actualizarArchivoPersona(HashMap<String, Empleado> empleados, HashMap<String, ClienteVip> clientes)
 	{
 		//LOGICA DE TRANFOSRMACION DE HASHMAP A JSON
@@ -87,6 +115,13 @@ public class ManejadordeArchivos {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param HashMap<String, Empleado> 
+	 * @return JSONArray
+	 * @throws JSONException
+	 * 
+	 */
 	public JSONArray mapa2JsonEmpleado(HashMap<String, Empleado> mapa) throws JSONException 
 	{
 		JSONArray array = new JSONArray();
@@ -99,7 +134,12 @@ public class ManejadordeArchivos {
 		}
 		return array;
 	}
-	
+	/**
+	 * 
+	 * @param HashMap<String, ClienteVip> 
+	 * @return JSONArray
+	 * @throws JSONException
+	 */
 	public JSONArray mapa2JsonCliente(HashMap<String, ClienteVip> mapa) throws JSONException 
 	{
 		JSONArray array = new JSONArray();
@@ -113,6 +153,10 @@ public class ManejadordeArchivos {
 		return array;
 	}
 	
+	/**
+	 * 
+	 * @return JSONObject 
+	 */
 	public JSONObject leerPersonas()
 	{
 		String contenido = "";
@@ -130,12 +174,19 @@ public class ManejadordeArchivos {
 		return objectObject; 	
 	}
 	
-	
+	/**
+	 * 
+	 * @param ListadoPedidos
+	 */
 	public void actualizarArchivoPedidos(ListadoPedidos pedidos)
 	{
 		pedido.archivarPedido(pedidos);
 	}
 	
+	/**
+	 * 
+	 * @param Producto
+	 */
 	public void actualizarArchivoProducto(Producto productoNuevo)
 	{
 		if(productoNuevo instanceof Hamburguesa) {
@@ -190,7 +241,11 @@ public class ManejadordeArchivos {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @return String
+	 * Retornamos la fecha cambiada a string
+	 */
 	public static String definirFecha()
 	{
 		Date fechaOrigen = new Date();

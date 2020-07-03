@@ -32,7 +32,11 @@ public class ArchivoProducto
 		
 	}
 	
-	//** SE AGREGA COMBOS A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList<Combo>
+	 * Guarda en el archivo un combo combos.bin
+	 */
 	public void agregarCombo(ArrayList <Combo> combo) 
 	{
 		FileOutputStream file = null;
@@ -56,7 +60,10 @@ public class ArchivoProducto
 	}
 	
 	
-	//** SE LEE COMBO DE UN ARCHIVO **//
+	/**
+	 * 
+	 * @return ArrayList<Producto>
+	 */
 	public ArrayList<Producto> leerCombo()
 	{
 		FileInputStream file = null;
@@ -84,7 +91,10 @@ public class ArchivoProducto
 		return combo;
 
 	}
-	
+	/**
+	 * 
+	 * @return ArrayList<Combo>
+	 */
 	public ArrayList<Combo> leerComboCambio()
 	{
 		FileInputStream file = null;
@@ -113,7 +123,10 @@ public class ArchivoProducto
 
 	}
 	
-	//** SE AGREGA HAMBURGUESA A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList <Hamburguesa>.
+	 */
 	public void agregarHamburguesa(ArrayList <Hamburguesa> hambu) 
 	{
 		FileOutputStream file = null;
@@ -136,7 +149,10 @@ public class ArchivoProducto
 		}
 
 	}
-	//** SE LEE HAMBURGUESA DE UN ARCHIVO **//
+	/**
+	 * 
+	 * @return ArrayList <Producto>.
+	 */
 	public ArrayList<Producto> leerHamburguesa()
 	{
 		FileInputStream file = null;
@@ -163,6 +179,10 @@ public class ArchivoProducto
 		return lista;
 	}
 	
+	/**
+	 * 
+	 * @return ArrayList <Hamburguesa>
+	 */
 	public ArrayList<Hamburguesa> leerHamburguesaCambio()
 	{
 		FileInputStream file = null;
@@ -188,7 +208,10 @@ public class ArchivoProducto
 		return lista;
 	}
 	
-	//** SE AGREGA PANCHO A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList<Pancho>
+	 */
 	public void agregarPancho(ArrayList <Pancho> pancho) 
 	{
 		FileOutputStream file = null;
@@ -211,7 +234,11 @@ public class ArchivoProducto
 		}
 
 	}
-	//** SE LEE PANCHO DE UN ARCHIVO **//
+
+	/**
+	 * 
+	 * @return ArrayList<Producto>
+	 */
 	public ArrayList<Producto> leerPancho()
 	{
 		FileInputStream file = null;
@@ -237,7 +264,10 @@ public class ArchivoProducto
 		}
 		return lista;
 	}
-	
+	/**
+	 * 
+	 * @return ArrayList<Pancho>
+	 */
 	public ArrayList<Pancho> leerPanchoCambio()
 	{
 		FileInputStream file = null;
@@ -263,7 +293,10 @@ public class ArchivoProducto
 		return lista;
 	}
 	
-	//** SE AGREGA ENSALADA A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList<Ensalada>
+	 */
 	public void agregarEnsalada(ArrayList <Ensalada> ensalada) 
 	{
 		FileOutputStream file = null;
@@ -286,7 +319,10 @@ public class ArchivoProducto
 		}
 
 	}
-	//** SE LEE ENSALADA DE UN ARCHIVO **//
+	/**
+	 * 
+	 * @return ArrayList<Producto>
+	 */
 	public ArrayList<Producto> leerEnsalada()
 	{
 		FileInputStream file = null;
@@ -315,6 +351,10 @@ public class ArchivoProducto
 
 	}
 	
+	/**
+	 * 
+	 * @return ArrayList<Ensalada>
+	 */
 	public ArrayList<Ensalada> leerEnsaladaCambio()
 	{
 		FileInputStream file = null;
@@ -342,7 +382,10 @@ public class ArchivoProducto
 
 	}
 	
-	//** SE AGREGA GUARNICION A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList<Guarnicion>
+	 */
 	public void agregarGuarnicion(ArrayList <Guarnicion> guarnicion) 
 	{
 		FileOutputStream file = null;
@@ -365,7 +408,11 @@ public class ArchivoProducto
 		}
 
 	}
-	//** SE LEE GUARNICION DE UN ARCHIVO **//
+	
+	/**
+	 * 
+	 * @return ArrayList<Producto>
+	 */
 	public ArrayList<Producto> leerGuarnicion()
 	{
 		FileInputStream file = null;
@@ -394,6 +441,10 @@ public class ArchivoProducto
 
 	}
 	
+	/**
+	 * 
+	 * @return ArrayList<Guarnicion>
+	 */
 	public ArrayList<Guarnicion> leerGuarnicionCambio()
 	{
 		FileInputStream file = null;
@@ -421,7 +472,10 @@ public class ArchivoProducto
 
 	}
 
-	//** SE AGREGA BEBIDAS A UN ARCHIVO **//
+	/**
+	 * 
+	 * @param ArrayList<Bebida>
+	 */
 	public void agregarBebida(ArrayList <Bebida> bebida) 
 	{
 		FileOutputStream file = null;
@@ -444,7 +498,11 @@ public class ArchivoProducto
 		}
 
 	}
-	//** SE LEE BEBIDAS DE UN ARCHIVO **//
+	
+	/**
+	 * 
+	 * @return ArrayList<Producto>
+	 */
 	public ArrayList<Producto> leerBebida()
 	{
 		FileInputStream file = null;
@@ -472,6 +530,10 @@ public class ArchivoProducto
 
 	}
 	
+	/**
+	 * 
+	 * @return ArrayList<Bebida>
+	 */
 	public ArrayList<Bebida> leerBebidaCambio()
 	{
 		FileInputStream file = null;
@@ -499,7 +561,11 @@ public class ArchivoProducto
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return HashMap<String, ArrayList<Producto>>
+	 * Retornamos todos los productos leeidos del archivo.
+	 */
 	public HashMap<String , ArrayList<Producto>> leer()
 	{
 		HashMap<String, ArrayList<Producto>> mapaProductosContenedorMap = new HashMap<String, ArrayList<Producto>>();

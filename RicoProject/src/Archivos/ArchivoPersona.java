@@ -30,7 +30,11 @@ public class ArchivoPersona {
 	public ArchivoPersona() {
 		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * 
+	 * @param Recibe un JsonObject y lo guarda en personas.Json
+	 * @throws IOException
+	 */
 	public static void agregarArchivo(JSONObject object) {
 		
 		try {
@@ -43,6 +47,11 @@ public class ArchivoPersona {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return HashMap de <String,Empleado>
+	 * @throws JSONException
+	 */
 	public HashMap<String,Empleado> leerEmpleado() throws JSONException
 	{
 		String contenido = "";
@@ -65,6 +74,11 @@ public class ArchivoPersona {
 		return personas;
 	}
 	
+	/**
+	 * 
+	 * @return HashMap de tipo <String,ClienteVip>
+	 * @throws JSONException
+	 */
 	public HashMap<String,ClienteVip>  leerCliente() throws JSONException{
 		String contenido = "";
 		JSONObject objectObject = null;
@@ -84,6 +98,12 @@ public class ArchivoPersona {
 		return personas;
 	}
 	
+	/**
+	 * 
+	 * @param  JSONobject
+	 * @param  HashMap<String,Empleado>
+	 * @return HashMap<String,Empleado>
+	 */
 	public HashMap<String,Empleado> generateEmpleado(JSONObject json, HashMap<String, Empleado> personas)
 	{
 		
@@ -109,7 +129,12 @@ public class ArchivoPersona {
 		return personas;
 
 	}
-	
+	/**
+	 * 
+	 * @param  JSONobject
+	 * @param  HashMap<String,ClienteVip>
+	 * @return HashMap<String,ClienteVip>
+	 */
 	public HashMap<String,ClienteVip> generateCliente(JSONObject json, HashMap<String, ClienteVip> personas)
 	{
 		
@@ -135,6 +160,10 @@ public class ArchivoPersona {
 
 	}
 	
+	/**
+	 * 
+	 * @param HashMap<String,Empleado>
+	 */
 	public void recorrerHashMapEmpleado( HashMap<String,Empleado> persona ) 
 	{
 		Set<Entry< String ,Empleado>> set = persona.entrySet();
@@ -148,6 +177,10 @@ public class ArchivoPersona {
 		}
 		
 	}
+	/**
+	 * 
+	 * @param HashMap<String,ClienteVip>
+	 */
 	public void recorrerHashMapCliente( HashMap<String,ClienteVip> persona ) 
 	{
 		Set<Entry< String ,ClienteVip>> set = persona.entrySet();

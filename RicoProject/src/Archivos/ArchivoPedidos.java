@@ -25,7 +25,10 @@ public class ArchivoPedidos	implements Serializable {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param Recibe ListadoPedido y se guardae en el archivo pedidos.bin
+	 */
 	public void archivarPedido(ListadoPedidos pedido) 
 	{
 		FileOutputStream file = null;
@@ -48,7 +51,10 @@ public class ArchivoPedidos	implements Serializable {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @return Lee los pedidos del archivo "pedidos.bin" y devuelve un ListadoPedido
+	 */
 	public ListadoPedidos leerPedidos()
 	{
 		FileInputStream file = null;
