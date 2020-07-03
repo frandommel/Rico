@@ -122,7 +122,6 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 			rico.setPedidos(pedido);
 			this.setVisible(false);
 			rico.getArchivos().actualizarArchivoPedidos(rico.getPedidos());
-			System.out.println(rico.getPedidos().getListaPedidosContenedorMap().toString());
 
 			panelAnterior.quitarBoton(boton);
 		}
