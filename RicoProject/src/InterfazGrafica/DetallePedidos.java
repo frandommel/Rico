@@ -57,7 +57,9 @@ public class DetallePedidos extends JFrame implements ActionListener{
 		this.rico = comercio;
 		initComponents();
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -119,7 +121,10 @@ public class DetallePedidos extends JFrame implements ActionListener{
 	
 	
 	}
-	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();

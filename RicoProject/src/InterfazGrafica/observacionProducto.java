@@ -51,6 +51,9 @@ public class observacionProducto extends JFrame implements ActionListener{
 		initComponents();
 	}
 	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -92,7 +95,10 @@ public class observacionProducto extends JFrame implements ActionListener{
 		button.addActionListener(this);
 		getContentPane().add(button);
 	}
-
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==button) {
@@ -104,7 +110,11 @@ public class observacionProducto extends JFrame implements ActionListener{
 			this.setVisible(false);
 		}
 	}
-	
+	/**
+	 * 
+	 * @param String
+	 * @param int
+	 */
 	public void setNombre(String nombre,int precio)
 	{
 		String p = Integer.toString(precio);

@@ -25,6 +25,10 @@ public class Hamburguesa extends JPanel implements ActionListener{
 		initComponents();
 	}
 	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton boton;
@@ -36,7 +40,9 @@ public class Hamburguesa extends JPanel implements ActionListener{
 			obs.setVisible(true);
 			}
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(48, 40, 501, 385);

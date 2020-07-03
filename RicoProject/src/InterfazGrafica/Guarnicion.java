@@ -25,7 +25,9 @@ public class Guarnicion extends JPanel implements ActionListener{
 		this.venta = venta;
 		initComponents();
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(48, 40, 501, 385);
@@ -48,12 +50,17 @@ public class Guarnicion extends JPanel implements ActionListener{
 		accionBoton(button3);
 		add(button3);
 	}
-	
+	/**
+	 * Agrego un ActionListener al boton
+	 */
 	public void accionBoton(JButton b) {
 		b.addActionListener(this);
 	}
 
-	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton boton;

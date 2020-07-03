@@ -59,7 +59,9 @@ public class Empleados extends JFrame implements ActionListener {
 		rico=comercio;
 		initComponents();
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		cerrar();
 		setBounds(0, 0, 698, 409);
@@ -70,6 +72,9 @@ public class Empleados extends JFrame implements ActionListener {
 		setIconImage(new ImageIcon(getClass().getResource("descarga.jpg")).getImage());	
 	}
 	
+	/**
+	 * Se inicia el jPanel correspondiete A Empleado
+	 */
 	public void iniciarJpanel() {
 		contentPane= new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -183,7 +188,9 @@ public class Empleados extends JFrame implements ActionListener {
 			getContentPane().add(label1);
 	}
 	
-	//Cerramos la aplicacion con la cruz
+	/**
+	 * Se cierra la aplicacion
+	 */
 		public void cerrar() 
 		{
 			try {
@@ -200,6 +207,9 @@ public class Empleados extends JFrame implements ActionListener {
 			}
 		}
 		
+		/**
+		 * Se valida la salida de la aplicacion
+		 */
 		public void confirmarSalida()
 		{
 			int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de cerrar la aplicacion","ADVERTENCIA"
@@ -208,7 +218,11 @@ public class Empleados extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		}
-
+		
+		/**
+		 * @param AtionEvent
+		 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == button2) 
@@ -298,6 +312,9 @@ public class Empleados extends JFrame implements ActionListener {
 			}
 		}	
 		
+		/**
+		 * Activamos textFields
+		 */
 		public void activarTextfields()
 		{
 			textField2.setEnabled(true);

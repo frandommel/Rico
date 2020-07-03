@@ -36,7 +36,9 @@ public class AltaCliente extends JPanel implements ActionListener {
 		rico = comercio;
 		initComponents();	
 	}
-		
+	/**
+	 * Se inicia los componentes.	
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(0, 0, 689, 378);
@@ -121,6 +123,10 @@ public class AltaCliente extends JPanel implements ActionListener {
 			add(label1);
 	}
 	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button2) 
@@ -199,6 +205,9 @@ public class AltaCliente extends JPanel implements ActionListener {
 			frame.setVisible(false);
 		}
 	}
+	/**
+	 * Se Activan los textFiels
+	 */
 	public void activarTextfields()
 	{
 		textField3.setEnabled(true);

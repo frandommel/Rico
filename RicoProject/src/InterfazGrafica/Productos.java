@@ -67,7 +67,9 @@ public class Productos extends JFrame implements ActionListener {
 		nombre = "";
 		claveValor="";
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		cerrar();
 		setBounds(0, 0, 698, 409);
@@ -78,6 +80,9 @@ public class Productos extends JFrame implements ActionListener {
 		setIconImage(new ImageIcon(getClass().getResource("descarga.jpg")).getImage());	
 	}
 	
+	/**
+	 * Inicio el Jpanel de productos
+	 */
 	public void iniciarJpanel() {
 		contentPane= new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -155,7 +160,9 @@ public class Productos extends JFrame implements ActionListener {
 			getContentPane().add(label1);
 	}
 	
-	//Cerramos la aplicacion con la cruz
+	/**
+	 * Cierre de la aplicacion
+	 */
 		public void cerrar() 
 		{
 			try {
@@ -171,7 +178,9 @@ public class Productos extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}
-		
+		/**
+		 * Validacion para salir de la aplicacion
+		 */
 		public void confirmarSalida()
 		{
 			int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de cerrar la aplicacion","ADVERTENCIA"
@@ -180,7 +189,10 @@ public class Productos extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		}
-
+		/**
+		 * @param AtionEvent
+		 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			ArchivoProducto p = new ArchivoProducto();
@@ -572,13 +584,18 @@ public class Productos extends JFrame implements ActionListener {
 			}
 		}
 		
-		
+		/**
+		 * Agrego como a la lista de productos
+		 */
 		public void agregarComboListaProductos() {
 			ArrayList<String> listaProducto = new ArrayList<String>();
 			listaProducto.add("Hamburguesa");
 			listaProducto.add("Pancho");
 		}
 		
+		/**
+		 * Agrego item tipo combo
+		 */
 		public void agregarItemsTipoCombo()
 		{
 			ArchivoProducto p = new ArchivoProducto();
@@ -624,10 +641,20 @@ public class Productos extends JFrame implements ActionListener {
 			comboItemCombos.addActionListener(this);
 		}
 		
+		/**
+		 * 
+		 * @param JComboBox<String>
+		 * @param String
+		 */
 		public void agregarItem(JComboBox<String> listaItem,String item) {
 			listaItem.addItem(item);
 		}
 		
+		/**
+		 * 
+		 * @param ArrayList<String>
+		 * @param JComboBox<String> c
+		 */
 		public void moverArray2Combo(ArrayList<String>listaItem,JComboBox<String> combo) {
 			String item="";
 			for(int i=0;i<listaItem.size();i++) {
@@ -636,6 +663,11 @@ public class Productos extends JFrame implements ActionListener {
 			}
 		}
 		
+		/**
+		 * 
+		 * @param ArrayList<Producto>
+		 * @return ArrayList<String> 
+		 */
 		public ArrayList<String> pasar2ListaString(ArrayList<Producto>p){
 			ArrayList<String>listaProd=new ArrayList<String>();
 			for (int i = 0; i < p.size(); i++) {
@@ -652,6 +684,12 @@ public class Productos extends JFrame implements ActionListener {
 			return listaProd;
 		}
 		
+		/**
+		 * 
+		 * @param ArrayList<Producto> 
+		 * @param String
+		 * @return int
+		 */
 		public int precioFromArchivo(ArrayList<Producto> p, String producto) {	
 			int buscado=0;
 			for (int i = 0; i < p.size(); i++) {

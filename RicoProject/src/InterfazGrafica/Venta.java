@@ -55,7 +55,9 @@ public class Venta extends JPanel implements ActionListener {
 	
 		
 	}
-	
+	/**
+	 * Se inicia los componentes
+	 */
 	private void initComponents() 
 	{
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -125,7 +127,10 @@ public class Venta extends JPanel implements ActionListener {
 		
 		
 	}
-
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==checkbox)
@@ -159,6 +164,10 @@ public class Venta extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param JCheckBox
+	 */
 	public void confirmarPedido(JCheckBox checkbox)
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Confirma Pedido?",	"Pedido", JOptionPane.YES_NO_OPTION);
@@ -181,7 +190,11 @@ public class Venta extends JPanel implements ActionListener {
 		}
 	}	
 	
-	
+	/**
+	 * 
+	 * @param ArrayList<Producto> 
+	 * @param ArrayList<Producto>
+	 */
 	private void bucleLimpiezaListado(ArrayList<Producto> origen,ArrayList<Producto> destino)
 	{
 		for(int i=0;i<origen.size();i++)
@@ -196,6 +209,9 @@ public class Venta extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Se limpia el panel
+	 */
 	public void limpiarPanel() {
 		if(!botones.isEmpty()) {
 		
@@ -208,6 +224,10 @@ public class Venta extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param Producto
+	 */
 	public void addVenta(Producto producto)
 	{
 		textNumero.setText(String.valueOf(getNumeroPedido()));
@@ -222,6 +242,9 @@ public class Venta extends JPanel implements ActionListener {
 		panel.updateUI();
 	}
 	
+	/**
+	 * Se lista botones
+	 */
 	public void listadoToButton()
 	{
 		for(int i=0;i<listado.size();i++)
@@ -238,7 +261,11 @@ public class Venta extends JPanel implements ActionListener {
 	
 		
 	}
-
+	/**
+	 * 
+	 * @return String
+	 * Defino fecha
+	 */
 	public String definirFecha()
 	{
 		Date fechaOrigen = new Date();
@@ -262,7 +289,9 @@ public class Venta extends JPanel implements ActionListener {
 	{
 		numeroPedido++;
 	}
-	
+	/**
+	 * Se setea el inicio de los numeros de pedidos
+	 */
 	private void setInicioNumPedido()
 	{
 		HashMap<String, ArrayList<Pedido>>  mapaPedidos = rico.getPedidos().getListaPedidosContenedorMap();		
@@ -278,7 +307,11 @@ public class Venta extends JPanel implements ActionListener {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @return int
+	 * Se setea el monto de venta
+	 */
 	public int setMontoVenta() {
 		
 		int montoVenta = 0;
@@ -294,7 +327,11 @@ public class Venta extends JPanel implements ActionListener {
 		}
 		return montoVenta;
 	}
-	
+	/**
+	 * 
+	 * @return int
+	 * Se setea el monto de venta
+	 */
 public int setMontoVenta(double d) {
 		
 

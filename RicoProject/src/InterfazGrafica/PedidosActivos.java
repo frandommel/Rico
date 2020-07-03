@@ -39,7 +39,9 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		buttons = new ArrayList<JButton>();
 		initComponents();
 	}
-	
+	/**
+	 * Inicio componentes
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(594, 457, 470, 199);
@@ -55,9 +57,10 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	
 	
 	}
-	
-	
-	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JButton boton;	
@@ -71,7 +74,10 @@ public class PedidosActivos extends JPanel implements ActionListener{
 				}
 		
 		}
-	
+	/**
+	 * 
+	 * @param Pedido
+	 */
 	public void addVenta(Pedido pedido) {
 		
 		pedidos.add(pedido);
@@ -81,6 +87,9 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		panel.updateUI();
 	}
 	
+	/**
+	 * Creo listado de botones
+	 */
 	public void listadoToButton()
 	{
 
@@ -96,13 +105,21 @@ public class PedidosActivos extends JPanel implements ActionListener{
 		panel.add(botonLista);
 	}
 	
-	
+	/**
+	 * 
+	 * @param Jbutton 
+	 */
 	public void quitarBoton(JButton boton) {
 		buttons.remove(boton);
 		panel.remove(boton);
 		panel.updateUI();
 	}
 	
+	/**
+	 * 
+	 * @return String
+	 * Defino fecha a partir del objeto Date
+	 */
 	public String definirFecha()
 	{
 		Date fechaOrigen = new Date();

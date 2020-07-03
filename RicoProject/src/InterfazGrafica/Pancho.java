@@ -28,7 +28,9 @@ public class Pancho extends JPanel implements ActionListener {
 		initComponents();
 	}
 	
-	
+	/**
+	 * Inicio Componentes
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(48, 40, 501, 385);
@@ -57,6 +59,10 @@ public class Pancho extends JPanel implements ActionListener {
 		add(button4);
 	}
 	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton boton;

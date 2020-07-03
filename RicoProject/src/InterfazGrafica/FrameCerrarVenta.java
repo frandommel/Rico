@@ -50,7 +50,10 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
-	 * @param pedidosActivos 
+	 * @param pedidosActivos
+	 * @param Comercio 
+	 * @param Pedido 
+	 * @param  JButton
 	 */
 	public FrameCerrarVenta(Pedido pedido2,Comercio comercioRico, PedidosActivos pedidosActivos,JButton boton) {
 		this.pedido=pedido2;
@@ -59,7 +62,9 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		panelAnterior = pedidosActivos;
 		initComponents();
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -96,7 +101,10 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 		
 		
 	}
-
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==cancelar) {
@@ -130,7 +138,11 @@ public class FrameCerrarVenta extends JFrame implements ActionListener {
 	}
 	
 	
-
+	/**
+	 * 
+	 * @return String
+	 * Defino fecha y vuelvo un string
+	 */
 	public String definirFecha()
 	{
 		Date fechaOrigen = new Date();

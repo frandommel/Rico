@@ -67,6 +67,9 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		initComponents();
 	}
 	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		cerrar();
 		setBounds(0, 0, 698,409);
@@ -125,7 +128,10 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		  getContentPane().add(label1);
 	}
 	
-	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==boton1)
@@ -166,7 +172,9 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		
 	}
 	
-	 //para entrar con enter
+	/**
+	 *@param KeyEvent
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) { 
   		String usuario = textfield1.getText().trim();
@@ -198,7 +206,9 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		
 	}
 	
-	//Cerramos la aplicacion con la cruz
+	/**
+	 * Metodo para cerrar la aplicacion
+	 */
 	public void cerrar() 
 	{
 		try {
@@ -215,6 +225,9 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		}
 	}
 	
+	/**
+	 * Validacion de cierre
+	 */
 	public void confirmarSalida()
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de cerrar la aplicacion","ADVERTENCIA"

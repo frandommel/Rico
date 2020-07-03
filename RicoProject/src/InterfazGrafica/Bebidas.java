@@ -27,7 +27,9 @@ public class Bebidas extends JPanel implements ActionListener{
 		this.venta=venta;
 		initComponents();
 	}
-	
+	/**
+	 * Se inicia los componentes
+	 */
 	public void initComponents() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setBounds(48, 40, 501, 385);
@@ -66,7 +68,10 @@ public class Bebidas extends JPanel implements ActionListener{
 		add(button6);
 	}
 
-	
+	/**
+	 * @param AtionEvent
+	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton boton;

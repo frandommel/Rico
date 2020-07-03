@@ -58,7 +58,9 @@ public class Cliente extends JFrame {
 		rico = comercio;
 		initComponents();
 	}
-	
+	/**
+	 * Inicio los componentes
+	 */
 	public void initComponents() {
 		cerrar();
 		setBounds(0, 0, 698, 409);
@@ -72,7 +74,9 @@ public class Cliente extends JFrame {
 		agregarPaneles();
 		setIconImage(new ImageIcon(getClass().getResource("descarga.jpg")).getImage());	
 	}
-	
+	/**
+	 * agregoPaneles
+	 */
 	public void agregarPaneles() {
 		panelAlta = new AltaCliente(rico);
 		panelAlta.setSize(692, 378);
@@ -82,7 +86,9 @@ public class Cliente extends JFrame {
 		
 	}
 	
-	//Cerramos la aplicacion con la cruz
+	/**
+	 * Se cierra la aplicacion
+	 */
 	public void cerrar() 
 	{
 		try {
@@ -99,6 +105,9 @@ public class Cliente extends JFrame {
 		}
 	}
 	
+	/**
+	 * Se valida la confirmacion para el cerrado
+	 */
 	public void confirmarSalida()
 	{
 		int valor = JOptionPane.showConfirmDialog(this, "Estas seguro de cerrar la aplicacion","ADVERTENCIA"
