@@ -58,7 +58,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	
 	}
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
@@ -107,7 +107,7 @@ public class PedidosActivos extends JPanel implements ActionListener{
 	
 	/**
 	 * 
-	 * @param Jbutton 
+	 * @param boton Jbutton 
 	 */
 	public void quitarBoton(JButton boton) {
 		buttons.remove(boton);

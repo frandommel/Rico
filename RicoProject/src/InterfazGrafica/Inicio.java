@@ -129,7 +129,7 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 	}
 	
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
@@ -251,6 +251,15 @@ public class Inicio extends JFrame implements KeyListener,ActionListener{
 		});
 	}*/
 	
+	
+	/**
+	 * 
+	 * @param nombre String
+	 * @param password String
+	 * @return true|false si la validacion es correcta en el logueo
+	 * @throws LoginException
+	 * @throws JSONException
+	 */
 	public boolean validarPersona(String nombre, String password) throws LoginException, JSONException  
 	{
 		ManejadordeArchivos manejador = new ManejadordeArchivos();

@@ -96,7 +96,7 @@ public class observacionProducto extends JFrame implements ActionListener{
 		getContentPane().add(button);
 	}
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
@@ -112,8 +112,8 @@ public class observacionProducto extends JFrame implements ActionListener{
 	}
 	/**
 	 * 
-	 * @param String
-	 * @param int
+	 * @param nombre String
+	 * @param precio int
 	 */
 	public void setNombre(String nombre,int precio)
 	{

@@ -126,7 +126,7 @@ public class DetallePedidos extends JFrame implements ActionListener{
 	
 	}
 	/**
-	 * @param AtionEvent
+	 * @param  e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
@@ -138,7 +138,13 @@ public class DetallePedidos extends JFrame implements ActionListener{
 			int numCol = table_1.getModel().getColumnCount();
 			try
 			{
+				
+				
 				pedidos=busquedaPedido(pedidos, clave);
+				if(pedidos.isEmpty())
+				{
+					throw new BusquedaException(clave);
+				}
 				for (int i = 0; i < pedidos.size(); i++) {
 					Object [] fila= new Object[numCol];
 					fila[0] = pedidos.get(i).getId();

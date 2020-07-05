@@ -124,7 +124,7 @@ public class AltaCliente extends JPanel implements ActionListener {
 	}
 	
 	/**
-	 * @param AtionEvent
+	 * @param e ActionEvent
 	 * Metodo que se utiliza para el manejo de las interacciones de la interfaz
 	 */
 	@Override
